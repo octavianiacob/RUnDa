@@ -9,7 +9,7 @@ body{
 
 .container
 {
-    width: 80%;
+    width: 80em;
     margin:auto;
     overflow:hidden;
 }
@@ -80,3 +80,4 @@ header nav{
         padding-bottom:20px;
     }
 }
+
