@@ -5,7 +5,13 @@
 }
 
 
-/* --- NAVBAR --- */
+.container
+{
+    width: 80em;
+    margin:auto;
+    overflow:hidden;
+}
+/* Header */
 
 .navbar {
     font-size: 25px;
@@ -55,3 +61,4 @@ a img {
         display: none;
     }
 }
+
