@@ -1,0 +1,119 @@
+.about {
+    font-family: 'Roboto', sans-serif;
+    margin-top:2em;
+    color: #33475b;
+}
+
+.container1, .container2{
+    width:80em;
+    margin:auto;
+    overflow:hidden;
+    margin-top: 2em;
+}
+
+.container1__textBox1, .container2__textBox1{
+    color: red;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
+
+.container2__image1 img, .container1__image1 img{
+    width:50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  
+
+}
+p{
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    color:grey;
+    
+}
+h2{
+    padding-bottom:2em;
+    font-weight: 700;
+    color: #33475b;
+    text-align: center;
+    
+}
+@media screen and (max-width:640px)and (min-width:320px) {
+    
+   
+    .container1, .container2{
+        width:100%;
+        margin:auto;
+        overflow:hidden;
+        margin-top: 2em;
+    }
+    .container1__textBox1, .container2__textBox1{
+    color:blue;
+    width:80%;
+    }
+    
+    .container2__image1 img, .container1__image1 img{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:768px)and (min-width:640px) {
+    
+    .container1, .container2{
+        width:100%;
+        margin:auto;
+        overflow:hidden;
+        margin-top: 2em;
+    }
+    .container1__textBox1, .container2__textBox1{
+    color:green;
+    width:80%;
+    }
+    
+    .container2__image1 img, .container1__image1 img{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:1024px)and (min-width:768px) {
+    
+    .container1, .container2{
+        width:100%;
+        margin:auto;
+        overflow:hidden;
+        margin-top: 2em;
+    }
+    .container1__textBox1, .container2__textBox1{
+    color:yellow;
+    width:70%;
+    }
+    
+    .container2__image1 img, .container1__image1 img{
+        width: 70%;
+    }
+}
+
+
+
+
+@media screen and (max-width:1200px)and (min-width:1024px) {
+    
+    .container1, .container2{
+        width:100%;
+        margin:auto;
+        overflow:hidden;
+        margin-top: 2em;
+    }
+    .container1__textBox1, .container2__textBox1{
+    color:purple;
+    width:60%;
+    }
+    
+    .container2__image1 img, .container1__image1 img{
+        width: 60%;
+    }
+}
