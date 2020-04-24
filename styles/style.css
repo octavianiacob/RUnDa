@@ -4,13 +4,6 @@
     margin: 0;
 }
 
-
-.container
-{
-    width: 80em;
-    margin:auto;
-    overflow:hidden;
-}
 /* Header */
 
 .navbar {
@@ -62,3 +55,172 @@ a img {
     }
 }
 
+/* Banner */
+
+.banner {
+    padding: 30px;
+}
+
+.background-card {
+    background: #fff;
+    height: 90vh;
+    box-shadow: 9px 7px 40px -6px rgba(0,0,0,0.25);
+    border-radius: 10px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    background-image: url(/images/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.background-card img {
+    width: 800px;
+    height: 800px;
+}
+
+.start-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 70%;    
+}
+
+.banner h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    font-weight: 600;
+    color: #174255;
+    width: 450px;
+    line-height: 1.2em;
+}
+
+#start-btn {
+    width: 200px;
+    height: 60px;
+    background-color: #FFE200;
+    text-decoration: none;
+    border-radius: 100px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #174255;
+    border: #174255;
+    margin-top: 30px;
+
+}
+
+@media screen and (min-width: 1411px) {
+    .background-card img {
+        margin-right: 100px;
+    }
+}
+
+@media screen and (min-width: 1111px) and (max-width: 1410px){
+ 
+    .background-card img {
+        width: 500px;
+        height: 500px;
+        margin-right: 100px;
+        margin-top: 100px;
+    }
+
+    .start-section {
+        height: 50%;
+        margin-top: 100px;
+    }
+     
+}
+
+    
+@media screen and (min-width: 700px) and (max-width: 1110px){
+ 
+    .background-card img {
+        width: 500px;
+        height: 500px;
+    }
+
+    .start-section {
+        display: block;
+        height: 50%;
+         
+    }
+         
+}
+
+@media screen and (min-width: 400px) and (max-width: 699px){
+ 
+    .background-card img {
+        width: 400px;
+        height: 400px;
+    }
+
+    .start-section {
+        display: block;
+        height: 50%;
+    }
+
+    .banner h1 {
+        font-size: 2em;
+    }
+         
+}
+
+@media screen and (min-width: 400px) and (max-width: 540px){
+ 
+    .background-card img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .start-section {
+        display: block;
+        height: 50%;
+    }
+
+    .banner h1 {
+        font-size: 1.8em;
+        max-width: 300px;
+    }
+         
+}
+    
+@media screen and (min-width: 350px) and (max-width: 399px){
+ 
+    .background-card img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .start-section {
+        height: 40%;
+    }
+
+    .banner h1 {
+        font-size: 1.5em;
+        max-width: 280px;
+    }
+         
+}
+
+@media screen and (min-width: 320px) and (max-width: 349px){
+ 
+    .background-card img {
+        width: 240px;
+        height: 240px;
+    }
+
+    .start-section {
+        height: 40%;
+    }
+
+    .banner h1 {
+        font-size: 1.5em;
+        max-width: 250px;
+    }
+         
+}
