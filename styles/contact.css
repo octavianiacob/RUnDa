@@ -13,15 +13,75 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Banner */
+
+.navbar{
+    display:flex;
+    justify-content:space-evenly;
+    font-size: 25px;
+    color: #C3D3D0;
+    background-color: #174255;
+    padding-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    min-width:100%;
+    align-items:center;
+}
+.nav-list{
+    display:flex;
+    justify-content:space-evenly;
+
+}
+.nav-links a {
+    padding: 30px;
+}
+
+.navbar a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+a img {
+    height: 30px;
+    margin-top: 10px;
+}
+.short-text {
+    display: none;
+}
+@media (max-width: 700px) {
+    .short-text {
+        display: inline-block;
+    }
+    .full-text {
+        display: none;
+    }
+}
+@media (max-width:360px){
+    #logo{
+        margin-left:30px;
+    }
+    .nav-links a {
+        padding: 15px;
+    }
+    .short-text {
+        display: inline-block;
+    }
+    .full-text {
+        display: none;
+    }
+   
+}
  
- 
+/* Contact Form */
+
 .contact-form h1 {
     margin-top:0;
     font-size:3.125rem;
+    margin-bottom: 1rem;
 }
 .contact-form h2 {
     margin-top:0;
     font-size:2rem;
+    margin-bottom: 2rem;
 }
 
 .contact-form{
@@ -60,17 +120,26 @@ body {
     font-size:1.125rem;
     margin-top:6px;
 }
-.button-class{
+.btn-submit{
     display:flex;
     align-items:center;
     justify-content:center;
     margin-top:8px;
-}
-.button-class button {
-    background:#174255;
-    text-transform:uppercase;
-    color: #C3D3D0;
     padding:10px;
+}
+
+.btn-submit button {
+    width: 200px;
+    height: 60px;
+    background-color: #FFE200;
+    text-decoration: none;
+    border-radius: 100px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #174255;
+    border: #174255;
+    margin-top: 30px;
 }
 
 @media (min-width: 320px) and (max-width: 650px)
