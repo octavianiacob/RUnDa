@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^educatie  index1.php  [NC,L]

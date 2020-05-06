@@ -57,9 +57,7 @@ foreach ($myfiles as $value) {
             $item7 = mysqli_real_escape_string($connect, $data[7]);
             $item8 = mysqli_real_escape_string($connect, $data[8]);
             $item9 = mysqli_real_escape_string($connect, $data[9]);
-            $item10 = mysqli_real_escape_string($connect, $data[10]);
-
-           
+            
 
             if ($contor == 44)
                 break;
@@ -89,7 +87,7 @@ foreach ($myfiles as $value) {
                 mysqli_query($connect, $query);
             }
             
-            //if pt rata
+           // if pt rata
 
             if ($file_name_and_extenstions[2] === "rata.csv") {
                 $query = "INSERT into rata (judet, id_judet, month, year, total_someri, someri_femei, someri_barbati, someri_indemnizati, someri_neindemnizati,
@@ -99,8 +97,6 @@ foreach ($myfiles as $value) {
                 mysqli_query($connect, $query);
             }
             
-
-
         }
         fclose($handle);
     }
