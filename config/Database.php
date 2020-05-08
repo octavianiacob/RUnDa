@@ -15,21 +15,25 @@ class Database{
         public function __construct()
         {
             $this->pdo = null;
+
             try {
+
                 $this->pdo = new PDO(
                     "mysql:host=$this->hostName; dbname=$this->dbname;",
                     $this->username,
                     $this->password
                 );
+
                 $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
                 $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "Connected successfully"; 
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
+
             }
+
         }
 
-        public function fetchAll($query)
+        public function fetchAll($query)//fetch everytihing (adica interpreteaza sql statement.)
     {
         $stmt = $this->pdo->prepare($query); //to avoid sql injection
         $stmt->execute();
