@@ -7,13 +7,13 @@ header("Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 
 
 require_once "../../config/Database.php";
-require_once "../../models/Educatie.php";
+require_once "../../models/Medii.php";
 require_once "../../models/HttpResponse.php";
 
 
 
 $db = new Database();
-$educatie = new Educatie($db);
+$medii = new Medii($db);
 $http = new HttpResponse();
 
 
@@ -21,13 +21,14 @@ $url = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET['id_judet']) && !filter_var($_GET['id_judet'], FILTER_VALIDATE_INT)) {
-        // ERROR ONLY INTEGER IS ALLOWED
-        $http->badRequest("Only a valid integer is allowed to fetch a single quote");
-        die();
+
+    $resultsData =$medii->selectAllMedii();//aici setez datele
+
+    if ($resultsData !== isset($_GET['id'])) {
+        $medii->selectAllMedii();
     }
-   
-    $resultsData = isset($_GET['city']) ? $educatie->selectOneCounty($_GET['city']) : $educatie->selectAllEducatie();
+  
+
     
 
     if ($resultsData === 0) {
@@ -36,10 +37,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $http->OK($resultsData);
     }
 }
-
-
- // $resultsData =$educatie->selectAllEducatie();//aici setez datele
-
-    // if ($resultsData !== isset($_GET['id'])) {
-    //     $educatie->selectAllEducatie();
-    // }

@@ -1,3 +1,5 @@
 RewriteEngine On
 
 RewriteRule ^educatie  index.php  [NC,L]
+RewriteRule ^([A-Za-z0-9]+)$ index.php?city=$1
+RewriteRule ^([^/.]+)/?$ $1.php
