@@ -1,14 +1,15 @@
 <?php
-
+require_once "../../config/Database.php";
 class Educatie{
     private $db;
     
-    public function __construct(Database $db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = new Database();
     }
 
     public function selectTotalSomeri(){
+      
         $query = "SELECT
         educatie.id, educatie.judet, educatie.id_judet, educatie.month, educatie.year,
         educatie.total_someri,educatie.fara_studii, educatie.primar,
