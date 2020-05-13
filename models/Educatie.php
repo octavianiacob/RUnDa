@@ -12,7 +12,7 @@ class Educatie{
     public function selectAllEducatie(){
       
         $query = "SELECT
-        educatie.id, educatie.judet, educatie.id_judet, educatie.month, educatie.year,
+        educatie.judet, educatie.id_judet, educatie.month, educatie.year,
         educatie.total_someri,educatie.fara_studii, educatie.primar,
         educatie.gimnazial, educatie.liceal, educatie.postliceal,
         educatie.profesional_arte_meserii, educatie.universitar

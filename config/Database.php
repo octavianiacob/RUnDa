@@ -4,7 +4,7 @@ class Database{
     
         //DB parameteres
 
-        private $hostName = "localhost:3307";
+        private $hostName = "localhost";
         private $dbname = "nivel_somaj";
         private $username = "root";
         private $password = "";
