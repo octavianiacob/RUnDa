@@ -4,7 +4,7 @@ class Database{
     
         //DB parameteres
 
-        private $hostName = "localhost";
+        private $hostName = "localhost:3307";
         private $dbname = "nivel_somaj";
         private $username = "root";
         private $password = "";
@@ -46,7 +46,7 @@ class Database{
             return $stmt->fetchAll();
         }
     }
-    public function fetchOne($query, $parameter)
+    public function fetchOne($query, $parameter)//cu fetchOne scot un JSON!
     {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$parameter]);
