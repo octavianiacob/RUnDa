@@ -72,23 +72,6 @@ function parseRequest($routeConfig)
             $payload = NULL;
         }
 
-
-        // if middlewares =>  run them first
-
-        if (isset($routeConfig['middlewares'])) {
-            foreach ($routeConfig['middlewares'] as $middlewareName) {
-                $didPass = call_user_func($middlewareName, [
-                    "params" => $params,
-                    "query" => $query,
-                    "payload" => $payload
-                ]);
-
-                if (!$didPass) {
-                    exit();
-                }
-            }
-        }
-
         call_user_func($routeConfig['handler'], [
             "params" => $params,
             "query" => $query,

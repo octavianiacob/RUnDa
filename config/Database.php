@@ -49,6 +49,7 @@ class Database{
     public function fetchOneCounty($query, $parameter)//cu fetchOne scot un JSON!
     {
         $stmt = $this->pdo->prepare($query);
+      
         $stmt->execute([$parameter]);
         $rowCount = $stmt->rowCount();
 
