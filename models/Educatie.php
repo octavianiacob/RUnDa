@@ -1,16 +1,18 @@
 <?php
-
+require_once "../../config/Database.php";
 class Educatie{
     private $db;
     
-    public function __construct(Database $db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = new Database();
     }
 
+    
     public function selectAllEducatie(){
+      
         $query = "SELECT
-        educatie.id, educatie.judet, educatie.id_judet, educatie.month, educatie.year,
+        educatie.judet, educatie.id_judet, educatie.month, educatie.year,
         educatie.total_someri,educatie.fara_studii, educatie.primar,
         educatie.gimnazial, educatie.liceal, educatie.postliceal,
         educatie.profesional_arte_meserii, educatie.universitar
@@ -18,8 +20,6 @@ class Educatie{
 
         return $this->db->fetchAll($query);
     }
-
-
     public function selectOneCounty($parameter) //cu fetchOne scot un JSON!
     {
         $query = "SELECT
@@ -47,5 +47,4 @@ class Educatie{
     //     WHERE educatie.id_judet = ?";
     //     return $this->db->fetchOne($query, $parameter);
     // }
-
 }
