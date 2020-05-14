@@ -18,7 +18,7 @@ class Educatie{
         educatie.profesional_arte_meserii, educatie.universitar
         FROM educatie";
 
-        return $this->db->fetchAll($query);
+        return $this->db->fetchAllCounties($query);
     }
     public function selectOneCounty($parameter) //cu fetchOne scot un JSON!
     {
@@ -28,11 +28,13 @@ class Educatie{
         educatie.gimnazial, educatie.liceal, educatie.postliceal,
         educatie.profesional_arte_meserii, educatie.universitar
         FROM educatie
-        LEFT JOIN orase ON educatie.id_judet = orase.id
-        WHERE educatie.judet = ?";
-        
-        return $this->db->fetchOne($query, $parameter);
+        JOIN orase ON educatie.id_judet = orase.id
+        WHERE orase.city = ?";
+        if($this->db->existCity($query,$parameter)==0)
+            return 0;
+        return $this->db->fetchOneCounty($query, $parameter);
     }
+   
 
 //daca parametrul este CLUJ, atunci selectez toate id-urile unice si afisez JSON
 

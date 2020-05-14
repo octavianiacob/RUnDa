@@ -16,6 +16,6 @@ class Medii{
         medii.someri_rural, medii.femei_rural, medii.barbati_rural
         FROM medii";
 
-        return $this->db->fetchAll($query);
+        return $this->db->fetchAllCounties($query);
     }
 }

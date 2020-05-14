@@ -34,7 +34,7 @@ class Database{
 
         }
 
-        public function fetchAll($query)//fetch everytihing (adica interpreteaza sql statement.)
+        public function fetchAllCounties($query)//fetch everytihing (adica interpreteaza sql statement.)
     {
         $stmt = $this->pdo->prepare($query); //to avoid sql injection
         $stmt->execute();
@@ -46,7 +46,7 @@ class Database{
             return $stmt->fetchAll();
         }
     }
-    public function fetchOne($query, $parameter)//cu fetchOne scot un JSON!
+    public function fetchOneCounty($query, $parameter)//cu fetchOne scot un JSON!
     {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$parameter]);
@@ -55,9 +55,20 @@ class Database{
         if ($rowCount <= 0) {
             return 0;
         } else {
-            return $stmt->fetch();
+            return $stmt->fetchAll();
         }
     } 
+    public function existCity($query,$parameter)
+    {
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$parameter]);
+        $rowCount = $stmt->rowCount();
 
+        if ($rowCount <= 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
     
 }

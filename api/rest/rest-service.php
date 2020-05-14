@@ -117,7 +117,7 @@ function routeExpToRegExp($route)
         $regExpString .= '\/';
 
         if ($p[0] === ':') {
-            $regExpString .= '([a-zA-Z0-9]+)';
+            $regExpString .= '([a-zA-Z0-9-]+)';
         } else {
             $regExpString .= $p;
         }

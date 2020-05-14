@@ -17,7 +17,7 @@ class Varste{
         varste.30_39_ani,varste.40_49_ani,varste.50_55_ani,varste.peste_55_ani
         FROM varste";
 
-        return $this->db->fetchAll($query);
+        return $this->db->fetchAllCounties($query);
     }
     public function selectOneCounty($parameter) //cu fetchOne scot un JSON!
     {
@@ -29,7 +29,7 @@ class Varste{
         LEFT JOIN orase ON varste.id_judet = orase.id
         WHERE varste.judet = ?";
         
-        return $this->db->fetchOne($query, $parameter);
+        return $this->db->fetchOneCounty($query, $parameter);
     }
 
 //daca parametrul este CLUJ, atunci selectez toate id-urile unice si afisez JSON

@@ -18,7 +18,7 @@ class Rata{
         ,rata.rata_somaj_femei,rata.rata_somaj_barbati 
         FROM rata";
 
-        return $this->db->fetchAll($query);
+        return $this->db->fetchAllCounties($query);
     }
     public function selectOneCounty($parameter) //cu fetchOne scot un JSON!
     {
@@ -31,7 +31,7 @@ class Rata{
         LEFT JOIN orase ON rata.id_judet = orase.id
         WHERE rata.judet = ?";
         
-        return $this->db->fetchOne($query, $parameter);
+        return $this->db->fetchOneCounty($query, $parameter);
     }
 
 //daca parametrul este CLUJ, atunci selectez toate id-urile unice si afisez JSON
