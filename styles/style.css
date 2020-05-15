@@ -80,7 +80,7 @@ a img {
     flex-wrap: wrap;
     justify-content: center;
 
-    background-image: url(/images/background.png);
+    background-image: url("/RunDa/images/background.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center

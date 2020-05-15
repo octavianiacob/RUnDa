@@ -83,10 +83,10 @@ function getCounty($req)
     // DB GET $req['params']['teamId'];
     global $orase;
     if ($orase->selectOneCounty($req['params']['county']) === 0) {
-        Response::status(404);
+        Response::status(400);
     } else 
         if (array_key_exists('filtered_by', $req['query']) == false)
-        Response::status(404);
+        Response::status(400);
     else {
         if ($req['query']['filtered_by']) {
             $array_filtred_by = explode(",", $req['query']['filtered_by']);
