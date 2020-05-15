@@ -5,19 +5,7 @@ require_once "../../models/Medii.php";
 require_once "../../models/Rata.php";
 require_once "../../models/Varste.php";
 require_once "../../models/Orase.php";
-class Response
-{
-    static function status($code)
-    {
-        http_response_code($code);
-    }
-
-    static function json($data)
-    {
-        header('Content-Type: application/json');
-        echo json_encode($data);
-    }
-}
+require_once "../../config/Response.php";
 
 $countyRoutes = [
     [
@@ -114,15 +102,20 @@ function getCounty($req)
                         $array_result_varsta = $varste->selectOneCounty($req['params']['county'], $req['query']);
                         break;
                     default:
-                        return Response::status(404);
+                        return Response::status(400);
                         break;
                 }
-            Response::status(200);
+
             if (empty($array_result_educatie) and empty($array_result_medii) and empty($array_result_rata) and empty($array_result_varsta))
-                Response::status(404);
+                Response::status(400);
             else
+            if ($array_result_educatie === -1 || $array_result_medii === -1 || $array_result_rata === -1 || $array_result_varsta === -1)
+                Response::status(400);
+            else {
+                Response::status(200);
                 Response::json(array_merge_recursive($array_result_educatie, $array_result_medii, $array_result_rata, $array_result_varsta));
+            }
         } else
-            Response::status(404);
+            Response::status(400);
     }
 }

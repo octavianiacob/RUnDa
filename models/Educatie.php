@@ -35,6 +35,7 @@ class Educatie
         if ($this->db->existCity($query, $parameter) == 0)
             return 0;
         $array_sorted_by = [];
+        $order_by = "";
         $array_param = [];
         $valuesSort = "";
         foreach ($queryArray as $key => $value)
@@ -43,6 +44,9 @@ class Educatie
                     break;
                 case "sorted_by":
                     $valuesSort = $value;
+                    break;
+                case "order_by":
+                    $order_by = $value;
                     break;
                 default:
                     $query = $query . " AND educatie." . $key . "='" . $value . "'";
@@ -59,6 +63,9 @@ class Educatie
                     $query = $query . "educatie." . $array_sorted_by[$i] . ",";
             }
         }
+        if (empty($order_by) == false)
+            $query = $query . " " . $order_by;
+
 
 
         return $this->db->fetchAllCounties($query);

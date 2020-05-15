@@ -1,7 +1,6 @@
 <?php
 
 require_once "./county-routes.php";
-// require_once "./team-routes.php";
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
@@ -10,7 +9,7 @@ $allHeaders = getallheaders();
 
 $allRoutes = [
     ...$countyRoutes,
-    // ...$userRoutes
+
 ];
 
 foreach ($allRoutes as $routeConfig) {
@@ -37,40 +36,10 @@ function parseRequest($routeConfig)
 
 
     if (preg_match("/$regExpString/", $url, $matches)) {
-       
-        $params = [];
-        $query = [];
-        $parts = explode('/', $routeConfig['route']);
 
-        // Params
-        $index = 1;
-        foreach ($parts as $p) {
-            if ($p[0] === ':') {
-                $params[substr($p, 1)] = $matches[$index];
-                $index++;
-            }
-        }
-
-        // Query
-        if (strpos($url, '?')) {
-            $queryString = explode('?', $url)[1];
-            $queryParts = explode('&', $queryString);
-
-            foreach ($queryParts as $part) {
-                if (strpos($part, '=')) {
-                    $query[explode('=', $part)[0]] = explode('=', $part)[1];
-                }
-            }
-        }
-      
-
-        // Payload
-        $payload = file_get_contents('php://input');
-        if (strlen($payload)) {
-            $payload = json_decode($payload);
-        } else {
-            $payload = NULL;
-        }
+        $params = getParams($routeConfig, $matches);
+        $query = getQueryParams($url);
+        $payload = getPayload();
 
         call_user_func($routeConfig['handler'], [
             "params" => $params,
@@ -110,36 +79,43 @@ function routeExpToRegExp($route)
     return $regExpString;
 }
 
+function getQueryParams($url)
+{
+    $query = [];
+    if (strpos($url, '?')) {
+        $queryString = explode('?', $url)[1];
+        $queryParts = explode('&', $queryString);
 
-// if (
-//     $_SERVER['REQUEST_METHOD'] !== 'OPTIONS' &&
-//     $_SERVER['REQUEST_METHOD'] !== 'GET' &&
-//     (!isset($allHeaders['Content-Type']) || $allHeaders['Content-Type'] !== 'application/json')
-// ) {
-//     header("Content-type: application/json");
-//     http_response_code(400);
-//     echo '{"status": 400, "reason": "Expecting payload as JSON" }';
-//     exit;
-// }
+        foreach ($queryParts as $part) {
+            if (strpos($part, '=')) {
+                $query[explode('=', $part)[0]] = explode('=', $part)[1];
+            }
+        }
+    }
+    return $query;
+}
+function getParams($routeConfig, $matches)
+{
+    $params = [];
+    $parts = explode('/', $routeConfig['route']);
 
-
-
-// switch ($_SERVER['REQUEST_METHOD']) {
-//     case "GET":
-
-//         echo "GET to rest service";
-//         break;
-//     case "POST":
-//         header("Content-type: application/json");
-
-//         $body = json_decode(file_get_contents("php://input"));
-//         // insert
-//         http_response_code(201);
-
-//         $body->id = uniqid();
-//         echo json_encode($body);
-
-//         break;
-//     default:
-//         break;
-// }
+    // Params
+    $index = 1;
+    foreach ($parts as $p) {
+        if ($p[0] === ':') {
+            $params[substr($p, 1)] = $matches[$index];
+            $index++;
+        }
+    }
+    return $params;
+}
+function getPayload()
+{
+    // Payload
+    $payload = file_get_contents('php://input');
+    if (strlen($payload)) {
+        $payload = json_decode($payload);
+    } else {
+        $payload = NULL;
+    }
+}

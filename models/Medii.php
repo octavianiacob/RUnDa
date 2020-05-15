@@ -34,6 +34,7 @@ class Medii
             return 0;
         $array_sorted_by = [];
         $array_param = [];
+        $order_by = "";
         $valuesSort = "";
         foreach ($queryArray as $key => $value)
             switch ($key) {
@@ -41,6 +42,9 @@ class Medii
                     break;
                 case "sorted_by":
                     $valuesSort = $value;
+                    break;
+                case "order_by":
+                    $order_by = $value;
                     break;
                 default:
                     $query = $query . " AND medii." . $key . "='" . $value . "'";
@@ -57,6 +61,8 @@ class Medii
                     $query = $query . "medii." . $array_sorted_by[$i] . ",";
             }
         }
+        if (empty($order_by) == false)
+            $query = $query . " " . $order_by;
 
 
         return $this->db->fetchAllCounties($query);
