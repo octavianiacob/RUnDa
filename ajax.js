@@ -1,14 +1,14 @@
 
 
-let getCountyName = "cluj"//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
-let getTableName = "educatie"//idem
-let getColumn=""
+let getCountyName = ""//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
+let getTableName = ""//idem
+let getColumn = ""
+let getYear = ""
 
 
 let containerElement = document.querySelector("#container");
-
-
 containerElement.addEventListener("click", onClick);
+
 
 let jsonObject
 function onClick(e) {
@@ -19,28 +19,32 @@ function onClick(e) {
             getCountyName = e.target.getAttribute("data-getCountyName");
         }
 
+
         if (e.target.hasAttribute("data-getTableName")) {
-            getTableName = e.target.getAttribute("data-getTableName");
+           if(getTableName!=="")
+             {
+                getTableName = e.target.getAttribute("data-getTableName");
+                 getColumn=""
+                 getYear=""
+             }
+            else getTableName = e.target.getAttribute("data-getTableName");
+        }
+
+
+        if (e.target.hasAttribute("data-getYear")) {
+           
+            getYear = e.target.getAttribute("data-getYear");
         }
 
         if (e.target.hasAttribute("data-getColumn")) {
             getColumn = e.target.getAttribute("data-getColumn");
-        }
+
+        } 
     }
-   
-   // console.log({ getCountyName, getTableName, getColumn });
-
-    //cand dau click pe search sa-mi faca fetch-ul complet
-    let url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}`
-
-    let educatieArray = ['total_someri', 'fara_studii', 'primar', 'gimnazial', 'liceal', 'postliceal',
-        'profesional_arte_meserii', 'universitar'];
-
-    //    console.log(educatieArray[3])
-
+    if(!(getCountyName===""||getTableName===""||getColumn===""||getYear==="")) {
+    let url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}`
     fetch(url)
         .then(function (resp) {
-            //console.log(resp.json)
             return resp.json()
 
         })
@@ -53,9 +57,6 @@ function onClick(e) {
         .catch(error => {
             console.error(error);
         })
-
-
-    console.log(jsonObject);
 
     const {
         select,
@@ -70,8 +71,8 @@ function onClick(e) {
 
 
 
-    const titleText = `Educatie ${getCountyName}`;
-    const xAxisLabelText = 'Total Someri';
+    const titleText = `${getTableName} ${getCountyName}`;
+    const xAxisLabelText = getColumn;
 
     const svg = select('svg');
 
@@ -79,9 +80,9 @@ function onClick(e) {
     const height = +svg.attr('height');
 
 
-    const render = data => {
-        
-        const xValue = d => d.getColumn
+    const render = data => {//functie care face  un chenar de ala pt fiecare rand
+
+        const xValue = d => d[getColumn]//pun coloana, iar pe orizonatl o sa-mi puna val maxima din coloana pe care o aleg
         const yValue = d => d.month
         const margin = { top: 50, right: 40, bottom: 77, left: 180 };
         const innerWidth = width - margin.left - margin.right;
@@ -136,67 +137,14 @@ function onClick(e) {
             .text(titleText);
     };
 
-    let url1 = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}`;
-    
-    console.log('prostule'+getColumn)
-    json(url1).then(data => {
+    json(url).then(data => {
         data.forEach(d => {
-            d.getColumn = +d.getColumn;
+            d.getColumn = +d.getColumn;//irelevant pt ca din string imi face number, asta-i rolul
         });
         render(data);
     });
 
+    d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
 
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function appendRandomFact(jsonResp) {
-//     let randomIndex = Math.floor(Math.random() * jsonResp.length)//math.random si math.floor functioneaza, deci ma gandesc ca nu poate 
-//     //sa-mi ia din jsonResp                                                     
-//     let randomFact = jsonResp[randomIndex].liceal //liceal e o coloana din tabelul meu
-
-//     let newParagraph = document.createElement("p");
-//     newParagraph.textContent = randomFact;
-
-//     document.body.appendChild(newParagraph)
-// }
-
-
-
-// if (document.getElementById(clicked_id).textContent === "educatie") {
-//     console.log('esti un educatie')
-
-// } else if (document.getElementById(clicked_id).textContent === "varste") {
-//     console.log('esti un varste')
-// }
-
-// //if-ul a fost doar pt test
-
-
-
-//-first attempt for get table name, county name etc
-  // getCountyName = document.getElementById(clicked_id).textContent
-    // fetchBtn = document.getElementById(clicked_id)
-
-
-    // getTableName = document.getElementById(clicked_id).textContent
-    // fetchBtn = document.getElementById(clicked_id)
