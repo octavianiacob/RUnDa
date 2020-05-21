@@ -9,9 +9,9 @@ let getYear = ""
 let containerElement = document.querySelector("#container");
 containerElement.addEventListener("click", onClick);
 
-
 let jsonObject
 function onClick(e) {
+
 
     if (e.target.tagName = "BUTTON") {
 
@@ -21,6 +21,10 @@ function onClick(e) {
 
 
         if (e.target.hasAttribute("data-getTableName")) {
+            if (getTableName === "educatie"){
+                document.getElementById("gimnazial").style.display = "block";
+                document.getElementById("sub_25_ani").style.display = "block";
+            }
             if (getTableName !== "") {
                 getTableName = e.target.getAttribute("data-getTableName");
                 getColumn = ""

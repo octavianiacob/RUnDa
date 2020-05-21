@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 
 <body>
@@ -14,20 +15,55 @@
     <script src="https://unpkg.com/d3@5.16.0/dist/d3.min.js"></script>
     <div id="container">
 
-        <button type="button" data-getCountyName="cluj">Cluj </button>
-        <button type="button" data-getCountyName="iasi">Iasi </button>
-        <hr>
-        <button type="button" data-getTableName="educatie">Educatie </button>
-        <button type="button" data-getTableName="varste">Varsta </button>
+        <div>
+            <p>County</p>
+
+            <label>
+                <span> Iasi</span>
+                <input required type="radio" data-getCountyName="iasi" name="county">
+            </label>
+
+            <label>
+                <span> Cluj </span>
+                <input required type="radio" data-getCountyName="cluj" name="county">
+            </label>
+        </div>
+
+
+        <div>
+            <p>Table</p>
+
+            <label>
+                <span> Educatie</span>
+                <input required type="radio" data-getTableName="educatie" name="table">
+            </label>
+
+            <label>
+                <span> Varste </span>
+                <input required type="radio" data-getTableName="varste" name="table" id="educatie1">
+            </label>
+        </div>
+
+
+        <div>
+            <p>Year</p>
+
+            <label>
+                <span> 2019</span>
+                <input required type="radio" data-getYear="2019" name="year">
+            </label>
+
+            <label>
+                <span> 2020 </span>
+                <input required type="radio" data-getYear="2020" name="year">
+            </label>
+        </div>
+
 
         <hr>
-        <button type="button" data-getYear="2019">2019 </button>
-        <button type="button" data-getYear="2020">2020 </button>
 
-
-        <hr>
-        <button type="button" data-getColumn="gimnazial">gimnazial </button>
-        <button type="button" data-getColumn="sub_25_ani">sub_25_ani </button>
+            <button style="display:none" type="button" data-getColumn="gimnazial" id="gimnazial">gimnazial </button>
+            <button style="display:none" type="button" data-getColumn="sub_25_ani" id="sub_25_ani">sub_25_ani </button>
 
     </div>
 
