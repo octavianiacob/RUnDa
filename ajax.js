@@ -172,7 +172,7 @@ function barChart(url)
 
     json(url).then(data => {
         data.forEach(d => {
-            d.getColumn = +d.getColumn;//irelevant pt ca din string imi face number, asta-i rolul
+            d[getColumn] = +d[getColumn];//irelevant pt ca din string imi face number, asta-i rolul
         });
         render(data);
     });
@@ -200,12 +200,12 @@ function lineChart(url){
       const height = +svg.attr('height');
       
       const render = data => {
-        const title = 'A Week in San Francisco';
+        const title = `${getTableName} ${getCountyName}`;
         
         const xValue = d => d.month;
-        const xAxisLabel = 'Time';
+        const xAxisLabel = getColumn;
         
-        const yValue = d => d[getColumn];
+        const yValue = d => d[getColumn]
         const circleRadius = 6;
         const yAxisLabel = '';
         
@@ -277,13 +277,15 @@ function lineChart(url){
       
       json(url)
         .then(data => {
+            console.log(url)
           data.forEach(d => {
-              console.log(getColumn)
-            d.getColumn = +d.getColumn;
+              
+            d[getColumn]= +d[getColumn]
             
           });
           render(data);
         });
+
+        d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
 }
 
-lineChart();
