@@ -70,7 +70,7 @@ a img {
 }
 
 .background-card {
-    background: #F2F3F5;
+    background: #FFF;
     height: 90vh;
     box-shadow: 9px 7px 40px -6px rgba(0,0,0,0.25);
     border-radius: 10px;
@@ -80,7 +80,7 @@ a img {
     flex-wrap: wrap;
     justify-content: center;
 
-    background-image: url("/RunDa/images/background.png");
+    background-image: url('/RunDa/images/background.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center
@@ -95,7 +95,7 @@ a img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 70%;    
+    height: 70%;  
 }
 
 .banner h1 {
@@ -120,6 +120,15 @@ a img {
     border: #174255;
     margin-top: 30px;
 
+}
+
+#start-btn a {
+    text-decoration: none;
+    color: #174255;
+}
+
+button:hover {
+    box-shadow: 0 0 11px #174255;
 }
 
 @media screen and (min-width: 1411px) {
