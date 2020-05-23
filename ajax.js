@@ -86,6 +86,7 @@ function onClick(e) {
 
       //barChart(url);
         lineChart(url)
+        //pieChart(url);
 
     }
   
@@ -289,3 +290,68 @@ function lineChart(url){
         d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
 }
 
+function pieChart(url)
+{    const {
+    json,
+  } =d3; 
+    const render = data => {
+    
+    var pie = d3.pie()
+  .value(function(d) { return d[getColumn] })
+
+var slices = pie(data);
+
+var arc = d3.arc()
+  .innerRadius(0)
+  .outerRadius(140);
+
+// helper that returns a color based on an ID
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+var svg = d3.select('svg')
+.attr("class","pie");
+var g = svg.append('g')
+  .attr('transform', 'translate(300, 180)');
+
+var arcGraph =g.selectAll('path.slice')
+  .data(slices)
+    .enter();
+arcGraph.append('path')
+        .attr('class', 'slice')
+        .attr('d', arc)
+        .attr('fill', function(d) {
+          return color(d.data.month);
+        });
+
+arcGraph.append("text")
+.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+
+    .attr("dy", "0.35em")
+    .text(function(d){return d.data[getColumn]});
+// building a legend is as simple as binding
+// more elements to the same data. in this case,
+// <text> tags
+svg.append('g')
+  .attr('class', 'legend')
+    .selectAll('text')
+    .data(slices)
+      .enter()
+        .append('text')
+          .text(function(d) { return '• ' + d.data.month; })
+          .attr('fill', function(d) { return color(d.data.month); })
+          .attr('y', function(d, i) { return 20 * (i + 1); })
+    };
+        
+    json(url)
+        .then(data => {
+            console.log(url)
+          data.forEach(d => {
+              
+            d[getColumn]= +d[getColumn]
+            
+          });
+          render(data);
+        });
+
+        d3.selectAll("svg > *").remove(); 
+}
