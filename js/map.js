@@ -1,10 +1,10 @@
-var width = 760;
-var height = 700;
+var width = 2000;
+var height = 1500;
 
 var canvas = d3.select("#map")
     .append("svg")
-    .attr("width", 760)
-    .attr("height", 700)
+    .attr("width", 2000)
+    .attr("height", 1500)
     .attr('viewBox','0 0 '+Math.min(width,height) +' '+Math.min(width,height) )
     .attr('preserveAspectRatio','xMinYMin')
 
@@ -17,7 +17,7 @@ d3.json("romania-geo.geojson", function (data) {
 
     var projection = d3.geoMercator()
         .center([25, 46])
-        .scale(3800)
+        .scale(12000)
         .translate([ width/2, height/2 ]);
 
     var path = d3.geoPath()
@@ -44,7 +44,7 @@ d3.json("romania-geo.geojson", function (data) {
         .attr("y", function(d) { return path.centroid(d)[1]; })
         .attr("id", function(d,i){ return "text-" + i; })
         .attr("text-anchor", "middle")
-        .style("font-size", "8px")
+        .style("font-size", "28px")
         .style("fill", "#FFE200")
         .style("font-family", "Roboto")
         .text(function(d) { return d.properties.id; })
