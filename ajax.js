@@ -1,4 +1,5 @@
-
+/*import {sticla} from './js/map.js';
+console.log(sticla);*/
 let getCountyName = ""//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
 let getTableName = ""//idem
 let getColumn = ""
@@ -83,7 +84,7 @@ function onClick(e) {
         console.error(error);
       })
 
-    //barChart(url);
+    //barChart(url); 
     lineChart(url)
     //pieChart(url);
 
@@ -163,7 +164,7 @@ function barChart(url) {
         .attr('x', innerWidth / 2)
         .attr('fill', 'black')
         .text(xAxisLabelText)
-        
+
 
       g.selectAll('rect').data(data)
         .enter().append('rect')
@@ -172,202 +173,209 @@ function barChart(url) {
         .attr('height', yScale.bandwidth());
 
       g.append('text')
-      .style("fill","red")
+        .style("fill", "red")
         .attr('class', 'title')
         .attr('y', -10)
         .text(titleText)
-        
-
-      }
 
 
-      function render1(){
-          myResponsiveComponent(d3
-              .select('body'),{
-              width: document.body.clientWidth,
-              height: document.body.clientHeight/2
-              
-          });
-      }
-      
-      render1();
-  window.addEventListener('resize',render1);
-  //d3.selectAll('.line-path').remove()
-  //d3.selectAll("svg > *").remove();
-  
-    };
+    }
 
-    json(url).then(data => {
+
+    function render1() {
+      myResponsiveComponent(d3
+        .select('body'), {
+        width: document.body.clientWidth,
+        height: document.body.clientHeight / 2
+
+      });
+    }
+
+    render1();
+    window.addEventListener('resize', render1);
+    //d3.selectAll('.line-path').remove()
+    //d3.selectAll("svg > *").remove();
+
+  };
+
+  json(url).then(data => {
+    data.forEach(d => {
+      d[getColumn] = +d[getColumn];//irelevant pt ca din string imi face number, asta-i rolul
+    });
+    render(data);
+  });
+
+  d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
+}
+
+
+function lineChart(url) {
+
+  const {
+    select,
+    scaleLinear,
+    extent,
+    axisLeft,
+    axisBottom,
+    line,
+    curveBasis,
+    json,
+    scaleBand,
+    selectAll,
+    style
+
+  } = d3;
+
+
+  const render = data => {
+
+    function myResponsiveComponent(container, props) {
+      selectAll("svg > *").remove()
+      const { width, height } = props
+      let svg = container.selectAll('svg').data([null])
+      svg = svg.enter().append('svg')
+        .merge(svg)
+        .attr('width', width)
+        .attr('height', height)
+
+      const title = `${getTableName} ${getCountyName}`;
+
+
+      const xValue = d => d.month.substring(0, 3);
+      const xAxisLabel = getColumn;
+
+      const yValue = d => d[getColumn]
+      const circleRadius = 6;
+      const yAxisLabel = '';
+
+      const margin = { top: 60, right: 40, bottom: 88, left: 105 };
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+
+      const xScale = scaleBand()
+        .domain(data.map(xValue))//d inseamna 1 row
+        .range([0, innerWidth])
+
+
+
+
+      const yScale = scaleLinear()
+        .domain(extent(data, yValue))
+        .range([innerHeight, 0])
+        .nice();
+
+
+      const g = svg.append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+      const xAxis = axisBottom(xScale)
+        .tickSize(-innerHeight)
+        .tickPadding(15);
+
+      const yAxis = axisLeft(yScale)
+        .tickSize(-innerWidth)
+        .tickPadding(10);
+
+      const yAxisG = g.append('g').call(yAxis);
+      yAxisG.selectAll('.domain').remove();
+
+      yAxisG.append('text')
+        .attr('class', 'axis-label')
+        .attr('y', -60)
+        .attr('x', -innerHeight / 2)
+        .attr('fill', 'black')
+        .attr('transform', `rotate(-90)`)
+        .attr('text-anchor', 'middle')
+        .text(yAxisLabel);
+
+      const xAxisG = g.append('g').call(xAxis)
+        .attr('transform', `translate(0,${innerHeight})`);
+
+      xAxisG.select('.domain').remove();
+
+      xAxisG.append('text')
+        .attr('class', 'axis-label')
+        .attr('y', 80)
+        .attr('x', innerWidth / 2)
+        .attr('fill', 'black')
+        .text(xAxisLabel);
+
+      const lineGenerator = line()
+        .x(d => xScale(xValue(d)))
+        .y(d => yScale(yValue(d)))
+        .curve(curveBasis);
+
+      g.append('path')
+        .attr('class', 'line-path')
+        .attr('d', lineGenerator(data));
+
+      g.append('text')
+        .attr('class', 'title')
+        .attr('y', -10)
+        .text(title);
+    }
+
+    function render1() {
+      myResponsiveComponent(d3
+        .select('body'), {
+        width: document.body.clientWidth,
+        height: document.body.clientHeight / 2
+
+      });
+    }
+
+    render1();
+    window.addEventListener('resize', render1);
+    //d3.selectAll('.line-path').remove()
+    //d3.selectAll("svg > *").remove();
+
+
+  };
+
+  json(url)
+    .then(data => {
+      console.log(url)
       data.forEach(d => {
-        d[getColumn] = +d[getColumn];//irelevant pt ca din string imi face number, asta-i rolul
+
+        d[getColumn] = +d[getColumn]
+
       });
       render(data);
     });
 
-    d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
-  }
+  d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
 
+}//lineChart()
 
-  function lineChart(url) {
-   
-    const {
-      select,
-      scaleLinear,
-      extent,
-      axisLeft,
-      axisBottom,
-      line,
-      curveBasis,
-      json,
-      scaleBand,
-      selectAll,
-      style
-
-    } = d3;
-
-
-    const render = data => {
-
-      function myResponsiveComponent(container, props) {
-        selectAll("svg > *").remove()
-        const { width, height } = props
-        let svg = container.selectAll('svg').data([null])
-        svg = svg.enter().append('svg')
-          .merge(svg)
-          .attr('width', width)
-          .attr('height', height)
-
-        const title = `${getTableName} ${getCountyName}`;
-
-
-        const xValue = d => d.month.substring(0, 3);
-        const xAxisLabel = getColumn;
-
-        const yValue = d => d[getColumn]
-        const circleRadius = 6;
-        const yAxisLabel = '';
-
-        const margin = { top: 60, right: 40, bottom: 88, left: 105 };
-        const innerWidth = width - margin.left - margin.right;
-        const innerHeight = height - margin.top - margin.bottom;
-
-        const xScale = scaleBand()
-          .domain(data.map(xValue))//d inseamna 1 row
-          .range([0, innerWidth])
+function pieChart(url) {
+  const {
+    json,
+  } = d3;
+  const render = data => {
+    function myResponsiveComponent(container, props) {
+      d3.selectAll("svg > *").remove()
+      const { width, height } = props
+      let svg = container.selectAll('svg').data([null]).attr("class", "pie");
+      svg = svg.enter().append('svg')
+        .merge(svg)
+        .attr('width', width)
+        .attr('height', height)
         
 
-
-
-        const yScale = scaleLinear()
-          .domain(extent(data, yValue))
-          .range([innerHeight, 0])
-          .nice();
-
-
-        const g = svg.append('g')
-          .attr('transform', `translate(${margin.left},${margin.top})`);
-
-        const xAxis = axisBottom(xScale)
-          .tickSize(-innerHeight)
-          .tickPadding(15);
-
-        const yAxis = axisLeft(yScale)
-          .tickSize(-innerWidth)
-          .tickPadding(10);
-
-        const yAxisG = g.append('g').call(yAxis);
-        yAxisG.selectAll('.domain').remove();
-
-        yAxisG.append('text')
-          .attr('class', 'axis-label')
-          .attr('y', -60)
-          .attr('x', -innerHeight / 2)
-          .attr('fill', 'black')
-          .attr('transform', `rotate(-90)`)
-          .attr('text-anchor', 'middle')
-          .text(yAxisLabel);
-
-        const xAxisG = g.append('g').call(xAxis)
-          .attr('transform', `translate(0,${innerHeight})`);
-
-        xAxisG.select('.domain').remove();
-
-        xAxisG.append('text')
-          .attr('class', 'axis-label')
-          .attr('y', 80)
-          .attr('x', innerWidth / 2)
-          .attr('fill', 'black')
-          .text(xAxisLabel);
-
-        const lineGenerator = line()
-          .x(d => xScale(xValue(d)))
-          .y(d => yScale(yValue(d)))
-          .curve(curveBasis);
-
-        g.append('path')
-          .attr('class', 'line-path')
-          .attr('d', lineGenerator(data));
-
-        g.append('text')
-          .attr('class', 'title')
-          .attr('y', -10)
-          .text(title);
-      }
-
-      function render1() {
-        myResponsiveComponent(d3
-          .select('body'), {
-          width: document.body.clientWidth,
-          height: document.body.clientHeight / 2
-
-        });
-      }
-
-      render1();
-      window.addEventListener('resize', render1);
-      //d3.selectAll('.line-path').remove()
-      //d3.selectAll("svg > *").remove();
-
-
-    };
-
-    json(url)
-      .then(data => {
-        console.log(url)
-        data.forEach(d => {
-
-          d[getColumn] = +d[getColumn]
-
-        });
-        render(data);
-      });
-
-    d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
-
-  }//lineChart()
-
-  function pieChart(url) {
-    const {
-      json,
-    } = d3;
-    const render = data => {
 
       var pie = d3.pie()
         .value(function (d) { return d[getColumn] })
 
       var slices = pie(data);
-
+      let radius = Math.min(width, height) / 2;
       var arc = d3.arc()
         .innerRadius(0)
-        .outerRadius(140);
+        .outerRadius(radius - 40);
 
       // helper that returns a color based on an ID
       var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-      var svg = d3.select('svg')
-        .attr("class", "pie");
       var g = svg.append('g')
-        .attr('transform', 'translate(300, 180)');
+      .attr('transform', `translate(${width/2},${height/2})`);
 
       var arcGraph = g.selectAll('path.slice')
         .data(slices)
@@ -382,9 +390,10 @@ function barChart(url) {
       arcGraph.append("text")
         .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
 
-        .attr("dy", "0.35em")
+        .attr("dy", "-0.30em")
+        .attr("dx","-1em")
         .text(function (d) { return d.data[getColumn] });
-      // building a legend is as simple as binding
+      // building a legend is as   simple as binding
       // more elements to the same data. in this case,
       // <text> tags
       svg.append('g')
@@ -393,21 +402,32 @@ function barChart(url) {
         .data(slices)
         .enter()
         .append('text')
-        .text(function (d) { return '• ' + d.data.month; })
+        .text(function (d) { return '• ' + d.data.month.substring(0,3); })
         .attr('fill', function (d) { return color(d.data.month); })
         .attr('y', function (d, i) { return 20 * (i + 1); })
-    };
+    }
+    function render1() {
+      myResponsiveComponent(d3
+        .select('body'), {
+        width: document.body.clientWidth,
+        height: document.body.clientHeight / 2
 
-    json(url)
-      .then(data => {
-        console.log(url)
-        data.forEach(d => {
-
-          d[getColumn] = +d[getColumn]
-
-        });
-        render(data);
       });
+    }
+    render1();
+    window.addEventListener('resize', render1);
+  };
 
-    d3.selectAll("svg > *").remove();
-  }
+  json(url)
+    .then(data => {
+      console.log(url)
+      data.forEach(d => {
+
+        d[getColumn] = +d[getColumn]
+
+      });
+      render(data);
+    });
+
+  d3.selectAll("svg > *").remove();
+}

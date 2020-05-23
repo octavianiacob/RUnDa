@@ -41,4 +41,6 @@ body {
     font-size: 5em;
     fill: #8E8883;
   }
-  
+  svg{
+    border:2px solid red;
+  }

@@ -9,10 +9,6 @@
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-
 </head>
 
 <body class="body">
@@ -39,15 +35,19 @@
     </header>
 
     <section class="banner">
-        <div class="background-card">
+        <div class="background-card">   
             <button id="map-btn">Go Back</button>
             <div id="map">
                 <h2>Please select an area to see specific stats.</h2>
-                <script src="./js/map.js"></script>
+                
             </div>
         </div>
     </section>
-
+    
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script type="module" src="./js/map.js"></script>
 </body>
 
 </html>

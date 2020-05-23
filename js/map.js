@@ -2,7 +2,9 @@ var width = 2000;
 var height = 1500;
 let map = document.getElementById('map');
 let backbtn = document.getElementById('map-btn');
-
+const sticla=1000;
+export {sticla};
+let nameCity;
 var canvas = d3.select("#map")
     .append("svg")
     .attr("width", 2000)
@@ -28,6 +30,7 @@ d3.json("romania-geo.geojson", function (data) {
     var areas = group.append("path")
         .attr("d", path)
         .attr("id", function(d,i){ return "path-" + data.features[i].properties.id; i++;})
+        .attr("name",function(d,i){ return data.features[i].properties.name; i++;})
         .attr("class", "area")
         .attr("fill", "#174255")
         .style("stroke", "#C3D3D0")
@@ -39,6 +42,8 @@ d3.json("romania-geo.geojson", function (data) {
           })
         .on("click", function(d) {
             console.log("Ai dat click pe " + d3.select(this).attr('id'));
+            console.log("Ai dat click pe judetul "+ d3.select(this).attr("name"));
+            nameCity=d3.select(this).attr("name");
             map.style.opacity = 1;
             (function fade(){(map.style.opacity-=0.05)<0?map.style.display="none":setTimeout(fade,40)})();
             backbtn.style.display="block";
@@ -60,3 +65,4 @@ backbtn.addEventListener('click', function(){
     map.style.opacity = 1;
     backbtn.style.display="none";
 })
+
