@@ -5,7 +5,7 @@ body {
     overflow-x: hidden;
 }
 
-
+html, body {margin: 0;  overflow: hidden}
 /* Header */
 
 .navbar{
@@ -95,5 +95,29 @@ svg {
     height: auto;
 }
 
+#map h2 {
+    font-family: 'Roboto';
+    font-size: 20px;
+    color: #174255;
+}
+
+#map-btn {
+    margin-top: 30px;
+    width: 120px;
+    height: 40px;
+    display: none;
+    background-color: #FFE200;
+    text-decoration: none;
+    border-radius: 100px;
+    font-family: Roboto, sans-serif;
+    font-size: 1.2em;
+    color: #174255;
+    border: #174255;
+    margin-top: 30px;
+}
+
+button:hover {
+    box-shadow: 0 0 11px #174255;
+}
 
 

@@ -1,5 +1,7 @@
 var width = 2000;
 var height = 1500;
+let map = document.getElementById('map');
+let backbtn = document.getElementById('map-btn');
 
 var canvas = d3.select("#map")
     .append("svg")
@@ -37,6 +39,9 @@ d3.json("romania-geo.geojson", function (data) {
           })
         .on("click", function(d) {
             console.log("Ai dat click pe " + d3.select(this).attr('id'));
+            map.style.opacity = 1;
+            (function fade(){(map.style.opacity-=0.05)<0?map.style.display="none":setTimeout(fade,40)})();
+            backbtn.style.display="block";
         });
 
     group.append("text")
@@ -49,3 +54,9 @@ d3.json("romania-geo.geojson", function (data) {
         .style("font-family", "Roboto")
         .text(function(d) { return d.properties.id; })
 });
+
+backbtn.addEventListener('click', function(){
+    map.style.display = "block";
+    map.style.opacity = 1;
+    backbtn.style.display="none";
+})
