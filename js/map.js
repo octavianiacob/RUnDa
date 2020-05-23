@@ -1,32 +1,35 @@
-// The svg
-var svg = d3.select("svg");
-//var width = +svg.attr("width");
-//var height = +svg.attr("height");
-var card = document.getElementsByClassName("background-card");
-var width = 300;
-var height = 300;
-svg.attr("width", '100%')
-.attr("height", '100%')
-.attr('viewBox','0 0 '+Math.min(width,height) +' '+Math.min(width,height) )
-.attr('preserveAspectRatio','xMinYMin')
+var width = 760;
+var height = 700;
 
-// Map and projection
-var projection = d3.geoMercator()
-.center([25, 46])                // GPS of location to zoom on
-.scale(1800)                       // This is like the zoom
-.translate([ width/2, height/2 ])
+var canvas = d3.select("#map")
+    .append("svg")
+    .attr("width", 760)
+    .attr("height", 700)
+    .attr('viewBox','0 0 '+Math.min(width,height) +' '+Math.min(width,height) )
+    .attr('preserveAspectRatio','xMinYMin')
 
-// Load external data and boot
-d3.json("./romania-geo.geojson", function(data){
-
-// Draw the map
-svg.append("g")
-    .selectAll("path")
+d3.json("romania-geo.geojson", function (data) {
+var group = canvas.selectAll("g")
     .data(data.features)
-    .enter().append("path")
-        .attr("fill", "#69b3a2")
-        .attr("d", d3.geoPath()
-            .projection(projection)
-        )
-        .style("stroke", "#fff")
-})
+    .enter()
+    .append("g")
+                        
+var projection = d3.geoMercator()
+    .center([25, 46])
+    .scale(3800)
+    .translate([ width/2, height/2 ]);
+
+var path = d3.geoPath()
+    .projection(projection);
+
+var areas = group.append("path")
+    .attr("d", path)
+    .attr("class", "area")
+    .attr("fill", "steelblue");
+                        
+group.append("text")
+    .attr("x", function(d) { return path.centroid(d)[0]; })
+    .attr("y", function(d) { return path.centroid(d)[1]; })
+    .attr("text-anchor", "middle")
+    .text(function(d) { return d.properties.name; })
+});
