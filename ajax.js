@@ -1,10 +1,38 @@
 /*import {sticla} from './js/map.js';
 console.log(sticla);*/
+
+
+// import {sticlaFunction} from './js/map.js'
+// sticlaFunction(c)
+
+//sticlaFunction(nameCity)
+
+// const { newName } = './js/map.js'; // note that we have the freedom to use import m instead of import k, because k was default export
+
+// console.log(newName);
+
+// import { nameCity} from './js/map.js'
+// console.log(nameCity)
+
+
+// var vOneLS = localStorage.getItem("vOneLocalStorage ");
+// var variableTwo = vOneLS;
+
+// var booleanValue = false;
+// localStorage.setItem("trueORFalse ", booleanValue);
+// booleanValue = localStorage.getItem("trueORFalse");
+
+// if (booleanValue == "false") booleanValue = false;
+// else booleanValue = true;
+
+// console.log(booleanValue)
+
 let getCountyName = ""//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
 let getTableName = ""//idem
 let getColumn = ""
 let getYear = ""
 let containerElement = document.querySelector("#container");
+if(containerElement)//ca sa scap de eroarea cu addEventList null
 containerElement.addEventListener("click", onClick);
 function onClick(e) {
 
@@ -84,8 +112,8 @@ function onClick(e) {
         console.error(error);
       })
 
-    //barChart(url); 
-    lineChart(url)
+    barChart(url);
+    //lineChart(url)
     //pieChart(url);
 
   }
@@ -184,7 +212,7 @@ function barChart(url) {
 
     function render1() {
       myResponsiveComponent(d3
-        .select('body'), {
+        .select('#diagram'), {
         width: document.body.clientWidth,
         height: document.body.clientHeight / 2
 
@@ -198,12 +226,16 @@ function barChart(url) {
 
   };
 
-  json(url).then(data => {
+  d3.json(url, function (data) {
+    console.log(url)
     data.forEach(d => {
-      d[getColumn] = +d[getColumn];//irelevant pt ca din string imi face number, asta-i rolul
+
+      d[getColumn] = +d[getColumn]
+
     });
     render(data);
-  });
+  })
+
 
   d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
 }
@@ -317,7 +349,7 @@ function lineChart(url) {
 
     function render1() {
       myResponsiveComponent(d3
-        .select('body'), {
+        .select('#diagram'), {
         width: document.body.clientWidth,
         height: document.body.clientHeight / 2
 
@@ -332,35 +364,36 @@ function lineChart(url) {
 
   };
 
-  json(url)
-    .then(data => {
-      console.log(url)
-      data.forEach(d => {
+  d3.json(url, function (data) {
+    console.log(url)
+    data.forEach(d => {
 
-        d[getColumn] = +d[getColumn]
+      d[getColumn] = +d[getColumn]
 
-      });
-      render(data);
     });
+    render(data);
+  })
+
+
 
   d3.selectAll("svg > *").remove(); //ca sa imi stearga chart-ul inainte de alt apel
 
 }//lineChart()
 
+
 function pieChart(url) {
-  const {
-    json,
-  } = d3;
+
   const render = data => {
     function myResponsiveComponent(container, props) {
       d3.selectAll("svg > *").remove()
       const { width, height } = props
       let svg = container.selectAll('svg').data([null]).attr("class", "pie");
-      svg = svg.enter().append('svg')
+      svg = svg
+        .enter().append('svg')
         .merge(svg)
         .attr('width', width)
         .attr('height', height)
-        
+
 
 
       var pie = d3.pie()
@@ -375,7 +408,7 @@ function pieChart(url) {
       // helper that returns a color based on an ID
       var color = d3.scaleOrdinal(d3.schemeCategory10);
       var g = svg.append('g')
-      .attr('transform', `translate(${width/2},${height/2})`);
+        .attr('transform', `translate(${width / 2},${height / 2})`);
 
       var arcGraph = g.selectAll('path.slice')
         .data(slices)
@@ -391,7 +424,7 @@ function pieChart(url) {
         .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
 
         .attr("dy", "-0.30em")
-        .attr("dx","-1em")
+        .attr("dx", "-1em")
         .text(function (d) { return d.data[getColumn] });
       // building a legend is as   simple as binding
       // more elements to the same data. in this case,
@@ -402,13 +435,13 @@ function pieChart(url) {
         .data(slices)
         .enter()
         .append('text')
-        .text(function (d) { return '• ' + d.data.month.substring(0,3); })
+        .text(function (d) { return '• ' + d.data.month.substring(0, 3); })
         .attr('fill', function (d) { return color(d.data.month); })
         .attr('y', function (d, i) { return 20 * (i + 1); })
     }
     function render1() {
       myResponsiveComponent(d3
-        .select('body'), {
+        .select('#diagram'), {
         width: document.body.clientWidth,
         height: document.body.clientHeight / 2
 
@@ -418,16 +451,18 @@ function pieChart(url) {
     window.addEventListener('resize', render1);
   };
 
-  json(url)
-    .then(data => {
-      console.log(url)
-      data.forEach(d => {
 
-        d[getColumn] = +d[getColumn]
+  d3.json(url, function (data) {
+    console.log(url)
+    data.forEach(d => {
 
-      });
-      render(data);
+      d[getColumn] = +d[getColumn]
+
     });
+    render(data);
+  })
+
+
 
   d3.selectAll("svg > *").remove();
 }

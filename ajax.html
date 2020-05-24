@@ -5,124 +5,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="ajax.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="styles/reset.css">
+    <link href="ajax.css" rel="stylesheet"/>
 
-  
+
 </head>
 
 <body>
 
-   
-  
-    <script src="https://unpkg.com/d3@5.16.0/dist/d3.min.js"></script>
-    <div id="container">
-
-        <div>
-            <p>County</p>
-
-            <label>
-                <span> Iasi</span>
-                <input required type="radio" data-getCountyName="iasi" name="county">
-            </label>
-
-            <label>
-                <span> Cluj </span>
-                <input required type="radio" data-getCountyName="cluj" name="county">
-            </label>
+    <header>
+        <div class="navbar">
+            <div class="pagina-home">
+                <a id="logo" href="." rel="home"><span class="full-text">Romanian Unemployment Data Visualizer</span>
+                    <span class="short-text">RUnDa</span></a>
+            </div>
+            <div class="nav-links">
+                <ul class="nav-list">
+                    <li>
+                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png" alt="GitHub link"></a>
+                    </li>
+                    <li>
+                        <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
+                    </li>
+                    <li>
+                        <a href="./contact.html"><img src="/RUnDa/images/squareicon.png" alt="Contact Page"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </header>
 
 
-        <div>
-            <p>Table</p>
-
-            <label>
-                <span> Educatie</span>
-                <input required type="radio" data-getTableName="educatie" name="table">
-            </label>
-
-            <label>
-                <span> Varste </span>
-                <input required type="radio" data-getTableName="varste" name="table">
-            </label>
-
-            <label>
-                <span> Rata </span>
-                <input required type="radio" data-getTableName="rata" name="table">
-            </label>
-            <label>
-                <span>Medii </span>
-                <input required type="radio" data-getTableName="medii" name="table">
-            </label>
-
-        </div>
 
 
-        <div>
-            <p>Year</p>
+    <section class="banner">
+        <div class="background-card">
+            <div id="container">
 
-            <label>
-                <span> 2019</span>
-                <input id="forta" required type="radio" data-getYear="2019" name="year">
-            </label>
-
-            <label>
-                <span> 2020 </span>
-                <input required type="radio" data-getYear="2020" name="year">
-            </label>
-        </div>
-
-
-        <hr>
-        <div class="clasaEducatie" style="display:none;">
-            <label>
-                <span> GIMNAZIAL</span>
-                <input required type="radio" data-getColumn="gimnazial" name="column">
-            </label>
-            <label>
-                <span> LICEAL</span>
-                <input required type="radio" data-getColumn="liceal" name="column">
-            </label>
-
-        </div>
-        <div class="clasaVarste" style="display:none">
-            <label>
-                <span> SUB 25 ANI </span>
-                <input required type="radio" data-getColumn="sub_25_ani" name="column">
-            </label>
-            <label>
-                <span> INTRE 25-29 ANI </span>
-                <input required type="radio" data-getColumn="25_29_ani" name="column">
-            </label>
-
-        </div>
-        <div class="clasaRata" style="display:none">
-            <label>
-                <span> SOMERI FEMEI </span>
-                <input required type="radio" data-getColumn="someri_femei" name="column">
-            </label>
-            <label>
-                <span> SOMERI BARBATI </span>
-                <input required type="radio" data-getColumn="someri_barbati" name="column">
-            </label>
-            <label>
-                <span> RATA SOMAJ </span>
-                <input required type="radio" data-getColumn="rata_somaj" name="column">
-            </label>
-        </div>
-        <div class="clasaMedii" style="display:none">
-            <label>
-                <span> FEMEI URBAN </span>
-                <input required type="radio" data-getColumn="femei_urban" name="column">
-            </label>
-            <label>
-                <span> BARBATI URBAN </span>
-                <input required type="radio" data-getColumn="barbati_urban" name="column">
-            </label>
-        </div>
+                <div>
+                    <p>County</p>
         
-    </div>
+                    <label>
+                        <span> Iasi</span>
+                        <input required type="radio" data-getCountyName="iasi" name="county">
+                    </label>
+        
+                    <label>
+                        <span> Cluj </span>
+                        <input required type="radio" data-getCountyName="cluj" name="county">
+                    </label>
+                </div>
+        
+        
+                <div>
+                    <p>Table</p>
+        
+                    <label>
+                        <span> Educatie</span>
+                        <input required type="radio" data-getTableName="educatie" name="table">
+                    </label>
+        
+                    <label>
+                        <span> Varste </span>
+                        <input required type="radio" data-getTableName="varste" name="table">
+                    </label>
+        
+                    <label>
+                        <span> Rata </span>
+                        <input required type="radio" data-getTableName="rata" name="table">
+                    </label>
+                    <label>
+                        <span>Medii </span>
+                        <input required type="radio" data-getTableName="medii" name="table">
+                    </label>
+        
+                </div>
+        
+        
+                <div>
+                    <p>Year</p>
+        
+                    <label>
+                        <span> 2019</span>
+                        <input id="forta" required type="radio" data-getYear="2019" name="year">
+                    </label>
+        
+                    <label>
+                        <span> 2020 </span>
+                        <input required type="radio" data-getYear="2020" name="year">
+                    </label>
+                </div>
+        
+        
+                <hr>
+                <div class="clasaEducatie" style="display:none;">
+                    <label>
+                        <span> GIMNAZIAL</span>
+                        <input required type="radio" data-getColumn="gimnazial" name="column">
+                    </label>
+                    <label>
+                        <span> LICEAL</span>
+                        <input required type="radio" data-getColumn="liceal" name="column">
+                    </label>
+        
+                </div>
+                <div class="clasaVarste" style="display:none">
+                    <label>
+                        <span> SUB 25 ANI </span>
+                        <input required type="radio" data-getColumn="sub_25_ani" name="column">
+                    </label>
+                    <label>
+                        <span> INTRE 25-29 ANI </span>
+                        <input required type="radio" data-getColumn="25_29_ani" name="column">
+                    </label>
+        
+                </div>
+                <div class="clasaRata" style="display:none">
+                    <label>
+                        <span> SOMERI FEMEI </span>
+                        <input required type="radio" data-getColumn="someri_femei" name="column">
+                    </label>
+                    <label>
+                        <span> SOMERI BARBATI </span>
+                        <input required type="radio" data-getColumn="someri_barbati" name="column">
+                    </label>
+                    <label>
+                        <span> RATA SOMAJ </span>
+                        <input required type="radio" data-getColumn="rata_somaj" name="column">
+                    </label>
+                </div>
+                <div class="clasaMedii" style="display:none">
+                    <label>
+                        <span> FEMEI URBAN </span>
+                        <input required type="radio" data-getColumn="femei_urban" name="column">
+                    </label>
+                    <label>
+                        <span> BARBATI URBAN </span>
+                        <input required type="radio" data-getColumn="barbati_urban" name="column">
+                    </label>
+                </div>
+                
+            </div>
+            <div id="diagram">
 
-    <script type="module" src="./ajax.js"></script>
+            </div>
+        </div>
+    </section>
+  
+    <script src="https://d3js.org/d3.v4.js"></script>
+   
+    
+
+    <script  type="module" src="./ajax.js"></script>
+    <script  type="module" src="./js/map.js"></script>
     <!--important ./ de la ajax.js-->
 </body>
 
