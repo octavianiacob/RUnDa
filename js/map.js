@@ -1,6 +1,4 @@
 
-
-
 var width = 2000;
 var height = 1500;
 let newName
@@ -10,8 +8,6 @@ let backbtn = document.getElementById('map-btn');
 // export {sticla};
 
 let nameCity = ""
-let fooLabel
-let obj = {};
 
 var canvas = d3.select("#map")
     .append("svg")
@@ -52,29 +48,34 @@ d3.json("romania-geo.geojson", function (data) {
             console.log("Ai dat click pe " + d3.select(this).attr('id'));
             console.log("Ai dat click pe judetul " + d3.select(this).attr("name"));
 
-            nameCity = d3.select(this).attr("name");
+            nameCity = d3.select(this).attr("name");//mures
+            //aici am dat click si stiu judetul
 
-            
-            function sticlaFunction(param) {
-                ////console.log("prostule, ai selectat" + nameCity)
-                return nameCity
+            function findOutCounty(param){
+                console.log("esti un  "+ nameCity)
+                param=nameCity
+               return param
+                
             }
 
-            window.open("./ajax.html")
+            findOutCounty("ceva")
+           
+                    console.log(nameCity+" nu estiefenwfiew")
 
-          //  sticlaFunction(nameCity)
+            console.log("fenjenekjfnejkfnekfneejke"+ nameCity)
+            console.log("aici imi afiseaza sigur orasul "+ nameCity);
+           
+            //let namecity="" e declarat global
 
-
-//            console.log("NUMELE ESTE " + newName)
-
-
-            //console.log(nameCity)()
-            //  sticlaFunction(nameCity)
-            // map.style.opacity = 1;
-            // (function fade() { (map.style.opacity -= 0.05) < 0 ? map.style.display = "none" : setTimeout(fade, 40) })();
-            // //backbtn.style.display="block";
+            window.open  ("./ajax.html");
+            // return nameCity
+            map.style.opacity = 1;
+            (function fade() { (map.style.opacity -= 0.05) < 0 ? map.style.display = "none" : setTimeout(fade, 40) })();
+            //backbtn.style.display="block";
+            
         });
-
+     
+      
     group.append("text")
         .attr("x", function (d) { return path.centroid(d)[0]; })
         .attr("y", function (d) { return path.centroid(d)[1]; })
@@ -85,17 +86,18 @@ d3.json("romania-geo.geojson", function (data) {
         .style("font-family", "Roboto")
         .text(function (d) { return d.properties.id; })
 
+        console.log("baaaaaaaaaaaaaaaaaaaaaaaaa "+ nameCity);// nici aici nu afiseaza
 
+       
 });
-    sticlaFunction(nameCity)
-console.log("baaaaaaaaaaaaa  " +nameCity)
 
-//sticlaFunction(nameCity)
-console.log("ai apasat peee " + nameCity)
-    //  var variableOne = "valoare1maaaa";
-    //  localStorage.setItem("vOneLocalStorage", variableOne)
+//codul ajunge aici inainte sa dau click
+//dau click si imi intra in functia de mai sus
 
-    //export{sticlaFunction}
+export {nameCity};
+
+console.log("aici nu arata nimic decat textul asta"+ nameCity)
+//aici am incercat sa apelez si o functie, functie pe care o facusem la linia 65
 
 
 // backbtn.addEventListener('click', function(){
@@ -103,23 +105,4 @@ console.log("ai apasat peee " + nameCity)
 //     map.style.opacity = 1;
 //     backbtn.style.display="none";
 // })
-
-// function sticlaFunction(nameCity){
-//     console.log("prostule, ai selectat" +nameCity)
-// }
-
-  
-
-// let nameCity; 
-// export default nameCity="sibiu"
-
-
-
-// export {  nameCity } from './js/map.js';
-
-// const {div} = nameCity
-
-
-// export default {nameCity}
-
 

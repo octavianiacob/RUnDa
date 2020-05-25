@@ -29,25 +29,35 @@
      border: 2px solid red;
 
     }
+/*cod pt lineChart*/
 
-  circle {
-    fill: steelblue;
-  }
-  
-  .line-path {
+
+  /* .line-path {
     fill: none;
     stroke: maroon;
     stroke-width: 5;
-    stroke-linejoin: round;
-  }
+    stroke-linejoin:round
+  } */
   
+   .line-path {
+    fill: none;
+    stroke: #137B80; /*or maroon*/
+    stroke-width: 4;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
   text {
+    font-size: 1em;/*3m merge pt titlu la line si bar CHart, daca iar 1em pun ca sa imi afiseze datele ok in pieChart*/
+    color: green;
     font-family: sans-serif;
+   
+   
   }
   
   .tick text {
-    font-size: 2.7em;
-    fill: red
+    font-size: 1.5em;
+    fill: #635F5D;
+
   }
   
   .tick line {
@@ -55,20 +65,19 @@
   }
   
   .axis-label {
-    font-size: 5em;
+    font-size: 2.5em;
     fill: #8E8883;
   }
-  svg{
-    border:2px solid red;
-  }
+  
 
-
-
-
-
-
-
-
+/*pt barCHART*/
+rect{
+  fill:#137B80
+}
+/* 
+svg{
+  border: 2px solid red;
+} */
   
 .navbar {
   display: flex;

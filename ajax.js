@@ -32,8 +32,8 @@ let getTableName = ""//idem
 let getColumn = ""
 let getYear = ""
 let containerElement = document.querySelector("#container");
-if(containerElement)//ca sa scap de eroarea cu addEventList null
-containerElement.addEventListener("click", onClick);
+if (containerElement)//ca sa scap de eroarea cu addEventList null
+  containerElement.addEventListener("click", onClick);
 function onClick(e) {
 
 
@@ -105,16 +105,22 @@ function onClick(e) {
       .then(function (jsonResp) {
 
         let jsonObject = jsonResp
-        console.log(jsonObject)
+        //console.log(jsonObject)
 
       })
       .catch(error => {
         console.error(error);
       })
+    console.log(url)
 
-    barChart(url);
-    //lineChart(url)
-    //pieChart(url);
+    if (getColumn != "")
+      barChart(url);
+
+    // if (getColumn != "")
+    // lineChart(url)
+
+    // if (getColumn != "")
+    //   pieChart(url);
 
   }
 
@@ -133,14 +139,23 @@ function barChart(url) {
 
 
 
-  const titleText = `${getTableName} ${getCountyName}`;
+  const titleText = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
+                     ${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
+
+
   const xAxisLabelText = getColumn;
+
+  const yAxisLabelText = 'Month'
 
 
   const render = data => {//functie care face  un chenar de ala pt fiecare rand
 
 
+
+
     function myResponsiveComponent(container, props) {
+      if (getColumn === "")
+        return 0
       d3.selectAll("svg > *").remove()
       const { width, height } = props
       let svg = container.selectAll('svg').data([null])
@@ -151,26 +166,38 @@ function barChart(url) {
 
 
       const xValue = d => d[getColumn]//pun coloana, iar pe orizonatl o sa-mi puna val maxima din coloana pe care o aleg
-      const yValue = d => d.month
-      const margin = { top: 50, right: 40, bottom: 77, left: 180 };
+      const yValue = d => d.month.charAt(0).toLocaleUpperCase() + d.month.slice(1)
+      const margin = { top: 50, right: 200, bottom: 77, left: 180 };
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
       //one rectangle for each row
       const xScale = scaleLinear()
         .domain([0, max(data, xValue)])//0 si max  element populatie
-        .range([0, innerWidth]);
+        .range([0, innerWidth])
+      //.nice()// imi seteaza mai bine intervalul, dar am o bara in plus la final
+
+
+
+
 
       const yScale = scaleBand()
         .domain(data.map(yValue))//d inseamna 1 row
         .range([0, innerHeight])
-        .padding(0.1);
+        .padding(0.5);
 
       const g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
-      const xAxisTickFormat = number =>
-        format('.2s')(number)
-          .replace('G', 'B');
+
+    //  if (getColumn === 'rata_somaj' || getColumn === 'rata_somaj_femei' || getColumn === 'rata_somaj_barbat')
+        const xAxisTickFormat = number =>
+          format('.2s')(number)
+
+  
+      // else
+      //   const xAxisTickFormat = number =>
+      //     format('.2s')(number)
+
 
       const xAxis = axisBottom(xScale)
         .tickFormat(xAxisTickFormat)
@@ -191,7 +218,8 @@ function barChart(url) {
         .attr('y', 65)
         .attr('x', innerWidth / 2)
         .attr('fill', 'black')
-        .text(xAxisLabelText)
+        .text(xAxisLabelText.replace('_', ' ').replace('_', ' '))
+
 
 
       g.selectAll('rect').data(data)
@@ -201,7 +229,7 @@ function barChart(url) {
         .attr('height', yScale.bandwidth());
 
       g.append('text')
-        .style("fill", "red")
+        .style("fill", "grey")
         .attr('class', 'title')
         .attr('y', -10)
         .text(titleText)
@@ -226,8 +254,9 @@ function barChart(url) {
 
   };
 
+
   d3.json(url, function (data) {
-    console.log(url)
+    // console.log(url)
     data.forEach(d => {
 
       d[getColumn] = +d[getColumn]
@@ -262,6 +291,8 @@ function lineChart(url) {
   const render = data => {
 
     function myResponsiveComponent(container, props) {
+      if (getColumn === "")
+        return 0
       selectAll("svg > *").remove()
       const { width, height } = props
       let svg = container.selectAll('svg').data([null])
@@ -270,17 +301,18 @@ function lineChart(url) {
         .attr('width', width)
         .attr('height', height)
 
-      const title = `${getTableName} ${getCountyName}`;
+      const title = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
+                     ${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
 
 
-      const xValue = d => d.month.substring(0, 3);
-      const xAxisLabel = getColumn;
+      const xValue = d => d.month.charAt(0).toLocaleUpperCase() + d.month.slice(1).substring(0, 2);
+      const xAxisLabel = getColumn.charAt(0).toLocaleUpperCase() + getColumn.slice(1)
 
       const yValue = d => d[getColumn]
       const circleRadius = 6;
-      const yAxisLabel = '';
+      const yAxisLabel = 'Month';
 
-      const margin = { top: 60, right: 40, bottom: 88, left: 105 };
+      const margin = { top: 60, right: 200, bottom: 88, left: 105 };
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
 
@@ -302,11 +334,13 @@ function lineChart(url) {
 
       const xAxis = axisBottom(xScale)
         .tickSize(-innerHeight)
-        .tickPadding(15);
+        .tickPadding(15)
+
 
       const yAxis = axisLeft(yScale)
         .tickSize(-innerWidth)
-        .tickPadding(10);
+        .tickPadding(10)
+
 
       const yAxisG = g.append('g').call(yAxis);
       yAxisG.selectAll('.domain').remove();
@@ -385,6 +419,8 @@ function pieChart(url) {
 
   const render = data => {
     function myResponsiveComponent(container, props) {
+      if (getColumn === "")
+        return 0
       d3.selectAll("svg > *").remove()
       const { width, height } = props
       let svg = container.selectAll('svg').data([null]).attr("class", "pie");
