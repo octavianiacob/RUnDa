@@ -1,47 +1,56 @@
-/*import {sticla} from './js/map.js';
-console.log(sticla);*/
-
-
-// import {sticlaFunction} from './js/map.js'
-// sticlaFunction(c)
-
-//sticlaFunction(nameCity)
-
-// const { newName } = './js/map.js'; // note that we have the freedom to use import m instead of import k, because k was default export
-
-// console.log(newName);
-
-// import { nameCity} from './js/map.js'
-// console.log(nameCity)
-
-
-// var vOneLS = localStorage.getItem("vOneLocalStorage ");
-// var variableTwo = vOneLS;
-
-// var booleanValue = false;
-// localStorage.setItem("trueORFalse ", booleanValue);
-// booleanValue = localStorage.getItem("trueORFalse");
-
-// if (booleanValue == "false") booleanValue = false;
-// else booleanValue = true;
-
-// console.log(booleanValue)
-
-let getCountyName = ""//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
+let getCountyName = location.search.slice(7)//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
 let getTableName = ""//idem
 let getColumn = ""
 let getYear = ""
 let containerElement = document.querySelector("#container");
+function numberToMonth(number) {
+  let month;
+  switch (number) {
+    case "1":
+      month = "January";
+      break;
+    case "2":
+      month = "February";
+      break;
+    case "3":
+      month = "March";
+      break;
+    case "4":
+      month = "April";
+      break;
+    case "5":
+      month = "May";
+      break;
+    case "6":
+      month = "June";
+      break;
+    case "7":
+      month = "July";
+      break;
+    case "8":
+      month = "August";
+      break;
+    case "9":
+      month = "September";
+      break;
+    case "10":
+      month = "October";
+      break;
+    case "11":
+      month = "November";
+      break;
+    case "12":
+      month = "December";
+      break;
+  }
+  return month;
+}
 if (containerElement)//ca sa scap de eroarea cu addEventList null
   containerElement.addEventListener("click", onClick);
 function onClick(e) {
 
 
   d3.selectAll("svg > *").remove();
-
-  if (e.target.hasAttribute("data-GetCountyName")) {
-    getCountyName = e.target.getAttribute("data-getCountyName");
-  }
 
 
   if (e.target.hasAttribute("data-getTableName")) {
@@ -95,7 +104,7 @@ function onClick(e) {
   }
 
   if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
-    let url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}`
+    let url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
 
     fetch(url)
       .then(function (resp) {
@@ -113,11 +122,11 @@ function onClick(e) {
       })
     console.log(url)
 
-    if (getColumn != "")
-      barChart(url);
-
     // if (getColumn != "")
-    // lineChart(url)
+    // barChart(url);
+
+    if (getColumn != "")
+      lineChart(url)
 
     // if (getColumn != "")
     //   pieChart(url);
@@ -166,8 +175,8 @@ function barChart(url) {
 
 
       const xValue = d => d[getColumn]//pun coloana, iar pe orizonatl o sa-mi puna val maxima din coloana pe care o aleg
-      const yValue = d => d.month.charAt(0).toLocaleUpperCase() + d.month.slice(1)
-      const margin = { top: 50, right: 200, bottom: 77, left: 180 };
+      const yValue = d => numberToMonth(d.month).substring(0, 3);
+      const margin = { top: 50, right: 40, bottom: 77, left: 90 };
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
       //one rectangle for each row
@@ -189,11 +198,11 @@ function barChart(url) {
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
 
-    //  if (getColumn === 'rata_somaj' || getColumn === 'rata_somaj_femei' || getColumn === 'rata_somaj_barbat')
-        const xAxisTickFormat = number =>
-          format('.2s')(number)
+      //  if (getColumn === 'rata_somaj' || getColumn === 'rata_somaj_femei' || getColumn === 'rata_somaj_barbat')
+      const xAxisTickFormat = number =>
+        format('.2s')(number)
 
-  
+
       // else
       //   const xAxisTickFormat = number =>
       //     format('.2s')(number)
@@ -305,14 +314,13 @@ function lineChart(url) {
                      ${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
 
 
-      const xValue = d => d.month.charAt(0).toLocaleUpperCase() + d.month.slice(1).substring(0, 2);
+      const xValue = d => numberToMonth(d.month).substring(0, 3);
       const xAxisLabel = getColumn.charAt(0).toLocaleUpperCase() + getColumn.slice(1)
 
-      const yValue = d => d[getColumn]
-      const circleRadius = 6;
+      const yValue = d => d[getColumn];
       const yAxisLabel = 'Month';
 
-      const margin = { top: 60, right: 200, bottom: 88, left: 105 };
+      const margin = { top: 60, right: 40, bottom: 88, left: 105 };
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
 
@@ -364,7 +372,7 @@ function lineChart(url) {
         .attr('y', 80)
         .attr('x', innerWidth / 2)
         .attr('fill', 'black')
-        .text(xAxisLabel);
+        .text(xAxisLabel.replace('_', ' ').replace('_', ' '));
 
       const lineGenerator = line()
         .x(d => xScale(xValue(d)))
@@ -462,16 +470,13 @@ function pieChart(url) {
         .attr("dy", "-0.30em")
         .attr("dx", "-1em")
         .text(function (d) { return d.data[getColumn] });
-      // building a legend is as   simple as binding
-      // more elements to the same data. in this case,
-      // <text> tags
       svg.append('g')
         .attr('class', 'legend')
         .selectAll('text')
         .data(slices)
         .enter()
         .append('text')
-        .text(function (d) { return '• ' + d.data.month.substring(0, 3); })
+        .text(function (d) { return '• ' + numberToMonth(d.data.month).substring(0, 3); })
         .attr('fill', function (d) { return color(d.data.month); })
         .attr('y', function (d, i) { return 20 * (i + 1); })
     }

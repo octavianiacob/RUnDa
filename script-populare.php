@@ -57,15 +57,53 @@ foreach ($myfiles as $value) {
             $item7 = mysqli_real_escape_string($connect, $data[7]);
             $item8 = mysqli_real_escape_string($connect, $data[8]);
             $item9 = mysqli_real_escape_string($connect, $data[9]);
-            
+
 
             if ($contor == 44)
                 break;
-
-                //if pentru varste
+            $month = "";
+            switch ($file_name_and_extenstions[0]) {
+                case "ianuarie":
+                    $month = 1;
+                    break;
+                case "februarie":
+                    $month = 2;
+                    break;
+                case "martie":
+                    $month = 3;
+                    break;
+                case "aprilie":
+                    $month = 4;
+                    break;
+                case "mai":
+                    $month = 5;
+                    break;
+                case "iunie":
+                    $month = 6;
+                    break;
+                case "iulie":
+                    $month = 7;
+                    break;
+                case "august":
+                    $month = 8;
+                    break;
+                case "septembrie":
+                    $month = 9;
+                    break;
+                case "octombrie":
+                    $month = 10;
+                    break;
+                case "noiembrie":
+                    $month = 11;
+                    break;
+                case "decembrie":
+                    $month = 12;
+                    break;
+            }
+            //if pentru varste
             if ($file_name_and_extenstions[2] === "varste.csv") {
                 $query = "INSERT into varste (judet, id_judet, month, year, total_someri, sub_25_ani, 25_29_ani, 30_39_ani, 40_49_ani, 50_55_ani, peste_55_ani) 
-                values('$item0',$contor-1, '$file_name_and_extenstions[0]',$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6, $item7)";
+                values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6, $item7)";
                 mysqli_query($connect, $query);
             }
 
@@ -74,7 +112,7 @@ foreach ($myfiles as $value) {
             if ($file_name_and_extenstions[2] === "medii.csv") {
                 $query = "INSERT into medii (judet, id_judet, month, year, total_someri, someri_femei, someri_barbati, someri_urban,
                  femei_urban, barbati_urban, someri_rural, femei_rural, barbati_rural) 
-                values('$item0',$contor-1, '$file_name_and_extenstions[0]',$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6, $item7
+                values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6, $item7
                 ,$item8, $item9)";
                 mysqli_query($connect, $query);
             }
@@ -82,21 +120,20 @@ foreach ($myfiles as $value) {
             if ($file_name_and_extenstions[2] === "educatie.csv") {
                 $query = "INSERT into educatie (judet, id_judet, month, year, total_someri, fara_studii, primar, gimnazial, liceal, postliceal,
                 profesional_arte_meserii, universitar) 
-                values('$item0',$contor-1, '$file_name_and_extenstions[0]',$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6,
+                values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6,
                  $item7, $item8)";
                 mysqli_query($connect, $query);
             }
-            
-           // if pt rata
+
+            // if pt rata
 
             if ($file_name_and_extenstions[2] === "rata.csv") {
                 $query = "INSERT into rata (judet, id_judet, month, year, total_someri, someri_femei, someri_barbati, someri_indemnizati, someri_neindemnizati,
                 rata_somaj, rata_somaj_femei, rata_somaj_barbati ) 
-                values('$item0',$contor-1, '$file_name_and_extenstions[0]',$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6,
+                values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6,
                  $item7, $item8)";
                 mysqli_query($connect, $query);
             }
-            
         }
         fclose($handle);
     }
