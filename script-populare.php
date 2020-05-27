@@ -28,7 +28,6 @@ foreach ($myfiles as $value) {
     $query = "SELECT count(*)  from fisiere
                 WHERE filename = '$value'    ";
     $result = mysqli_query($connect, $query);
-
     if (mysqli_result($result, 0) === '0') {
         echo mysqli_result($result, 0);
 
