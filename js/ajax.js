@@ -66,25 +66,25 @@ function onClick(e) {
     else getTableName = e.target.getAttribute("data-getTableName");
     switch (getTableName) {
       case "educatie":
-        document.querySelector(".clasaEducatie").style.display = "inline";
+        document.querySelector(".clasaEducatie").style.display = "flex";
         document.querySelector(".clasaVarste").style.display = "none";
         document.querySelector(".clasaRata").style.display = "none";
         document.querySelector(".clasaMedii").style.display = "none";
         break;
       case "varste":
-        document.querySelector(".clasaVarste").style.display = "inline";
+        document.querySelector(".clasaVarste").style.display = "flex";
         document.querySelector(".clasaEducatie").style.display = "none";
         document.querySelector(".clasaRata").style.display = "none";
         document.querySelector(".clasaMedii").style.display = "none";
         break;
       case "rata":
-        document.querySelector(".clasaRata").style.display = "inline";
+        document.querySelector(".clasaRata").style.display = "flex";
         document.querySelector(".clasaEducatie").style.display = "none";
         document.querySelector(".clasaVarste").style.display = "none";
         document.querySelector(".clasaMedii").style.display = "none";
         break;
       case "medii":
-        document.querySelector(".clasaMedii").style.display = "inline";
+        document.querySelector(".clasaMedii").style.display = "flex";
         document.querySelector(".clasaEducatie").style.display = "none";
         document.querySelector(".clasaVarste").style.display = "none";
         document.querySelector(".clasaRata").style.display = "none";
@@ -122,14 +122,14 @@ function onClick(e) {
       })
     console.log(url)
 
-    // if (getColumn != "")
-    // barChart(url);
+     if (getColumn != "")
+     barChart(url);
 
-    if (getColumn != "")
-      lineChart(url)
+    //if (getColumn != "")
+    //  lineChart(url)
 
-    // if (getColumn != "")
-    //   pieChart(url);
+     //if (getColumn != "")
+      // pieChart(url);
 
   }
 
