@@ -147,3 +147,65 @@ a img {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+#diagram {
+  margin-top: 200px;
+}
+
+#container {
+  background-color: #F6F8FF;
+  border: 2px solid rgba(23, 66, 85, 0.2);
+  border-radius: 15px;
+  width: 100%;
+  max-width: 750px;
+  height: 100%;
+  max-height: 200px;
+  margin: 50px 20px 200px 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto';
+  font-size: 1.5em;
+  
+}
+
+#container p {
+  font-family: 'Roboto';
+  margin-bottom: 15px;
+
+}
+
+.filters {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 0.75em;
+}
+
+.filters label {
+  display: block;
+}
+
+.filters p {
+  display: inline;
+  text-align: center;
+}
+
+.filter-column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-column label {
+  padding: 5px;
+}
+
+@media (max-width: 875px) {
+  #container {
+    font-size: 15px;
+    max-width: 90%;
+  }
+}
