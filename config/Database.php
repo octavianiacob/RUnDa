@@ -11,6 +11,7 @@ class Database
     private $password = "";
     private $pdo;
 
+    
     //Start Connection
 
     public function __construct()
@@ -32,6 +33,11 @@ class Database
         }
     }
 
+
+
+    public function getPDO(){
+        return $this->pdo;
+    }
     public function fetchAllCounties($query) //fetch everytihing (adica interpreteaza sql statement.)
     {
         try {

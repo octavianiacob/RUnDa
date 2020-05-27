@@ -2,7 +2,12 @@ let getCountyName = location.search.slice(7)//valoare default doar ca poate fi s
 let getTableName = ""//idem
 let getColumn = ""
 let getYear = ""
+let getCsv=""
+let url = ""
+let urlForCsv = ""
+
 let containerElement = document.querySelector("#container");
+let buttonElement=document.querySelector("#exportButton")
 function numberToMonth(number) {
   let month;
   switch (number) {
@@ -47,6 +52,11 @@ function numberToMonth(number) {
 }
 if (containerElement)//ca sa scap de eroarea cu addEventList null
   containerElement.addEventListener("click", onClick);
+
+  if(buttonElement)
+  buttonElement.addEventListener("click", onClickExport)
+
+  //-------------------------------------------------------SELECTARE FILTRE+GENERARE DIAGRAMA----------------------------------------------------------
 function onClick(e) {
 
 
@@ -63,7 +73,10 @@ function onClick(e) {
 
       //getYear = ""
     }
-    else getTableName = e.target.getAttribute("data-getTableName");
+    else
+      getTableName = e.target.getAttribute("data-getTableName");
+
+
     switch (getTableName) {
       case "educatie":
         document.querySelector(".clasaEducatie").style.display = "flex";
@@ -93,6 +106,7 @@ function onClick(e) {
   }
 
 
+
   if (e.target.hasAttribute("data-getYear")) {
 
     getYear = e.target.getAttribute("data-getYear");
@@ -103,24 +117,26 @@ function onClick(e) {
 
   }
 
+
   if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
-    let url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+    url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+  
+    if (getColumn != "")
+      barChart(url);
 
-    fetch(url)
-      .then(function (resp) {
-        return resp.json()
+    // if (getColumn != "")
+    //   lineChart(url)
 
-      })
-      .then(function (jsonResp) {
+    // if (getColumn != "")
+    //   pieChart(url);
+    // if( button=e.target.hasAttribute("data-getCsv"))
+    //   getCsv=e.target.getAttribute("data-getCsv")
 
-        let jsonObject = jsonResp
-        //console.log(jsonObject)
+  }
+  
+}
 
-      })
-      .catch(error => {
-        console.error(error);
-      })
-    console.log(url)
+//------------------------------------------------------------------EXPORT CSV, XML etc-----------------------------------------------
 
      if (getColumn != "")
      barChart(url);
@@ -130,10 +146,82 @@ function onClick(e) {
 
      //if (getColumn != "")
       // pieChart(url);
+      
+function onClickExport(e){
+    if(e.target.hasAttribute("data-getCsv")){
+      getCsv=e.target.getAttribute("data-getCsv")
+    }
+  
 
-  }
+    if (!(getCountyName === "" || getTableName === "" || getColumn === "" ||getCsv==="" || getYear === "")) {
+      urlForCsv = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+      const objectToCsv = function (data) {
+        //get the  HEADERS
+        const csvRows = []
+        const headers = Object.keys(data[0]);
+        csvRows.push(headers.join(','))
+  
+        //loop over the rows
+        for (const row of data) {
+          //add the data to object
+          const values = headers.map(header => {
+            const escaped = ('' + row[header]).replace(/"/g, '\\"')//din number il fac string
+            return `"${escaped}"`
+          })
+          csvRows.push(values.join(','))
+        }
+        //form csv
+  
+        return csvRows.join('\n')
+      };
+  
+      const download = function (data) {
+        const blob = new Blob([data], { type: 'text/csv' })
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.setAttribute('hidden', '')
+        a.setAttribute('href', url)
+        a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.csv`)
+        document.body.appendChild(a)
+        a.click();
+        document.body.removeChild(a)
+      }
+  
+      
+      const getReport = async function () {
+  
+        const res = await fetch(urlForCsv)
+        const json = await res.json()
+        //  console.log(json)
 
-}
+        
+        const data = json.map(row => ({
+  
+          ORASE: row.ORASE,
+          month: row.month,
+          year: row.year,
+          getColumn: getColumn.valueOf()
+
+       
+         
+        }));
+        const csvData = objectToCsv(data)
+        download(csvData)
+
+        console.log(data)
+  
+      }
+  
+        (function () {
+          const button = document.getElementById('myButton')
+          button.addEventListener('click', getReport)
+        })
+    }
+
+  } 
+
+
+
 function barChart(url) {
   const {
     select,
@@ -183,6 +271,7 @@ function barChart(url) {
       const xScale = scaleLinear()
         .domain([0, max(data, xValue)])//0 si max  element populatie
         .range([0, innerWidth])
+
       //.nice()// imi seteaza mai bine intervalul, dar am o bara in plus la final
 
 
