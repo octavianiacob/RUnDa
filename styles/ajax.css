@@ -30,12 +30,6 @@
 /*cod pt lineChart*/
 
 
-  /* .line-path {
-    fill: none;
-    stroke: maroon;
-    stroke-width: 5;
-    stroke-linejoin:round
-  } */
   
    .line-path {
     fill: none;
@@ -72,10 +66,10 @@
 rect{
   fill:#137B80
 }
-/* 
+ 
 svg{
   border: 2px solid red;
-} */
+} 
   
 .navbar {
   display: flex;

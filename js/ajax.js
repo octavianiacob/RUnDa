@@ -121,14 +121,14 @@ function onClick(e) {
   if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
     url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
   
-    if (getColumn != "")
-      barChart(url);
+    // if (getColumn != "")
+    //   barChart(url);
 
     // if (getColumn != "")
     //   lineChart(url)
 
-    // if (getColumn != "")
-    //   pieChart(url);
+    if (getColumn != "")
+      pieChart(url);
     // if( button=e.target.hasAttribute("data-getCsv"))
     //   getCsv=e.target.getAttribute("data-getCsv")
 
@@ -185,13 +185,13 @@ function onClickExport(e){
         const json = await res.json()
         //  console.log(json)
 
-        
+        console.log(getColumn);
         const data = json.map(row => ({
   
           ORASE: row.ORASE,
           month: row.month,
           year: row.year,
-          getColumn: getColumn.valueOf()
+         [getColumn]: row[getColumn]
 
        
          
@@ -215,14 +215,12 @@ function onClickExport(e){
 
 function barChart(url) {
   const {
-    select,
     scaleLinear,
     max,
     scaleBand,
     axisLeft,
     axisBottom,
     format,
-    json
   } = d3;
 
 
@@ -232,8 +230,6 @@ function barChart(url) {
 
 
   const xAxisLabelText = getColumn;
-
-  const yAxisLabelText = 'Month'
 
 
   const render = data => {//functie care face  un chenar de ala pt fiecare rand
@@ -245,7 +241,7 @@ function barChart(url) {
       if (getColumn === "")
         return 0
       d3.selectAll("svg > *").remove()
-      const { width, height } = props
+      let { width, height } = props
       let svg = container.selectAll('svg').data([null])
       svg = svg.enter().append('svg')
         .merge(svg)
@@ -253,13 +249,14 @@ function barChart(url) {
         .attr('height', height)
 
 
-      const xValue = d => d[getColumn]//pun coloana, iar pe orizonatl o sa-mi puna val maxima din coloana pe care o aleg
-      const yValue = d => numberToMonth(d.month).substring(0, 3);
+      let xValue = d => d[getColumn]//pun coloana, iar pe orizonatl o sa-mi puna val maxima din coloana pe care o aleg
+      let yValue = d => numberToMonth(d.month).substring(0, 3);
       const margin = { top: 50, right: 40, bottom: 77, left: 90 };
-      const innerWidth = width - margin.left - margin.right;
-      const innerHeight = height - margin.top - margin.bottom;
+      let innerWidth = width - margin.left - margin.right;
+      let innerHeight = height - margin.top - margin.bottom;
+      console.log(innerWidth);
       //one rectangle for each row
-      const xScale = scaleLinear()
+      let xScale = scaleLinear()
         .domain([0, max(data, xValue)])//0 si max  element populatie
         .range([0, innerWidth])
 
@@ -269,17 +266,17 @@ function barChart(url) {
 
 
 
-      const yScale = scaleBand()
+      let yScale = scaleBand()
         .domain(data.map(yValue))//d inseamna 1 row
         .range([0, innerHeight])
         .padding(0.5);
 
-      const g = svg.append('g')
+      let g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
 
       //  if (getColumn === 'rata_somaj' || getColumn === 'rata_somaj_femei' || getColumn === 'rata_somaj_barbat')
-      const xAxisTickFormat = number =>
+      let xAxisTickFormat = number =>
         format('.2s')(number)
 
 
@@ -288,7 +285,7 @@ function barChart(url) {
       //     format('.2s')(number)
 
 
-      const xAxis = axisBottom(xScale)
+     let xAxis = axisBottom(xScale)
         .tickFormat(xAxisTickFormat)
         .tickSize(-innerHeight);
 
@@ -297,7 +294,7 @@ function barChart(url) {
         .selectAll('.domain, .tick line')
         .remove();
 
-      const xAxisG = g.append('g').call(xAxis)
+      let xAxisG = g.append('g').call(xAxis)
         .attr('transform', `translate(0,${innerHeight})`);//ca sa cifrele din populatie jos
 
       xAxisG.select('.domain').remove();
@@ -362,17 +359,14 @@ function barChart(url) {
 function lineChart(url) {
 
   const {
-    select,
     scaleLinear,
     extent,
     axisLeft,
     axisBottom,
     line,
     curveBasis,
-    json,
     scaleBand,
-    selectAll,
-    style
+    selectAll
 
   } = d3;
 

@@ -88,8 +88,9 @@
                             $item5 = mysqli_real_escape_string($connect, $data[5]);
                             $item6 = mysqli_real_escape_string($connect, $data[6]);
                             $item7 = mysqli_real_escape_string($connect, $data[7]);
+                            if($file_name_and_extenstions[2]==="educatie" || $file_name_and_extenstions[2]==="medii" || $file_name_and_extenstions[2]==="rata" )
                             $item8 = mysqli_real_escape_string($connect, $data[8]);
-
+                            if($file_name_and_extenstions[2]==="medii")
                             $item9 = mysqli_real_escape_string($connect, $data[9]);
 
 
@@ -136,7 +137,7 @@
                                     break;
                             }
                             //if pentru varste
-                            if ($file_name_and_extenstions[2] === "varste.csv") {
+                            if ($file_name_and_extenstions[2] === "varste") {
                                 $query = "INSERT into varste (judet, id_judet, month, year, total_someri, sub_25_ani, 25_29_ani, 30_39_ani, 40_49_ani, 50_55_ani, peste_55_ani) 
                             values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6, $item7)";
                                 mysqli_query($connect, $query);
@@ -144,7 +145,7 @@
 
                             //if pt medii
 
-                            if ($file_name_and_extenstions[2] === "medii.csv") {
+                            if ($file_name_and_extenstions[2] === "medii") {
                                 $query = "INSERT into medii (judet, id_judet, month, year, total_someri, someri_femei, someri_barbati, someri_urban,
                              femei_urban, barbati_urban, someri_rural, femei_rural, barbati_rural) 
                             values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6, $item7
@@ -152,8 +153,8 @@
                                 mysqli_query($connect, $query);
                             }
                             //if pt educatie
-                            if ($file_name_and_extenstions[2] === "educatie1") {
-                                $query = "INSERT into educatie1 (judet, id_judet, month, year, total_someri, fara_studii, primar, gimnazial, liceal, postliceal,
+                            if ($file_name_and_extenstions[2] === "educatie") {
+                                $query = "INSERT into educatie (judet, id_judet, month, year, total_someri, fara_studii, primar, gimnazial, liceal, postliceal,
                             profesional_arte_meserii, universitar) 
                             values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6,
                              $item7, $item8)";
@@ -162,7 +163,7 @@
 
                             // if pt rata
 
-                            if ($file_name_and_extenstions[2] === "rata.csv") {
+                            if ($file_name_and_extenstions[2] === "rata") {
                                 $query = "INSERT into rata (judet, id_judet, month, year, total_someri, someri_femei, someri_barbati, someri_indemnizati, someri_neindemnizati,
                             rata_somaj, rata_somaj_femei, rata_somaj_barbati ) 
                             values('$item0',$contor-1, $month,$file_name_and_extenstions[1], $item1, $item2, $item3, $item4, $item5, $item6,
@@ -184,11 +185,19 @@
                 }
             }
         }
-    } else {
+          } else {
         header("location:admin.php");
     }
     ?>
-
+<form action="login_success.php" method="post" style="text-align:center;">
+    <input  type='submit' value="Logout" name='logout' style="background-color:blue" />
+<?php
+if (isset($_POST['logout'])){ 
+    session_start();
+    session_destroy();  
+    header("location:admin.php");
+}
+?>
 </body>
 
 </html>
