@@ -68,44 +68,44 @@ function onClick(e) {
       if (getTableName !== "") {
 
         getTableName = e.target.getAttribute("data-getTableName");
+
         getColumn = ""
 
         //getYear = ""
       }
       else
         getTableName = e.target.getAttribute("data-getTableName");
+      console.log("ai apasat pe " + getTableName)
 
+      //}
 
       switch (getTableName) {
         case "educatie":
-          document.querySelector(".clasaEducatie").style.display = "inline";
+          document.querySelector(".clasaEducatie").style.display = "flex";
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
           break;
         case "varste":
-          document.querySelector(".clasaVarste").style.display = "inline";
+          document.querySelector(".clasaVarste").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
           break;
         case "rata":
-          document.querySelector(".clasaRata").style.display = "inline";
+          document.querySelector(".clasaRata").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
           break;
         case "medii":
-          document.querySelector(".clasaMedii").style.display = "inline";
+          document.querySelector(".clasaMedii").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
           break;
       }
     }
-
-
-
     if (e.target.hasAttribute("data-getYear")) {
 
       getYear = e.target.getAttribute("data-getYear");
@@ -122,16 +122,13 @@ function onClick(e) {
       // if (getColumn != "")
       //   barChart(url);
 
-      // if (getColumn != "")
-      //   lineChart(url)
-
       if (getColumn != "")
-        pieChart(url);
+        lineChart(url)
 
-      // if( button=e.target.hasAttribute("data-getCsv"))
-      //   getCsv=e.target.getAttribute("data-getCsv")
+      // if (getColumn != "")
+      //   pieChart(url);
+
     }
-
   }
 
 }
@@ -188,13 +185,13 @@ function onClickExport(e) {
         const json = await res.json()
         //  console.log(json)
 
-
+        console.log(getColumn);
         const data = json.map(row => ({
 
           ORASE: row.ORASE,
           month: row.month,
           year: row.year,
-          getColumn: getColumn.valueOf()
+          [getColumn]: row[getColumn]
 
 
         }));
@@ -214,14 +211,12 @@ function onClickExport(e) {
 
 function barChart(url) {
   const {
-    select,
     scaleLinear,
     max,
     scaleBand,
     axisLeft,
     axisBottom,
     format,
-    json
   } = d3;
 
 
@@ -231,8 +226,6 @@ function barChart(url) {
 
 
   const xAxisLabelText = getColumn;
-
-  const yAxisLabelText = 'Month'
 
 
   const render = data => {//functie care face  un chenar de ala pt fiecare rand
@@ -244,7 +237,7 @@ function barChart(url) {
       if (getColumn === "")
         return 0
       d3.selectAll("svg > *").remove()
-      const { width, height } = props
+      let { width, height } = props
       let svg = container.selectAll('svg').data([null])
       svg = svg.enter().append('svg')
         .merge(svg)
@@ -252,13 +245,14 @@ function barChart(url) {
         .attr('height', height)
 
 
-      const xValue = d => d[getColumn]//pun coloana, iar pe orizonatl o sa-mi puna val maxima din coloana pe care o aleg
-      const yValue = d => numberToMonth(d.month).substring(0, 3);
+      let xValue = d => d[getColumn]//pun coloana, iar pe orizonatl o sa-mi puna val maxima din coloana pe care o aleg
+      let yValue = d => numberToMonth(d.month).substring(0, 3);
       const margin = { top: 50, right: 40, bottom: 77, left: 90 };
-      const innerWidth = width - margin.left - margin.right;
-      const innerHeight = height - margin.top - margin.bottom;
+      let innerWidth = width - margin.left - margin.right;
+      let innerHeight = height - margin.top - margin.bottom;
+      console.log(innerWidth);
       //one rectangle for each row
-      const xScale = scaleLinear()
+      let xScale = scaleLinear()
         .domain([0, max(data, xValue)])//0 si max  element populatie
         .range([0, innerWidth])
 
@@ -268,17 +262,17 @@ function barChart(url) {
 
 
 
-      const yScale = scaleBand()
+      let yScale = scaleBand()
         .domain(data.map(yValue))//d inseamna 1 row
         .range([0, innerHeight])
         .padding(0.5);
 
-      const g = svg.append('g')
+      let g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
 
       //  if (getColumn === 'rata_somaj' || getColumn === 'rata_somaj_femei' || getColumn === 'rata_somaj_barbat')
-      const xAxisTickFormat = number =>
+      let xAxisTickFormat = number =>
         format('.2s')(number)
 
 
@@ -287,7 +281,7 @@ function barChart(url) {
       //     format('.2s')(number)
 
 
-      const xAxis = axisBottom(xScale)
+      let xAxis = axisBottom(xScale)
         .tickFormat(xAxisTickFormat)
         .tickSize(-innerHeight);
 
@@ -296,7 +290,7 @@ function barChart(url) {
         .selectAll('.domain, .tick line')
         .remove();
 
-      const xAxisG = g.append('g').call(xAxis)
+      let xAxisG = g.append('g').call(xAxis)
         .attr('transform', `translate(0,${innerHeight})`);//ca sa cifrele din populatie jos
 
       xAxisG.select('.domain').remove();
@@ -361,17 +355,14 @@ function barChart(url) {
 function lineChart(url) {
 
   const {
-    select,
     scaleLinear,
     extent,
     axisLeft,
     axisBottom,
     line,
     curveBasis,
-    json,
     scaleBand,
-    selectAll,
-    style
+    selectAll
 
   } = d3;
 
@@ -394,10 +385,10 @@ function lineChart(url) {
 
 
       const xValue = d => numberToMonth(d.month).substring(0, 3);
-      const xAxisLabel = getColumn.charAt(0).toLocaleUpperCase() + getColumn.slice(1)
-
+      const xAxisLabel = 'Month';
       const yValue = d => d[getColumn];
-      const yAxisLabel = 'Month';
+      const yAxisLabel = getColumn.charAt(0).toLocaleUpperCase() + getColumn.slice(1)
+
 
       const margin = { top: 60, right: 40, bottom: 88, left: 105 };
       const innerWidth = width - margin.left - margin.right;
