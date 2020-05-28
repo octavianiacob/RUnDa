@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./styles/reset.css">
-    <link href="./styles/ajax.css" rel="stylesheet"/>
+    <link href="./styles/ajax.css" rel="stylesheet" />
 
 
 </head>
@@ -22,7 +22,8 @@
             <div class="nav-links">
                 <ul class="nav-list">
                     <li>
-                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png" alt="GitHub link"></a>
+                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png"
+                                alt="GitHub link"></a>
                     </li>
                     <li>
                         <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
@@ -44,17 +45,17 @@
 
                 <div>
                     <p>Table</p>
-        
+
                     <label>
                         <span> Educatie</span>
                         <input required type="radio" data-getTableName="educatie" name="table">
                     </label>
-        
+
                     <label>
                         <span> Varste </span>
                         <input required type="radio" data-getTableName="varste" name="table">
                     </label>
-        
+
                     <label>
                         <span> Rata </span>
                         <input required type="radio" data-getTableName="rata" name="table">
@@ -63,25 +64,25 @@
                         <span>Medii </span>
                         <input required type="radio" data-getTableName="medii" name="table">
                     </label>
-        
+
                 </div>
-        
-        
+
+
                 <div>
                     <p>Year</p>
-        
+
                     <label>
                         <span> 2019</span>
                         <input id="forta" required type="radio" data-getYear="2019" name="year">
                     </label>
-        
+
                     <label>
                         <span> 2020 </span>
                         <input required type="radio" data-getYear="2020" name="year">
                     </label>
                 </div>
-        
-        
+
+
                 <hr>
                 <div class="clasaEducatie" style="display:none;">
                     <label>
@@ -92,7 +93,7 @@
                         <span> LICEAL</span>
                         <input required type="radio" data-getColumn="liceal" name="column">
                     </label>
-        
+
                 </div>
                 <div class="clasaVarste" style="display:none">
                     <label>
@@ -103,7 +104,7 @@
                         <span> INTRE 25-29 ANI </span>
                         <input required type="radio" data-getColumn="25_29_ani" name="column">
                     </label>
-        
+
                 </div>
                 <div class="clasaRata" style="display:none">
                     <label>
@@ -130,25 +131,27 @@
                     </label>
 
 
-                    
+
                 </div>
-                <button id="exportButton" type="button" data-getCsv="csv">Export CSV</button>
+              
             </div>
+
+            <button id="exportButton" type="button" data-getCsv="csv">Export CSV</button>
             <div id="diagram">
 
             </div>
         </div>
     </section>
-  
 
-  
+
+
 
     <script src="https://d3js.org/d3.v4.js"></script>
-   
-    
 
-    <script  type="module" src="./js/ajax.js"></script>
-    <script  type="module" src="./js/map.js"></script>
+
+
+    <script type="module" src="./js/ajax.js"></script>
+    <script type="module" src="./js/map.js"></script>
     <!--important ./ de la ajax.js-->
 </body>
 

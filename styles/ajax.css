@@ -72,10 +72,22 @@
 rect{
   fill:#137B80
 }
-/* 
+
+
+#exportButton{
+  height: 2em;
+}
+
 svg{
   border: 2px solid red;
-} */
+}
+
+
+/*
+  PT PIECHART
+*/
+
+
   
 .navbar {
   display: flex;

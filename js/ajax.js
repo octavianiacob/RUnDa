@@ -2,12 +2,13 @@ let getCountyName = location.search.slice(7)//valoare default doar ca poate fi s
 let getTableName = ""//idem
 let getColumn = ""
 let getYear = ""
-let getCsv=""
+let getCsv = ""
 let url = ""
 let urlForCsv = ""
 
 let containerElement = document.querySelector("#container");
-let buttonElement=document.querySelector("#exportButton")
+
+let buttonElement = document.querySelector("#exportButton")
 function numberToMonth(number) {
   let month;
   switch (number) {
@@ -53,105 +54,107 @@ function numberToMonth(number) {
 if (containerElement)//ca sa scap de eroarea cu addEventList null
   containerElement.addEventListener("click", onClick);
 
-  if(buttonElement)
+if (buttonElement)
   buttonElement.addEventListener("click", onClickExport)
 
-  //-------------------------------------------------------SELECTARE FILTRE+GENERARE DIAGRAMA----------------------------------------------------------
+//-------------------------------------------------------SELECTARE FILTRE+GENERARE DIAGRAMA----------------------------------------------------------
+
 function onClick(e) {
+  if (e.target.tagName == 'INPUT') {
+    d3.selectAll("svg > *").remove();
+    if (e.target.hasAttribute("data-getTableName")) {
 
 
-  d3.selectAll("svg > *").remove();
+      if (getTableName !== "") {
+
+        getTableName = e.target.getAttribute("data-getTableName");
+        getColumn = ""
+
+        //getYear = ""
+      }
+      else
+        getTableName = e.target.getAttribute("data-getTableName");
 
 
-  if (e.target.hasAttribute("data-getTableName")) {
-
-
-    if (getTableName !== "") {
-
-      getTableName = e.target.getAttribute("data-getTableName");
-      getColumn = ""
-
-      //getYear = ""
+      switch (getTableName) {
+        case "educatie":
+          document.querySelector(".clasaEducatie").style.display = "inline";
+          document.querySelector(".clasaVarste").style.display = "none";
+          document.querySelector(".clasaRata").style.display = "none";
+          document.querySelector(".clasaMedii").style.display = "none";
+          break;
+        case "varste":
+          document.querySelector(".clasaVarste").style.display = "inline";
+          document.querySelector(".clasaEducatie").style.display = "none";
+          document.querySelector(".clasaRata").style.display = "none";
+          document.querySelector(".clasaMedii").style.display = "none";
+          break;
+        case "rata":
+          document.querySelector(".clasaRata").style.display = "inline";
+          document.querySelector(".clasaEducatie").style.display = "none";
+          document.querySelector(".clasaVarste").style.display = "none";
+          document.querySelector(".clasaMedii").style.display = "none";
+          break;
+        case "medii":
+          document.querySelector(".clasaMedii").style.display = "inline";
+          document.querySelector(".clasaEducatie").style.display = "none";
+          document.querySelector(".clasaVarste").style.display = "none";
+          document.querySelector(".clasaRata").style.display = "none";
+          break;
+      }
     }
-    else
-      getTableName = e.target.getAttribute("data-getTableName");
 
 
-    switch (getTableName) {
-      case "educatie":
-        document.querySelector(".clasaEducatie").style.display = "inline";
-        document.querySelector(".clasaVarste").style.display = "none";
-        document.querySelector(".clasaRata").style.display = "none";
-        document.querySelector(".clasaMedii").style.display = "none";
-        break;
-      case "varste":
-        document.querySelector(".clasaVarste").style.display = "inline";
-        document.querySelector(".clasaEducatie").style.display = "none";
-        document.querySelector(".clasaRata").style.display = "none";
-        document.querySelector(".clasaMedii").style.display = "none";
-        break;
-      case "rata":
-        document.querySelector(".clasaRata").style.display = "inline";
-        document.querySelector(".clasaEducatie").style.display = "none";
-        document.querySelector(".clasaVarste").style.display = "none";
-        document.querySelector(".clasaMedii").style.display = "none";
-        break;
-      case "medii":
-        document.querySelector(".clasaMedii").style.display = "inline";
-        document.querySelector(".clasaEducatie").style.display = "none";
-        document.querySelector(".clasaVarste").style.display = "none";
-        document.querySelector(".clasaRata").style.display = "none";
-        break;
+
+    if (e.target.hasAttribute("data-getYear")) {
+
+      getYear = e.target.getAttribute("data-getYear");
     }
-  }
 
+    if (e.target.hasAttribute("data-getColumn")) {
+      getColumn = e.target.getAttribute("data-getColumn");
 
+    }
 
-  if (e.target.hasAttribute("data-getYear")) {
+    if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
+      url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
 
-    getYear = e.target.getAttribute("data-getYear");
-  }
+      // if (getColumn != "")
+      //   barChart(url);
 
-  if (e.target.hasAttribute("data-getColumn")) {
-    getColumn = e.target.getAttribute("data-getColumn");
+      // if (getColumn != "")
+      //   lineChart(url)
 
-  }
+      if (getColumn != "")
+        pieChart(url);
 
-
-  if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
-    url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-  
-    if (getColumn != "")
-      barChart(url);
-
-    // if (getColumn != "")
-    //   lineChart(url)
-
-    // if (getColumn != "")
-    //   pieChart(url);
-    // if( button=e.target.hasAttribute("data-getCsv"))
-    //   getCsv=e.target.getAttribute("data-getCsv")
+      // if( button=e.target.hasAttribute("data-getCsv"))
+      //   getCsv=e.target.getAttribute("data-getCsv")
+    }
 
   }
-  
+
 }
 
 //------------------------------------------------------------------EXPORT CSV, XML etc-----------------------------------------------
 
-function onClickExport(e){
-    if(e.target.hasAttribute("data-getCsv")){
-      getCsv=e.target.getAttribute("data-getCsv")
-    }
-  
+function onClickExport(e) {
+  if (e.target.tagName === "BUTTON") {
 
-    if (!(getCountyName === "" || getTableName === "" || getColumn === "" ||getCsv==="" || getYear === "")) {
+    if (e.target.hasAttribute("data-getCsv")) {
+      getCsv = e.target.getAttribute("data-getCsv")
+    }
+
+
+    if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getCsv === "" || getYear === "")) {
       urlForCsv = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+
       const objectToCsv = function (data) {
         //get the  HEADERS
         const csvRows = []
         const headers = Object.keys(data[0]);
         csvRows.push(headers.join(','))
-  
+
         //loop over the rows
         for (const row of data) {
           //add the data to object
@@ -162,10 +165,10 @@ function onClickExport(e){
           csvRows.push(values.join(','))
         }
         //form csv
-  
+
         return csvRows.join('\n')
       };
-  
+
       const download = function (data) {
         const blob = new Blob([data], { type: 'text/csv' })
         const url = window.URL.createObjectURL(blob);
@@ -177,40 +180,36 @@ function onClickExport(e){
         a.click();
         document.body.removeChild(a)
       }
-  
-      
+
+
       const getReport = async function () {
-  
+
         const res = await fetch(urlForCsv)
         const json = await res.json()
         //  console.log(json)
 
-        
+
         const data = json.map(row => ({
-  
+
           ORASE: row.ORASE,
           month: row.month,
           year: row.year,
           getColumn: getColumn.valueOf()
 
-       
-         
+
         }));
         const csvData = objectToCsv(data)
         download(csvData)
 
         console.log(data)
-  
+
       }
-  
-        (function () {
-          const button = document.getElementById('myButton')
-          button.addEventListener('click', getReport)
-        })
+
+      getReport();
     }
 
-  } 
-
+  }
+}
 
 
 function barChart(url) {
@@ -330,7 +329,7 @@ function barChart(url) {
     function render1() {
       myResponsiveComponent(d3
         .select('#diagram'), {
-        width: document.body.clientWidth,
+        width: document.body.clientWidth / 1.1,
         height: document.body.clientHeight / 2
 
       });
@@ -472,7 +471,7 @@ function lineChart(url) {
     function render1() {
       myResponsiveComponent(d3
         .select('#diagram'), {
-        width: document.body.clientWidth,
+        width: document.body.clientWidth / 1.1,
         height: document.body.clientHeight / 2
 
       });
@@ -556,14 +555,14 @@ function pieChart(url) {
         .data(slices)
         .enter()
         .append('text')
-        .text(function (d) { return '• ' + numberToMonth(d.data.month).substring(0, 3); })
+        .text(function (d) { return numberToMonth(d.data.month).substring(0, 3); })
         .attr('fill', function (d) { return color(d.data.month); })
         .attr('y', function (d, i) { return 20 * (i + 1); })
     }
     function render1() {
       myResponsiveComponent(d3
         .select('#diagram'), {
-        width: document.body.clientWidth,
+        width: document.body.clientWidth / 1.2,
         height: document.body.clientHeight / 2
 
       });
