@@ -103,6 +103,7 @@ function onClick(e) {
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
+          document.querySelector("#container").style.maxHeight = "350px"; 
           break;
       }
     }
@@ -119,14 +120,14 @@ function onClick(e) {
     if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
       url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
 
-      // if (getColumn != "")
+       //if (getColumn != "")
       //   barChart(url);
 
-      if (getColumn != "")
-        lineChart(url)
+      //if (getColumn != "")
+        //lineChart(url)
 
-      // if (getColumn != "")
-      //   pieChart(url);
+       if (getColumn != "")
+         pieChart(url);
 
     }
   }
