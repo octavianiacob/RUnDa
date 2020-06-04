@@ -7,7 +7,7 @@ let url = ""
 let urlForCsv = ""
 let getPdf = ""
 
-let containerElement = document.querySelector("#container");
+let containerElement = document.querySelector("#filters-container");
 
 let buttonElement = document.querySelector("#exportButton")
 function numberToMonth(number) {
@@ -87,24 +87,32 @@ function onClick(e) {
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
+          //document.querySelector("#filters-container").style.maxHeight = "300px";
+          //document.querySelector("#options-container").style.maxHeight = "300px";
           break;
         case "varste":
           document.querySelector(".clasaVarste").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
+          //document.querySelector("#filters-container").style.maxHeight = "300px";
+          //document.querySelector("#options-container").style.maxHeight = "300px";
           break;
         case "rata":
           document.querySelector(".clasaRata").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
+          document.querySelector("#filters-container").style.maxHeight = "500px";
+          document.querySelector("#options-container").style.maxHeight = "500px"; 
           break;
         case "medii":
           document.querySelector(".clasaMedii").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
+          //document.querySelector("#filters-container").style.maxHeight = "450px";
+          //document.querySelector("#options-container").style.maxHeight = "450px"; 
           break;
       }
     }
@@ -135,11 +143,11 @@ function onClick(e) {
       })
 
 
-      // if (getColumn != "")
-      //   barChart(url);
+       //if (getColumn != "")
+         //barChart(url);
 
       if (getColumn != "")
-        lineChart(url)
+        lineChart(url);
 
       // if (getColumn != "")
       //   pieChart(url);

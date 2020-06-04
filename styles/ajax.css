@@ -14,7 +14,7 @@
     margin: 0;
     overflow-x: hidden;
     height: 100%;
-     position: fixed; 
+    
     left:0px;
     right:0px;
     top:0px;
@@ -73,7 +73,9 @@ rect{
 }
 
 svg{
-  border: 2px solid red;
+  border: 2px solid rgba(23, 66, 85, 0.2);
+  border-radius: 15px;
+  background-color: #F6F8FF;
 }
 
 
@@ -160,19 +162,15 @@ a img {
   justify-content: center;
 }
 
-/* #diagram {
-  margin-top: 200px;
-} */
-
-#container {
+#filters-container {
   background-color: #F6F8FF;
   border: 2px solid rgba(23, 66, 85, 0.2);
   border-radius: 15px;
   width: 100%;
   max-width: 750px;
   height: 100%;
-  max-height: 200px;
-  margin: 50px 20px 20px 20px;
+  max-height: 500px;
+  
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -183,7 +181,7 @@ a img {
   
 }
 
-#container p {
+#filters-container p {
   font-family: 'Roboto';
   margin-bottom: 15px;
 
@@ -194,6 +192,8 @@ a img {
   display: flex;
   justify-content: space-evenly;
   font-size: 0.75em;
+  /*min-height: 200px; */
+  height: 300px;
 }
 
 .filters label {
@@ -215,9 +215,130 @@ a img {
   padding: 5px;
 }
 
-@media (max-width: 875px) {
-  #container {
+#controls {
+  
+  width: 100%;
+  display: flex;
+  margin: 50px 20px 20px 20px;
+  justify-content: center;
+  height: fit-content;
+}
+
+#options-container {
+  background-color: #F6F8FF;
+  border: 2px solid rgba(23, 66, 85, 0.2);
+  border-radius: 15px;
+  margin-left: 20px;
+  max-height: 500px;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#options-container p {
+  font-size: 24px;
+  font-family: 'Roboto';
+}
+
+#display-options {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+#export-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 100%;
+  margin-top: 35px;
+}
+
+#export-options button {
+  margin: 3px 3px;
+}
+
+@media screen and (min-width: 1px) and (max-width: 875px) {
+
+  #controls {
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 20px;
+  }
+
+  #filters-container {
+    font-size: 20px;
+    max-width: 90%;
+    height: 100%;
+    max-height: 450px;
+  }
+
+  .filters {
+    height: 100%;
+  }
+
+  #options-container {
     font-size: 15px;
     max-width: 90%;
+    height: fit-content;
+    max-height: max-content;
+    margin: 20px 0px 0px 0px;
   }
+
+  #display-options {
+    flex-direction: row;
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .banner {
+    padding: 5px;
+  }
+
+  .background-card {
+    box-shadow: none;
+    height: 100%;
+  }
+
+  #display-options img {
+    padding: 0px 10px;
+  }
+}
+
+@media screen and (min-width: 876px) and (max-width: 1120px) {
+  
+  #filters-container {
+    min-width: 750px;
+  }
+
+  #controls {
+    flex-wrap: wrap;
+  }
+
+  #options-container {
+    margin: 20px 20px 0px 20px;
+    min-width: 750px;
+}
+
+  #display-options {
+    flex-direction: row;
+    margin-top: 10px;
+    padding: 0px;
+  }
+
+  #display-options img {
+    padding: 0px 10px;
+  }
+
+  .background-card {
+    min-height: 90vh;
+    height: 100%;
+  }
+
 }
