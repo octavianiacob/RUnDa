@@ -40,7 +40,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUnDa</title>
     <link rel="stylesheet" type="text/css" href="styles/reset.css">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/admin.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!--<script src="/scripts/main.js"></script> -->
 </head>
@@ -74,23 +74,27 @@ try {
     }
 ?>
 
-    <div class="login-form">
-        <form method="post">
+<section class="login">
+    <div class="login-container">
+      <form class="login-form" method="post">
 
-            <label> username</label>
-            <input type="text" name="username" class="form-control" />
-            <br />
+        <div class="input-container">
+          <label>Username</label>
+          <input class="form-control" type="text" name="username" placeholder="Username">
+        </div>
 
+        <div class="input-container">
+          <label for="password">Password</label>
+          <input class="form-control" name="password" type="password" placeholder="******************">
+        </div>
 
-            <label> password</label>
-            <input type="password" name="password" class="form-control" />
-            <br>
+        <div class="flex items-center justify-between">
+          <input class="btn-info" type="submit" name="login" value="Sign In"/>
+        </div>
 
-            <input type="submit" name="login" class="btn-info" value="login" />
-
-        </form>
+      </form>
     </div>
-
+</section>
 
 </body>
 
