@@ -10,6 +10,11 @@ let getPdf = ""
 let containerElement = document.querySelector("#filters-container");
 
 let buttonElement = document.querySelector("#exportButton")
+
+let buttonDiagram = document.querySelector("#lineChartBtn");
+
+let buttonDiagram1 = document.querySelector("#pieChartBtn");
+let tipChart;
 function numberToMonth(number) {
   let month;
   switch (number) {
@@ -58,6 +63,13 @@ if (containerElement)//ca sa scap de eroarea cu addEventList null
 if (buttonElement)
   buttonElement.addEventListener("click", onClickExport)
 
+// if(buttonDiagram)
+//   buttonDiagram.addEventListener("click",diagrama);
+
+// if(buttonDiagram1)
+// buttonDiagram1.addEventListener("click",diagrama1);
+
+
 //-------------------------------------------------------SELECTARE FILTRE+GENERARE DIAGRAMA----------------------------------------------------------
 
 function onClick(e) {
@@ -87,16 +99,13 @@ function onClick(e) {
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
-          //document.querySelector("#filters-container").style.maxHeight = "300px";
-          //document.querySelector("#options-container").style.maxHeight = "300px";
           break;
         case "varste":
           document.querySelector(".clasaVarste").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
-          //document.querySelector("#filters-container").style.maxHeight = "300px";
-          //document.querySelector("#options-container").style.maxHeight = "300px";
+
           break;
         case "rata":
           document.querySelector(".clasaRata").style.display = "flex";
@@ -104,15 +113,13 @@ function onClick(e) {
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaMedii").style.display = "none";
           document.querySelector("#filters-container").style.maxHeight = "500px";
-          document.querySelector("#options-container").style.maxHeight = "500px"; 
+          document.querySelector("#options-container").style.maxHeight = "500px";
           break;
         case "medii":
           document.querySelector(".clasaMedii").style.display = "flex";
           document.querySelector(".clasaEducatie").style.display = "none";
           document.querySelector(".clasaVarste").style.display = "none";
           document.querySelector(".clasaRata").style.display = "none";
-          //document.querySelector("#filters-container").style.maxHeight = "450px";
-          //document.querySelector("#options-container").style.maxHeight = "450px"; 
           break;
       }
     }
@@ -130,33 +137,34 @@ function onClick(e) {
       url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
 
 
-
-      fetch(url)
-      .then(function(resp){
-        return resp.json();
-      })
-      .then(function (jsonResp){
-        console.log("dadada "+jsonResp)
-      })
-      .catch(function(){
-        //error
-      })
-
-
-       //if (getColumn != "")
-         //barChart(url);
-
-      if (getColumn != "")
+      document.getElementById('lineChartBtn').onclick = function alegereLineChart() {
+        tipChart = 1;
         lineChart(url);
-
-      // if (getColumn != "")
-      //   pieChart(url);
+      }
+      document.getElementById('pieChartBtn').onclick = function alegerePieChart() {
+        tipChart = 2;
+        pieChart(url);
+      }
+      document.getElementById('barChartBtn').onclick = function alegerePieChart() {
+        tipChart = 3;
+        barChart(url);
+      }
+      if(getColumn!="")
+      switch (tipChart) {
+        case 1: lineChart(url);
+          break;
+        case 2: pieChart(url);
+          break;
+        case 3: barChart(url);
+          break;
+      }
 
     }
 
   }
 
 }
+
 
 //------------------------------------------------------------------EXPORT CSV, XML etc-----------------------------------------------
 
@@ -233,60 +241,60 @@ function onClickExport(e) {
       getReport();
     }
 
-    //pdf??
+    // //pdf??
 
-    var json = '[["Customer Id","Name","Country"],[1,"John Hammond","United States"],[2,"Mudassar Khan","India"],[3,"Suzanne Mathews","France"],[4,"Robert Schidner","Russia"]]';
+    // var json = '[["Customer Id","Name","Country"],[1,"John Hammond","United States"],[2,"Mudassar Khan","India"],[3,"Suzanne Mathews","France"],[4,"Robert Schidner","Russia"]]';
 
-    //Convert JSON string to JSON object.
-    var customers = eval(json);
+    // //Convert JSON string to JSON object.
+    // var customers = eval(json);
 
-    //Convert JSON to HTML Table.
-    var table = document.createElement("TABLE");
-    table.border = "1";
-    table.Id = "tblCustomers";
+    // //Convert JSON to HTML Table.
+    // var table = document.createElement("TABLE");
+    // table.border = "1";
+    // table.Id = "tblCustomers";
 
-    //Get the count of columns.
-    var columnCount = customers[0].length;
+    // //Get the count of columns.
+    // var columnCount = customers[0].length;
 
-    //Add the header row.
-    var row = table.insertRow(-1);
-    for (var i = 0; i < columnCount; i++) {
-      var headerCell = document.createElement("TH");
-      headerCell.innerHTML = customers[0][i];
-      row.appendChild(headerCell);
-    }
+    // //Add the header row.
+    // var row = table.insertRow(-1);
+    // for (var i = 0; i < columnCount; i++) {
+    //   var headerCell = document.createElement("TH");
+    //   headerCell.innerHTML = customers[0][i];
+    //   row.appendChild(headerCell);
+    // }
 
-    //Add the data rows.
-    for (var i = 1; i < customers.length; i++) {
-      row = table.insertRow(-1);
-      for (var j = 0; j < columnCount; j++) {
-        var cell = row.insertCell(-1);
-        cell.innerHTML = customers[i][j];
-      }
-    }
+    // //Add the data rows.
+    // for (var i = 1; i < customers.length; i++) {
+    //   row = table.insertRow(-1);
+    //   for (var j = 0; j < columnCount; j++) {
+    //     var cell = row.insertCell(-1);
+    //     cell.innerHTML = customers[i][j];
+    //   }
+    // }
 
-    //Append the Table to the HTML DIV.
-    var dvTable = document.getElementById("dvTable");
-    dvTable.innerHTML = "";
-    dvTable.appendChild(table);
+    // //Append the Table to the HTML DIV.
+    // var dvTable = document.getElementById("dvTable");
+    // dvTable.innerHTML = "";
+    // dvTable.appendChild(table);
 
 
-    //Convert Table to PDF.
-    html2canvas(document.getElementById('dvTable'), {
-      onrendered: function (canvas) {
-        var data = canvas.toDataURL();
-        var docDefinition = {
-          content: [{
-            image: data,
-            width: 500
-          }]
-        };
-        pdfMake.createPdf(docDefinition).download("JSON.pdf");
+    // //Convert Table to PDF.
+    // html2canvas(document.getElementById('dvTable'), {
+    //   onrendered: function (canvas) {
+    //     var data = canvas.toDataURL();
+    //     var docDefinition = {
+    //       content: [{
+    //         image: data,
+    //         width: 500
+    //       }]
+    //     };
+    //     pdfMake.createPdf(docDefinition).download("JSON.pdf");
 
-        //Remove the Table.
-        dvTable.innerHTML = "";
-      }
-    });
+    //     //Remove the Table.
+    //     dvTable.innerHTML = "";
+    //   }
+    // });
   }
 }
 
@@ -603,7 +611,7 @@ function pieChart(url) {
         .outerRadius(radius - 40);
 
       // helper that returns a color based on an ID
-      var color = d3.scaleOrdinal(d3.schemeCategory10);
+      var color = d3.scaleOrdinal(d3.schemeCategory20);
       var g = svg.append('g')
         .attr('transform', `translate(${width / 2},${height / 2})`);
 
