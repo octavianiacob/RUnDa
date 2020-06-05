@@ -191,6 +191,7 @@
     ?>
 <form action="login_success.php" method="post" style="text-align:center;">
     <input  type='submit' value="Logout" name='logout' style="background-color:blue" />
+</form>
 <?php
 if (isset($_POST['logout'])){ 
     session_start();
