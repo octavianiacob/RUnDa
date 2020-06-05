@@ -8,6 +8,10 @@
    margin: 0px;
   } */
 
+  html {
+    height: 100%;
+  }
+
   body {
     box-sizing: border-box;
     padding: 0;
@@ -149,11 +153,12 @@ a img {
 
 .banner {
   padding: 30px;
+  height: 100%;
 }
 
 .background-card {
   background: #FFF;
-  height: 90vh;
+  height: 100%;
   box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin: 0 auto;

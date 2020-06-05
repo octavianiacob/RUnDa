@@ -4,6 +4,11 @@ var height = 1500;
 let newName
 let map = document.getElementById('map');
 let backbtn = document.getElementById('map-btn');
+let nextbtn = document.getElementById('next-btn')
+let countyCounter = 0;
+let queryparam1 = "";
+let queryparam2 = "";
+let url;
 
 
 let nameCity = undefined;
@@ -35,25 +40,60 @@ d3.json("romania-geo.geojson", function (data) {
         .attr("id", function (d, i) { return "path-" + data.features[i].properties.id; i++; })
         .attr("name", function (d, i) { return data.features[i].properties.name; i++; })
         .attr("class", "area")
-        .attr("fill", "#174255")
+        .style("fill", "#174255")
+        .attr("value", "off")
         .style("stroke", "#C3D3D0")
         .on("mouseover", function (d) {
-            d3.select(this).style("fill", "#C3D3D0");
+            d3.select(this).style("stroke", "#ff0000");
+            d3.select(this).style("stroke-width", "5px");
         })
         .on("mouseout", function (d) {
-            d3.select(this).style("fill", "#174255");
+            d3.select(this).style("stroke", "#C3D3D0");
+            d3.select(this).style("stroke-width", "2px");
         })
         .on("click", function (d) {
             console.log("Ai dat click pe " + d3.select(this).attr('id'));
             console.log("Ai dat click pe judetul " + d3.select(this).attr("name"));
-
-            nameCity = d3.select(this).attr("name");
-            let cale="./ajax.html" + "?judet=" + nameCity;
-            window.location.href=cale;
-            map.style.opacity = 1;
-            (function fade() { (map.style.opacity -= 0.05) < 0 ? map.style.display = "none" : setTimeout(fade, 40) })();
-            //backbtn.style.display="block";
             
+            if(d3.select(this).attr("value") == "off" && countyCounter < 2){
+                d3.select(this).attr("value", "on")
+                .style("fill", "#C3D3D0")
+                .style("stroke-width", "5px");
+                countyCounter++;
+                if(queryparam1 == "")
+                    queryparam1 = d3.select(this).attr("name");
+                else if(queryparam2 == "")
+                    queryparam2 = d3.select(this).attr("name");
+            }
+            else if(d3.select(this).attr("value") == "on" && countyCounter <= 2) {
+                d3.select(this).attr("value", "off")
+                .style("fill", "#174255")
+                .style("stroke-width", "2px");
+                countyCounter--;
+                if(queryparam1 == d3.select(this).attr("name"))
+                    queryparam1 = "";
+                else if(queryparam2 == d3.select(this).attr("name"))
+                    queryparam2 = "";
+            }
+
+            console.log("State-ul lui " + d3.select(this).attr("name") + " este: " + d3.select(this).attr("value") + " CNT = " + countyCounter);
+            console.log("Q1 = " + queryparam1 + " Q2 = " +queryparam2);
+            nameCity = d3.select(this).attr("name");
+            
+            if(queryparam1 != "" && queryparam2 != "") {
+                url="./ajax.html" + "?judet=" + queryparam1 + "&" + queryparam2;
+                //window.location.href=url;
+                nextbtn.setAttribute("href", url);
+            }
+            else if(queryparam1 != "" && queryparam2 == "") {
+                url="./ajax.html" + "?judet=" + queryparam1;
+                nextbtn.setAttribute("href", url);
+            }
+            else if(queryparam1 == "" && queryparam2 != "") {
+                url="./ajax.html" + "?judet=" + queryparam2;
+                nextbtn.setAttribute("href", url);
+            }
+    
         });
      
     group.append("text")
