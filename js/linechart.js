@@ -1,36 +1,37 @@
-import { numberToMonth } from './util.js'
-export function lineChart(url, getTableName, getColumn, getCountyName) {
+import {numberToMonth} from './util.js'
+export function lineChart(url,getTableName,getColumn,getCountyName) {
 
-  const {
-    scaleLinear,
-    extent,
-    axisLeft,
-    axisBottom,
-    line,
-    curveBasis,
-    scaleBand,
-    selectAll
-
-  } = d3;
-
-
-  const render = data => {
-
-    function myResponsiveComponent(container, props) {
-      if (getColumn === "")
-        return 0
-      selectAll("svg > *").remove()
-      let { width, height } = props
-      if (width < 500)
-        width = 700
-      let svg = container.selectAll('svg').data([null])
-      svg = svg.enter().append('svg')
-        .merge(svg)
-        .attr('width', width)
-        .attr('height', height)
-
-
-      const title = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
+    const {
+      scaleLinear,
+      extent,
+      axisLeft,
+      axisBottom,
+      line,
+      curveBasis,
+      scaleBand,
+      selectAll
+  
+    } = d3;
+  
+  
+    const render = data => {
+  
+      function myResponsiveComponent(container, props) {
+        if (getColumn === "")
+          return 0
+        selectAll("svg > *").remove()
+        let { width, height } = props
+        if(width<500)
+        width=700
+        let svg = container.selectAll('svg').data([null])
+        svg = svg.enter().append('svg')
+          .merge(svg)
+          .attr('width', width)
+          .attr('height', height)
+          .attr('version',"1.1")
+          .attr('xmlns',"http://www.w3.org/2000/svg")
+  
+        const title = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
                        ${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
 
 
