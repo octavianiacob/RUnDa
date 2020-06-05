@@ -3,7 +3,10 @@ import {lineChart} from './linechart.js'
 import {pieChart} from './piechart.js'
 import {exportCSV} from './exports.js'
 
-let getCountyName = location.search.slice(7)//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
+let countyList = location.search.slice(7).split('&');
+console.log("Location 1 = " + countyList[0] + " Location 2 = " + countyList[1]);
+
+let getCountyName = countyList[0]
 let getTableName = ""//idem
 let getColumn = ""
 let getYear = ""
