@@ -40,9 +40,7 @@
    .line-path {
     fill: none;
     stroke: #137B80; /*or maroon*/
-    stroke-width: 4;
-    stroke-linejoin: round;
-    stroke-linecap: round;
+    
   }
   text {
     font-size: 1em;/*3m merge pt titlu la line si bar CHart, daca iar 1em pun ca sa imi afiseze datele ok in pieChart*/
