@@ -28,6 +28,8 @@ export function lineChart(url,getTableName,getColumn,getCountyName) {
           .merge(svg)
           .attr('width', width)
           .attr('height', height)
+          .attr('version',"1.1")
+          .attr('xmlns',"http://www.w3.org/2000/svg")
   
         const title = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
                        ${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;

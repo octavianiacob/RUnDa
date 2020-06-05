@@ -110,6 +110,15 @@ function onClick(e) {
       
 
       }
+      document.getElementById('exportSVG').onclick = function exportareSVG(){
+        const svg = document.querySelector('svg');
+  const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
+  const a = document.createElement('a');
+  const e = new MouseEvent('click');
+  a.download = 'download.svg';
+  a.href = 'data:image/svg+xml;base64,' + base64doc;
+  a.dispatchEvent(e);
+        }
       if(getColumn!="")
       switch (tipChart) {
         case 1: lineChart(url,getTableName,getColumn,getCountyName);
