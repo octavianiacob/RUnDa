@@ -1,37 +1,37 @@
-import {numberToMonth} from './util.js'
-export function lineChart(url,getTableName,getColumn,getCountyName) {
+import { numberToMonth } from './util.js'
+export function lineChart(url, getTableName, getColumn, getCountyName) {
 
-    const {
-      scaleLinear,
-      extent,
-      axisLeft,
-      axisBottom,
-      line,
-      curveBasis,
-      scaleBand,
-      selectAll
-  
-    } = d3;
-  
-  
-    const render = data => {
-  
-      function myResponsiveComponent(container, props) {
-        if (getColumn === "")
-          return 0
-        selectAll("svg > *").remove()
-        let { width, height } = props
-        if(width<500)
-        width=700
-        let svg = container.selectAll('svg').data([null])
-        svg = svg.enter().append('svg')
-          .merge(svg)
-          .attr('width', width)
-          .attr('height', height)
-          .attr('version',"1.1")
-          .attr('xmlns',"http://www.w3.org/2000/svg")
-  
-        const title = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
+  const {
+    scaleLinear,
+    extent,
+    axisLeft,
+    axisBottom,
+    line,
+    curveBasis,
+    scaleBand,
+    selectAll
+
+  } = d3;
+
+
+  const render = data => {
+
+    function myResponsiveComponent(container, props) {
+      if (getColumn === "")
+        return 0
+      selectAll("svg > *").remove()
+      let { width, height } = props
+      if (width < 500)//fac scroll aici pe diagrama
+        width = 700
+      let svg = container.selectAll('svg').data([null])
+      svg = svg.enter().append('svg')
+        .merge(svg)
+        .attr('width', width)
+        .attr('height', height)
+        .attr('version', "1.1")
+        .attr('xmlns', "http://www.w3.org/2000/svg")
+
+      const title = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
                        ${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
 
 
@@ -68,17 +68,19 @@ export function lineChart(url,getTableName,getColumn,getCountyName) {
 
       const yAxis = axisLeft(yScale)
         .tickSize(-innerWidth)
-        .tickPadding(10)
+        .tickPadding(1)
 
 
       const yAxisG = g.append('g').call(yAxis);
-      yAxisG.selectAll('.domain').remove();
+      yAxisG.selectAll('.domain').remove()
+        .attr('transform', `translate(500,${margin.top})`);
 
       yAxisG.append('text')
         .attr('class', 'axis-label')
         .attr('y', -60)
         .attr('x', -innerHeight / 2)
-        .attr('fill', 'black')
+        .style('fill', '#8E8883')
+        .style('font-size', '2.5em')
         .attr('transform', `rotate(-90)`)
         .attr('text-anchor', 'middle')
         .text(yAxisLabel);
@@ -98,7 +100,8 @@ export function lineChart(url,getTableName,getColumn,getCountyName) {
       const lineGenerator = line()
         .x(d => xScale(xValue(d)))
         .y(d => yScale(yValue(d)))
-        .curve(curveBasis);
+        .curve(curveBasis)
+
 
       g.append('path')
         .attr('class', 'line-path')
@@ -108,13 +111,14 @@ export function lineChart(url,getTableName,getColumn,getCountyName) {
         .style('stroke', "#137B80")
         .style('stroke-width', '4')
         .style('stroke-linejoin', 'round')
-        .style('stroke-linecap', 'round');
+        .style('stroke-linecap', 'round')
+
 
       g.append('text')
         .attr('class', 'title')
         .attr('y', -10)
         .style('font-size', '2em')
-        .style('font-family','sans-serif')
+        .style('font-family', 'sans-serif')
         .text(title);
     }
 

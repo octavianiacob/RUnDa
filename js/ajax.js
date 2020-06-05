@@ -1,7 +1,7 @@
-import {barChart} from './barchart.js'
-import {lineChart} from './linechart.js'
-import {pieChart} from './piechart.js'
-import {exportCSV} from './exports.js'
+import { barChart } from './barchart.js'
+import { lineChart } from './linechart.js'
+import { pieChart } from './piechart.js'
+import { exportCSV } from './exports.js'
 
 let countyList = location.search.slice(7).split('&');
 console.log("Location 1 = " + countyList[0] + " Location 2 = " + countyList[1]);
@@ -96,38 +96,38 @@ function onClick(e) {
 
       document.getElementById('lineChartBtn').onclick = function alegereLineChart() {
         tipChart = 1;
-        lineChart(url,getTableName,getColumn,getCountyName);
+        lineChart(url, getTableName, getColumn, getCountyName);
       }
       document.getElementById('pieChartBtn').onclick = function alegerePieChart() {
         tipChart = 2;
-        pieChart(url,getColumn, tipChart);
+        pieChart(url, getColumn, tipChart);
       }
       document.getElementById('barChartBtn').onclick = function alegerePieChart() {
         tipChart = 3;
-        barChart(url,getTableName,getColumn,getCountyName);
+        barChart(url, getTableName, getColumn, getCountyName);
         // if(getColumn=="")
         // document.querySelector("#diagram").style.display = "none";
-      
+
 
       }
-      document.getElementById('exportSVG').onclick = function exportareSVG(){
+      document.getElementById('exportSVG').onclick = function exportareSVG() {
         const svg = document.querySelector('svg');
-  const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
-  const a = document.createElement('a');
-  const e = new MouseEvent('click');
-  a.download = 'download.svg';
-  a.href = 'data:image/svg+xml;base64,' + base64doc;
-  a.dispatchEvent(e);
-        }
-      if(getColumn!="")
-      switch (tipChart) {
-        case 1: lineChart(url,getTableName,getColumn,getCountyName);
-          break;
-        case 2: pieChart(url,getColumn,tipChart);
-          break;
-        case 3:  barChart(url,getTableName,getColumn,getCountyName);
-          break;
+        const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
+        const a = document.createElement('a');
+        const e = new MouseEvent('click');
+        a.download = `${getTableName}_${getCountyName}_${getYear}.svg`
+        a.href = 'data:image/svg+xml;base64,' + base64doc;
+        a.dispatchEvent(e);
       }
+      if (getColumn != "")
+        switch (tipChart) {
+          case 1: lineChart(url, getTableName, getColumn, getCountyName);
+            break;
+          case 2: pieChart(url, getColumn, tipChart);
+            break;
+          case 3: barChart(url, getTableName, getColumn, getCountyName);
+            break;
+        }
 
     }
 
@@ -151,7 +151,7 @@ function onClickExport(e) {
 
     if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getCsv === "" || getYear === "")) {
       urlForCsv = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-      exportCSV(urlForCsv,getTableName,getCountyName,getYear,getColumn);//apelez functia care face export CSV
+      exportCSV(urlForCsv, getTableName, getCountyName, getYear, getColumn);//apelez functia care face export CSV
 
     }
 
