@@ -1,6 +1,8 @@
 import {barChart} from './barchart.js'
 import {lineChart} from './linechart.js'
 import {pieChart} from './piechart.js'
+import {exportCSV} from './exports.js'
+
 let getCountyName = location.search.slice(7)//valoare default doar ca poate fi si stringul gol, si voi avea 400 pana cand nu-i dau toate criteriile
 let getTableName = ""//idem
 let getColumn = ""
@@ -95,17 +97,21 @@ function onClick(e) {
       }
       document.getElementById('pieChartBtn').onclick = function alegerePieChart() {
         tipChart = 2;
-        pieChart(url,getColumn);
+        pieChart(url,getColumn, tipChart);
       }
       document.getElementById('barChartBtn').onclick = function alegerePieChart() {
         tipChart = 3;
         barChart(url,getTableName,getColumn,getCountyName);
+        // if(getColumn=="")
+        // document.querySelector("#diagram").style.display = "none";
+      
+
       }
       if(getColumn!="")
       switch (tipChart) {
         case 1: lineChart(url,getTableName,getColumn,getCountyName);
           break;
-        case 2: pieChart(url,getColumn);
+        case 2: pieChart(url,getColumn,tipChart);
           break;
         case 3:  barChart(url,getTableName,getColumn,getCountyName);
           break;
@@ -133,64 +139,8 @@ function onClickExport(e) {
 
     if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getCsv === "" || getYear === "")) {
       urlForCsv = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+      exportCSV(urlForCsv,getTableName,getCountyName,getYear,getColumn);//apelez functia care face export CSV
 
-      const objectToCsv = function (data) {
-        //get the  HEADERS
-        const csvRows = []
-        const headers = Object.keys(data[0]);
-        csvRows.push(headers.join(','))
-
-        //loop over the rows
-        for (const row of data) {
-          //add the data to object
-          const values = headers.map(header => {
-            const escaped = ('' + row[header]).replace(/"/g, '\\"')//din number il fac string
-            return `"${escaped}"`
-          })
-          csvRows.push(values.join(','))
-        }
-        //form csv
-
-        return csvRows.join('\n')
-      };
-
-      const download = function (data) {
-        const blob = new Blob([data], { type: 'text/csv' })
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.setAttribute('hidden', '')
-        a.setAttribute('href', url)
-        a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.csv`)
-        document.body.appendChild(a)
-        a.click();
-        document.body.removeChild(a)
-      }
-
-
-      const getReport = async function () {
-
-        const res = await fetch(urlForCsv)
-        const json = await res.json()
-        //  console.log(json)
-
-        console.log(getColumn);
-        const data = json.map(row => ({
-
-          ORASE: row.ORASE,
-          month: row.month,
-          year: row.year,
-          [getColumn]: row[getColumn]
-
-
-        }));
-        const csvData = objectToCsv(data)
-        download(csvData)
-
-        console.log(data)
-
-      }
-
-      getReport();
     }
 
     // //pdf??

@@ -21,7 +21,9 @@
     bottom:0px;
 }
 
-
+#diagram{
+  overflow-x:scroll;
+}
 
   #chartId{
      border: 2px solid red;

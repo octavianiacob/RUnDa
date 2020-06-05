@@ -20,7 +20,9 @@ export function lineChart(url,getTableName,getColumn,getCountyName) {
         if (getColumn === "")
           return 0
         selectAll("svg > *").remove()
-        const { width, height } = props
+        let { width, height } = props
+        if(width<500)
+        width=700
         let svg = container.selectAll('svg').data([null])
         svg = svg.enter().append('svg')
           .merge(svg)
