@@ -35,7 +35,6 @@ export function barChart(url, getTableName, getColumn, getCountyName) {
         .merge(svg)
         .attr('width', width)
         .attr('height', height)
-        .style('fill','#137B80')
         .attr('version', "1.1")
         .attr('xmlns', "http://www.w3.org/2000/svg")
 
@@ -105,7 +104,9 @@ export function barChart(url, getTableName, getColumn, getCountyName) {
          
         .attr('y', d => yScale(yValue(d)))
         .attr('width', d => xScale(xValue(d)))
-        .attr('height', yScale.bandwidth());
+        .attr('height', yScale.bandwidth())
+        .style('fill','#137B80')
+      
 
       g.append('text')
         .style("fill", "grey")
