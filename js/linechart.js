@@ -1,5 +1,5 @@
 import { numberToMonth } from './util.js'
-export function lineChart(url, getTableName, getColumn, getCountyName) {
+export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
 
   const {
     scaleLinear,
@@ -19,7 +19,10 @@ export function lineChart(url, getTableName, getColumn, getCountyName) {
     function myResponsiveComponent(container, props) {
       if (getColumn === "")
         return 0
-      selectAll("svg > *").remove()
+        if(tipDIV==1)
+        d3.select("#diagram svg").remove()
+        else
+        d3.select("#diagram2 svg").remove();
       let { width, height } = props
       if (width < 500)//fac scroll aici pe diagrama
         width = 700
@@ -123,12 +126,20 @@ export function lineChart(url, getTableName, getColumn, getCountyName) {
     }
 
     function render1() {
-      myResponsiveComponent(d3
-        .select('#diagram'), {
-        width: document.body.clientWidth / 1.3,
-        height: document.body.clientHeight / 2
+        if(tipDIV==1)
+        myResponsiveComponent(d3
+            .select('#diagram'), {
+            width: document.body.clientWidth / 1.3,
+            height: document.body.clientHeight / 2
 
-      });
+        });
+        else
+        myResponsiveComponent(d3
+            .select('#diagram2'), {
+            width: document.body.clientWidth / 1.3,
+            height: document.body.clientHeight / 2
+
+        });
     }
 
     render1();

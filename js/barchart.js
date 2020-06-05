@@ -1,5 +1,5 @@
 import { numberToMonth } from './util.js'
-export function barChart(url, getTableName, getColumn, getCountyName) {
+export function barChart(url, getTableName, getColumn, getCountyName,tipDIV) {
   const {
     scaleLinear,
     max,
@@ -22,11 +22,13 @@ export function barChart(url, getTableName, getColumn, getCountyName) {
 
 
 
-    d3.selectAll("svg > *").remove()
     function myResponsiveComponent(container, props) {
       if (getColumn === "")
         return 0
-      d3.selectAll("svg > *").remove()
+    if(tipDIV==1)
+      d3.select("#diagram svg").remove()
+      else
+      d3.select("#diagram2 svg").remove();
       let { width, height } = props
       if (width < 500)
         width = 700
@@ -101,7 +103,6 @@ export function barChart(url, getTableName, getColumn, getCountyName) {
 
       g.selectAll('rect').data(data)
         .enter().append('rect')
-         
         .attr('y', d => yScale(yValue(d)))
         .attr('width', d => xScale(xValue(d)))
         .attr('height', yScale.bandwidth())
@@ -119,8 +120,16 @@ export function barChart(url, getTableName, getColumn, getCountyName) {
 
 
     function render1() {
+        if(tipDIV==1)
       myResponsiveComponent(d3
         .select('#diagram'), {
+        width: document.body.clientWidth / 1.1,
+        height: document.body.clientHeight / 2
+
+      });
+      else
+      myResponsiveComponent(d3
+        .select('#diagram2'), {
         width: document.body.clientWidth / 1.1,
         height: document.body.clientHeight / 2
 

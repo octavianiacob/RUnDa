@@ -1,16 +1,19 @@
 import { numberToMonth } from './util.js'
-export function pieChart(url, getColumn, tipChart) {
+export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
 
 
-    d3.selectAll("svg > *").remove()
+   
     const render = data => {
         function myResponsiveComponent(container, props) {
             if (getColumn === "")
                 return 0
 
             const { width, height } = props
-            d3.selectAll("svg > *").remove()
-            let svg = d3.select('#diagram').selectAll('svg').data([null]).attr("class", "pie");
+            if(tipDIV==1)
+      d3.select("#diagram svg").remove()
+      else
+      d3.select("#diagram2 svg").remove();
+            let svg = container.selectAll('svg').data([null]);
             svg = svg
                 .enter().append('svg')
                 .merge(svg)
@@ -60,12 +63,21 @@ export function pieChart(url, getColumn, tipChart) {
                 .attr('y', function (d, i) { return 20 * (i + 1); })
         }
         function render1() {
+            if(tipDIV==1)
             myResponsiveComponent(d3
                 .select('#diagram'), {
                 width: document.body.clientWidth / 1.2,
                 height: document.body.clientHeight / 2
 
             });
+            else
+            myResponsiveComponent(d3
+                .select('#diagram2'), {
+                width: document.body.clientWidth / 1.2,
+                height: document.body.clientHeight / 2
+
+            });
+
         }
         render1();
         if (tipChart == 2)

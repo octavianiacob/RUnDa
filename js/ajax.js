@@ -1,17 +1,19 @@
 import { barChart } from './barchart.js'
 import { lineChart } from './linechart.js'
 import { pieChart } from './piechart.js'
-import { exportCSV,exportSVG } from './exports.js'
+import { exportCSV, exportSVG } from './exports.js'
 
 let countyList = location.search.slice(7).split('&');
 console.log("Location 1 = " + countyList[0] + " Location 2 = " + countyList[1]);
 
 let getCountyName = countyList[0]
+let getSecondCounty = countyList[1];
 let getTableName = ""//idem
 let getColumn = ""
 let getYear = ""
 let getCsv = ""
 let url = ""
+let url2 = ""
 let urlForCsv = ""
 let getPdf = ""
 
@@ -19,7 +21,7 @@ let containerElement = document.querySelector("#filters-container");
 
 let buttonElement = document.querySelector("#exportButton")
 
-let tipChart=0;
+let tipChart = 0;
 
 if (containerElement)//ca sa scap de eroarea cu addEventList null
   containerElement.addEventListener("click", onClick);
@@ -89,43 +91,87 @@ function onClick(e) {
       getColumn = e.target.getAttribute("data-getColumn");
 
     }
-
+    if(getColumn=="")
+    {
+      document.querySelector("#diagram").style.display="none";
+      document.querySelector("#diagram2").style.display="none";
+    }
+    else
+    {
+      document.querySelector("#diagram").style.display="block";
+      document.querySelector("#diagram2").style.display="block";
+    }
     if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
       url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
 
+      if (getSecondCounty != undefined) {
+        url2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+        console.log(url2);
+      }
 
       document.getElementById('lineChartBtn').onclick = function alegereLineChart() {
         tipChart = 1;
-        lineChart(url, getTableName, getColumn, getCountyName);
+        if (url != "" && url2 != "") {
+          lineChart(url, getTableName, getColumn, getCountyName,1);
+          lineChart(url2, getTableName, getColumn, getSecondCounty,2);
+        }
+        else
+        lineChart(url, getTableName, getColumn, getCountyName,1);
+       
       }
       document.getElementById('pieChartBtn').onclick = function alegerePieChart() {
         tipChart = 2;
-        pieChart(url, getColumn, tipChart);
+        if (url != "" && url2 != "") {
+          pieChart(url, getColumn, tipChart,getCountyName,1);
+          pieChart(url2, getColumn, tipChart,getSecondCounty,2);
+        }
+        else
+        pieChart(url, getColumn, tipChart,getCountyName,1);
       }
       document.getElementById('barChartBtn').onclick = function alegerePieChart() {
         tipChart = 3;
-        barChart(url, getTableName, getColumn, getCountyName);
+        if (url != "" && url2 != "") {
+          barChart(url, getTableName, getColumn, getCountyName, 1);
+          barChart(url2, getTableName, getColumn, getSecondCounty, 2);
+        }
+        else
+        barChart(url, getTableName, getColumn, getCountyName, 1);
         // if(getColumn=="")
         // document.querySelector("#diagram").style.display = "none";
 
 
       }
-      
+
       if (getColumn != "")
         switch (tipChart) {
-          case 1: lineChart(url, getTableName, getColumn, getCountyName);
+          case 1:  if (url != "" && url2 != "") {
+            lineChart(url, getTableName, getColumn, getCountyName,1);
+            lineChart(url2, getTableName, getColumn, getSecondCounty,2);
+          }
+          else
+          lineChart(url, getTableName, getColumn, getCountyName,1);
             break;
-          case 2: pieChart(url, getColumn, tipChart);
+          case 2:  if (url != "" && url2 != "") {
+            pieChart(url, getColumn, tipChart,getCountyName,1);
+            pieChart(url2, getColumn, tipChart,getSecondCounty,2);
+          }
+          else
+          pieChart(url, getColumn, tipChart,getCountyName,1);
             break;
-          case 3: barChart(url, getTableName, getColumn, getCountyName);
+          case 3: if (url != "" && url2 != "") {
+            barChart(url, getTableName, getColumn, getCountyName, 1);
+            barChart(url2, getTableName, getColumn, getSecondCounty, 2);
+          }
+          else
+          barChart(url, getTableName, getColumn, getCountyName, 1);
             break;
         }
 
-          document.getElementById('exportSVG').onclick = function exportareSVG() {
-            if(tipChart!=0)
-          exportSVG(getTableName,getCountyName,getYear);
-          }
-        
+      document.getElementById('exportSVG').onclick = function exportareSVG() {
+        if (tipChart != 0)
+          exportSVG(getTableName, getCountyName, getYear);
+      }
+
     }
 
   }
