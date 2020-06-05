@@ -1,7 +1,7 @@
 import { barChart } from './barchart.js'
 import { lineChart } from './linechart.js'
 import { pieChart } from './piechart.js'
-import { exportCSV } from './exports.js'
+import { exportCSV,exportSVG } from './exports.js'
 
 let countyList = location.search.slice(7).split('&');
 console.log("Location 1 = " + countyList[0] + " Location 2 = " + countyList[1]);
@@ -19,7 +19,7 @@ let containerElement = document.querySelector("#filters-container");
 
 let buttonElement = document.querySelector("#exportButton")
 
-let tipChart;
+let tipChart=0;
 
 if (containerElement)//ca sa scap de eroarea cu addEventList null
   containerElement.addEventListener("click", onClick);
@@ -110,15 +110,7 @@ function onClick(e) {
 
 
       }
-      document.getElementById('exportSVG').onclick = function exportareSVG() {
-        const svg = document.querySelector('svg');
-        const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
-        const a = document.createElement('a');
-        const e = new MouseEvent('click');
-        a.download = `${getTableName}_${getCountyName}_${getYear}.svg`
-        a.href = 'data:image/svg+xml;base64,' + base64doc;
-        a.dispatchEvent(e);
-      }
+      
       if (getColumn != "")
         switch (tipChart) {
           case 1: lineChart(url, getTableName, getColumn, getCountyName);
@@ -129,6 +121,11 @@ function onClick(e) {
             break;
         }
 
+          document.getElementById('exportSVG').onclick = function exportareSVG() {
+            if(tipChart!=0)
+          exportSVG(getTableName,getCountyName,getYear);
+          }
+        
     }
 
   }

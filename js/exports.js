@@ -57,3 +57,15 @@ export function exportCSV(urlForCsv, getTableName,getCountyName,getYear,getColum
       getReport();
 
 }
+export function exportSVG(getTableName,getCountyName,getYear)
+{
+    
+        const svg = document.querySelector('svg');
+        const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
+        const a = document.createElement('a');
+        const e = new MouseEvent('click');
+        a.download = `${getTableName}_${getCountyName}_${getYear}.svg`
+        a.href = 'data:image/svg+xml;base64,' + base64doc;
+        a.dispatchEvent(e);
+      
+}
