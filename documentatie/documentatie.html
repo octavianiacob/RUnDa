@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GasM Documentatie</title>
+
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+</head>
+
+<body>
+
+    <div role="content-info">
+        <h1>Documentatie RUnDa</h1>
+        <section typeof="sa:ProjectLinks">
+            <ul>
+                <li typeof="schema:WebPage" role="link" resource="https://github.com/Octavzz/RUnDa"
+                    property="schema:citation" id="github">
+                    <cite property="schema:name">
+                        <a href="https://github.com/Octavzz/RUnDa">Github</a>
+                    </cite>
+                </li>
+                <li typeof="schema:WebPage" role="link" resource="https://app.swaggerhub.com/apis/GaSM/GaSM/1.0.0#/"
+                    property="schema:citation" id="github">
+                    <cite property="schema:name">
+                        <a href="https://app.swaggerhub.com/apis/GaSM/GaSM/1.0.0#/">Swagger</a>
+                    </cite>
+                </li>
+            </ul>
+        </section>
+
+        <section typeof="sa:AuthorsList">
+            <h2>Autori</h2>
+            <ul>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <span typeof="schema:Person">
+                        <meta property="schema:givenName" content="Octavian">
+                        <meta property="schema:familyName" content="Iacob">
+                        <span property="schema:name">Iacob Octavian</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="emailOctav" property="schema:email">octav@gmail.com</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <span typeof="schema:Person">
+                        <meta property="schema:givenName" content="Stefan">
+                        <meta property="schema:familyName" content="Ichim">
+                        <span property="schema:name">Ichim Stefan</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="ichim.stefan99@gmail.com" property="schema:email">ichim.stefan99@gmail.com</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <span typeof="schema:Person">
+                        <meta property="schema:givenName" content="Andrei">
+                        <meta property="schema:familyName" content="Prepelita">
+                        <span property="schema:name">Prepelita Andrei</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="alexvasile99@yahoo.com" property="schema:email">andreiimagil@grkmr</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <h2>Cuprins</h2>
+        <ol role="directory">
+            <li>
+                <a href="#despre-proiect">
+                    <span> 1. </span>
+                    Despre proiect
+                </a>
+            </li>
+            <li>
+                <a href="#front-end">
+                    <span> 2. </span>
+                    Front End
+                </a>
+
+                <ol role="directory">
+                    <li>
+                        <a href="#navbar">
+                            <span> 2.0. </span>
+                            Navbar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#first-page">
+                            <span> 2.1. </span>
+                            Pagina Principala
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#map">
+                            <span> 2.2. </span>
+                            Harta Romaniei
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#diagrams">
+                            <span> 2.3. </span>
+                            AJAX
+                        </a>
+                        <ol role="directory">
+                            <li>
+                                <a href="#filtrare">
+                                    <span> 2.3.1 </span>
+                                    Filtre
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#generareDiagrame">
+                                    <span> 2.3.2 </span>
+                                    Generare Diagrame
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="#export">
+                                    <span> 2.3.3 </span>
+                                    Export
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#aboutPage">
+                            <span> 2.4. </span>
+                            Despre Proiect
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact-page">
+                            <span> 2.4. </span>
+                            Pagina Contact
+                        </a>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <a href="#back-end">
+                    <span> 3. </span>
+                    Back End
+                </a>
+
+                <ol role="directory">
+                    <li>
+                        <a href="#map-creation">
+                            <span> 3.1. </span>
+                            Creare harta
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#generate-chart">
+                            <span> 3.2. </span>
+                            Generare Diagrame
+                        </a>
+                        <ol role="directory">
+                            <li>
+                                <a href="#pieChart">
+                                    <span> 3.2.1 </span>
+                                    Pie Chart
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#lineChart">
+                                    <span> 3.2.2 </span>
+                                    Line Chart
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#barChart">
+                                    <span> 3.2.3 </span>
+                                    Bar Chart
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#export">
+                            <span> 3.3. </span>
+                            Export
+                        </a>
+                        <ol role="directory">
+                            <li>
+                                <a href="#exportCSV">
+                                    <span> 3.3.1 </span>
+                                    CSV
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#exportSVG">
+                                    <span> 3.3.1 </span>
+                                    SVG
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#exportPDF">
+                                    <span> 3.3.1 </span>
+                                    PDF
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#admin-panel">
+                            <span> 3.4. </span>
+                            Panou Administrator
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#hartafront">
+                            <span> 3.4. </span>
+                            Harta
+                        </a>
+                    </li>
+
+                </ol>
+            </li>
+            <li>
+                <a href="#database">
+                    <span> 4. </span>
+                    Baza de date
+                </a>
+
+                <ol role="directory">
+                    <li>
+                        <a href="#tabelJudete">
+                            <span> 4.1.</span>
+                            Tabel Judete Romania
+                        </a>
+                    </li>
+
+            </li>
+            <li>
+                <a href="tabelEducatie">
+                    <span> 4.2. </span>
+                    Tabel Educatie
+                </a>
+            </li>
+            <li>
+                <a href="#tabelVarste">
+                    <span> 4.3. </span>
+                    Tabel Varste
+                </a>
+            </li>
+            <li>
+                <a href="#tabelMedii">
+                    <span> 4.4. </span>
+                    Tabel Medii
+                </a>
+            </li>
+            <li>
+                <a href="#tabelRata">
+                    <span> 4.4. </span>
+                    Tabel Rata
+                </a>
+            </li>
+            <li>
+                <a href="#tabelFisiere">
+                    <span> 4.4. </span>
+                    Tabel Fisiere
+                </a>
+            </li>
+            <li>
+                <a href="#tabelAdmin">
+                    <span> 4.4. </span>
+                    Tabel Admin
+                </a>
+            </li>
+        </ol>
+        </li>
+        </ol>
+    </div>
+
+    <section id="despre-proiect">
+
+        <h2>
+            Despre Proiect
+        </h2>
+
+    </section>
+
+    <section id="front-end">
+        
+        <h2>
+            Front End
+        </h2>
+        <p>Partea de front end ofera un design simplu dar eficient. Are elemente de baza pentru o experienta placuta a
+            utilizatorului
+            Acest site poate fi folosit atat pe un laptop/calculator, cat si pe un device mai mic avand
+            functionalitatea de responsive.</p>
+            <section id="navbar">
+                <h3>
+                    Navbar
+                </h3>
+                <p>
+                    In partea stanga se afla numele proiectului avand forma normala pe o dimensiune care permite acest
+                    lucru,
+                    iar acronimul atunci cand este pe o dimensiune mai mica.
+                    <br>
+                    In partea dreapta se afla 3 pictograme, una trimitand la repository al proiecutlui(pe Github),
+                    una care trimite catre pagina about.html, iar ultima care trimite catre contact.php
+                </p>
+            </section>
+        <section id="first-page">
+            <h3>
+                Pagina Principala
+            </h3>
+            <p>In aceasta pagina se afla un buton Start Now prin care se acceseaza pagina 'map.html',
+                pagina in care se regaseste harta Romaniei 
+            </p>
+        </section>
+        <section id="map">
+            <h3> Harta Romaniei</h3>
+            <p>
+               In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3 js.
+               
+            </p>
+        </section>
+        <section id="filtrare">
+            <h3> Filtre</h3>
+            <p> Odata ajuns aici, userul are 3 selectii de facut.
+                Prima oara trebuie sa selecteze tabela din care vrea sa vada datele. In acest moment stiu numele tabelei
+                si pot sa il adaug la un URL dinamic pentru urmatorii pasi. In functie de ce tabel a selectat clientul, ii va aparea o noua filtrare care va cuprinde 
+                doar coloanele care sunt specifice acelui tabel
+            </p>
+            <p> A doua selectie se refera la anul din care utilizatorul vrea sa vada datele. Optiunile sunt 2019, respectiv 2020</p>
+            <p> Ultima optiune este pe baza primei optinui, iar in functie de tabela selectata apar coloanele care se gasesc in tabela respectiva</p>
+            <p> Dupa ce toate selectiile au fost facute, se folosi API pentru a trece la pasul urmator. Acesta arata ceva de genul asta:
+                http://localhost/RunDa/api/counties/cluj?filtered_by=educatie&year=2020
+
+            </p>
+        </section>
+        <section id="generareDiagrame">
+            <h2> Generare Diagrame</h2>
+            <p>Dupa ce toate criteriile de selectie sunt facute, se va selecta tipul de diagrama dorit.
+                
+            </p>
+        </section>
+        <section id="export">
+            <h2> Export</h2>
+        </section>
+    </section><!--front end-->
+
+
+</body>
+
+</html>
