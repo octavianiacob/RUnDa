@@ -2,25 +2,30 @@
 session_start();
 require_once "./config/Database.php";
 
-$connectDB=new Database();
+$connectDB = new Database();
 
 try {
     if (isset($_POST["login"])) {
         if (empty($_POST["username"]) || empty($_POST["password"])) {
             $message = '<label>All fields are required</label>';
         } else {
-            $query = "SELECT * FROM users WHERE username = :username AND password = :password";
+            $query = "SELECT password FROM users WHERE username = :username ";
             $statement = $connectDB->getPDO()->prepare($query);
             $statement->execute(
                 array(
-                    'username'     =>     $_POST["username"],
-                    'password'     =>     $_POST["password"]
+                    'username'     =>     $_POST["username"]
                 )
             );
             $count = $statement->rowCount();
             if ($count > 0) {
-                $_SESSION["username"] = $_POST["username"];
-                header("location:login_success.php");  //aici tre sa vad
+                $result = $statement->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($_POST['password'], $result['password'])) {
+
+                    $_SESSION["username"] = $_POST["username"];
+                    header("location:login_success.php");  //aici tre sa vad
+                } else {
+                    $message = '<label>Wrong Data</label>';
+                }
             } else {
                 $message = '<label>Wrong Data</label>';
             }
@@ -40,6 +45,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUnDa</title>
     <link rel="stylesheet" type="text/css" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="styles/admin.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!--<script src="/scripts/main.js"></script> -->
@@ -68,33 +74,33 @@ try {
             </div>
         </div>
     </header>
-<?php
-    if(isset($message)){
-        echo '<label class="text-danger">'.$message,'</label>';
+    <?php
+    if (isset($message)) {
+        echo '<label class="text-danger">' . $message, '</label>';
     }
-?>
+    ?>
 
-<section class="login">
-    <div class="login-container">
-      <form class="login-form" method="post">
+    <section class="login">
+        <div class="login-container">
+            <form class="login-form" method="post">
 
-        <div class="input-container">
-          <label>Username</label>
-          <input class="form-control" type="text" name="username" placeholder="Username">
+                <div class="input-container">
+                    <label>Username</label>
+                    <input class="form-control" type="text" name="username" placeholder="Username">
+                </div>
+
+                <div class="input-container">
+                    <label for="password">Password</label>
+                    <input class="form-control" name="password" type="password" placeholder="******************">
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <input class="btn-info" type="submit" name="login" value="Sign In" />
+                </div>
+
+            </form>
         </div>
-
-        <div class="input-container">
-          <label for="password">Password</label>
-          <input class="form-control" name="password" type="password" placeholder="******************">
-        </div>
-
-        <div class="flex items-center justify-between">
-          <input class="btn-info" type="submit" name="login" value="Sign In"/>
-        </div>
-
-      </form>
-    </div>
-</section>
+    </section>
 
 </body>
 

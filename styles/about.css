@@ -1,77 +1,21 @@
-/* Banner */
-
-.navbar{
-    display:flex;
-    justify-content:space-evenly;
-    font-size: 25px;
-    color: #C3D3D0;
-    background-color: #174255;
-    padding-bottom: 10px;
-    font-family: 'Roboto', sans-serif;
-    min-width:100%;
-    align-items:center;
-}
-.nav-list{
-    display:flex;
-    justify-content:space-evenly;
-
-}
-.nav-links a {
-    padding: 30px;
-}
-
-.navbar a {
-    text-decoration: inherit;
-    color: inherit;
-}
-
-a img {
-    height: 30px;
-    margin-top: 10px;
-}
-.short-text {
-    display: none;
-}
-@media (max-width: 700px) {
-    .short-text {
-        display: inline-block;
-    }
-    .full-text {
-        display: none;
-    }
-}
-@media (max-width:360px){
-    #logo{
-        margin-left:30px;
-    }
-    .nav-links a {
-        padding: 15px;
-    }
-    .short-text {
-        display: inline-block;
-    }
-    .full-text {
-        display: none;
-    }
-   
-}
-
 /* About */
 
 .about {
     font-family: 'Roboto', sans-serif;
-    margin-top:2em;
+    margin-top: 2em;
     color: #33475b;
 }
 
-.container1, .container2{
-    width:80em;
-    margin:auto;
-    overflow:hidden;
+.container1,
+.container2 {
+    width: 80em;
+    margin: auto;
+    overflow: hidden;
     margin-top: 2em;
 }
 
-.container1__textBox1, .container2__textBox1{
+.container1__textBox1,
+.container2__textBox1 {
     color: red;
     display: block;
     margin-left: auto;
@@ -81,99 +25,99 @@ a img {
     padding-top: 2em;
 }
 
-.container2__image1 img, .container1__image1 img{
-    width:50%;
+.container2__image1 img,
+.container1__image1 img {
+    width: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-  
-
 }
-p{
+
+p {
     font-size: 1.125rem;
     line-height: 1.875rem;
-    color:grey;
-    
+    color: grey;
 }
-h2{
-    padding-bottom:2em;
+
+h2 {
+    padding-bottom: 2em;
     font-weight: 700;
     color: #33475b;
     text-align: center;
-    
 }
+
 @media screen and (max-width:640px)and (min-width:320px) {
-    
-   
-    .container1, .container2{
-        width:100%;
-        margin:auto;
-        overflow:hidden;
+    .container1,
+    .container2 {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
         margin-top: 2em;
     }
-    .container1__textBox1, .container2__textBox1{
-    color:blue;
-    width:80%;
+    .container1__textBox1,
+    .container2__textBox1 {
+        color: blue;
+        width: 80%;
     }
-    
-    .container2__image1 img, .container1__image1 img{
+    .container2__image1 img,
+    .container1__image1 img {
         width: 80%;
     }
 }
 
 @media screen and (max-width:768px)and (min-width:640px) {
-    
-    .container1, .container2{
-        width:100%;
-        margin:auto;
-        overflow:hidden;
+    .container1,
+    .container2 {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
         margin-top: 2em;
     }
-    .container1__textBox1, .container2__textBox1{
-    color:green;
-    width:80%;
+    .container1__textBox1,
+    .container2__textBox1 {
+        color: green;
+        width: 80%;
     }
-    
-    .container2__image1 img, .container1__image1 img{
+    .container2__image1 img,
+    .container1__image1 img {
         width: 80%;
     }
 }
 
 @media screen and (max-width:1024px)and (min-width:768px) {
-    
-    .container1, .container2{
-        width:100%;
-        margin:auto;
-        overflow:hidden;
+    .container1,
+    .container2 {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
         margin-top: 2em;
     }
-    .container1__textBox1, .container2__textBox1{
-    color:yellow;
-    width:70%;
+    .container1__textBox1,
+    .container2__textBox1 {
+        color: yellow;
+        width: 70%;
     }
-    
-    .container2__image1 img, .container1__image1 img{
+    .container2__image1 img,
+    .container1__image1 img {
         width: 70%;
     }
 }
 
-
-
-
 @media screen and (max-width:1200px)and (min-width:1024px) {
-    
-    .container1, .container2{
-        width:100%;
-        margin:auto;
-        overflow:hidden;
+    .container1,
+    .container2 {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
         margin-top: 2em;
     }
-    .container1__textBox1, .container2__textBox1{
-    color:purple;
-    width:60%;
+    .container1__textBox1,
+    .container2__textBox1 {
+        color: purple;
+        width: 60%;
     }
-    
-    .container2__image1 img, .container1__image1 img{
+    .container2__image1 img,
+    .container1__image1 img {
         width: 60%;
     }
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
     <link href="./styles/ajax.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -23,8 +24,7 @@
             <div class="nav-links">
                 <ul class="nav-list">
                     <li>
-                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png"
-                                alt="GitHub link"></a>
+                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png" alt="GitHub link"></a>
                     </li>
                     <li>
                         <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
@@ -45,21 +45,21 @@
             <section id="controls">
                 <div id="filters-container">
                     <p>Data Filters</p>
-    
+
                     <div class="filters">
-    
+
                         <div class="primary-filters filter-column">
                             <p>Category</p>
                             <label>
                                 <input required type="radio" data-getTableName="educatie" name="table">
                                 <span> Education</span>
                             </label>
-    
+
                             <label>
                                 <input required type="radio" data-getTableName="varste" name="table">
                                 <span> Age</span>
                             </label>
-    
+
                             <label>
                                 <input required type="radio" data-getTableName="rata" name="table">
                                 <span> Rate</span>
@@ -69,20 +69,20 @@
                                 <span> Location</span>
                             </label>
                         </div>
-    
+
                         <div class="time-filters filter-column">
                             <p>Year</p>
                             <label>
                                 <input id="forta" required type="radio" data-getYear="2019" name="year">
                                 <span> 2019</span>
                             </label>
-    
+
                             <label>
                                 <input required type="radio" data-getYear="2020" name="year">
                                 <span> 2020 </span>
                             </label>
                         </div>
-    
+
                         <div class="clasaEducatie filter-column" style="display:none;">
                             <p>Education level</p>
                             <label>
@@ -118,7 +118,7 @@
                                 <span> University</span>
                             </label>
                         </div>
-    
+
                         <div class="clasaVarste filter-column" style="display:none">
                             <p>Age interval</p>
                             <label>
@@ -149,9 +149,9 @@
                                 <input required type="radio" data-getColumn="peste_55_ani" name="column">
                                 <span> Over 55 years </span>
                             </label>
-    
+
                         </div>
-    
+
                         <div class="clasaRata filter-column" style="display:none">
                             <p>Rate</p>
                             <label>
@@ -187,7 +187,7 @@
                                 <span> Unemployment men rate </span>
                             </label>
                         </div>
-    
+
                         <div class="clasaMedii filter-column" style="display:none">
                             <p>Location</p>
                             <label>
@@ -227,13 +227,15 @@
                                 <span> Men - Rural areas </span>
                             </label>
                         </div>
-    
-                    </div> <!-- Filters-->
-                </div> <!-- Container-->
+
+                    </div>
+                    <!-- Filters-->
+                </div>
+                <!-- Container-->
                 <div id="options-container">
                     <p>Options</p>
                     <div id="display-options">
-                       <img src="/RUnDa/images/linechart.png" id="lineChartBtn">
+                        <img src="/RUnDa/images/linechart.png" id="lineChartBtn">
                         <!-- <button id="lineChartBtn" type="button" >Line CHart</button> -->
                         <img src="/RUnDa/images/barchart.png" id="barChartBtn">
                         <img src="/RUnDa/images/piechart.png" id="pieChartBtn">
@@ -245,12 +247,12 @@
                         <button id="exportButton" type="button" data-getPdf="csv">Export XML</button>
                         <button id="exportSVG" type="button" data-getSVG="SVG">Export SVG</button>
                         <button id="exportButton" type="button" data-getCsv="csv">Export PDF</button>
-                         <!-- <button onclick="myFunction()">Try it</button> -->
+                        <!-- <button onclick="myFunction()">Try it</button> -->
                     </div>
-                </div>      
+                </div>
             </section>
             <div id="diagram">
-                
+
             </div>
             <div id="diagram2">
 
@@ -260,17 +262,17 @@
 
     </section>
 
-    
-   
 
-        <script src="https://d3js.org/d3.v4.js"></script>
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
-        <script type="module" src="./js/ajax.js"></script>
-        <script type="module" src="./js/map.js"></script>
-        <!--important ./ de la ajax.js-->
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <script type="module" src="./js/ajax.js"></script>
+    <script type="module" src="./js/map.js"></script>
+    <!--important ./ de la ajax.js-->
 </body>
 
 </html>
