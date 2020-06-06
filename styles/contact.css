@@ -4,7 +4,6 @@ body {
     padding: 0;
     min-height: 100%;
     width: 100%;
-    background: url("/RunDa/images/2.png");
     font-family: 'Roboto', sans-serif;
 }
 
@@ -89,10 +88,11 @@ a img {
     justify-content: center;
     flex-direction:column;
     align-content: center;
+    background-color: #F6F8FF;
+    border: 2px solid rgba(23, 66, 85, 0.2);
+    border-radius: 15px;
     padding:30px 40px;
-    border-radius:10px;
     text-align:center;
-    box-shadow:0 0 20px #000000b3;
 }
 .label-input{
     border:1px solid gray;

@@ -91,15 +91,13 @@ function onClick(e) {
       getColumn = e.target.getAttribute("data-getColumn");
 
     }
-    if(getColumn=="")
-    {
-      document.querySelector("#diagram").style.display="none";
-      document.querySelector("#diagram2").style.display="none";
+    if (getColumn == "") {
+      document.querySelector("#diagram").style.display = "none";
+      document.querySelector("#diagram2").style.display = "none";
     }
-    else
-    {
-      document.querySelector("#diagram").style.display="block";
-      document.querySelector("#diagram2").style.display="block";
+    else {
+      document.querySelector("#diagram").style.display = "block";
+      document.querySelector("#diagram2").style.display = "block";
     }
     if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
       url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
@@ -112,21 +110,21 @@ function onClick(e) {
       document.getElementById('lineChartBtn').onclick = function alegereLineChart() {
         tipChart = 1;
         if (url != "" && url2 != "") {
-          lineChart(url, getTableName, getColumn, getCountyName,1);
-          lineChart(url2, getTableName, getColumn, getSecondCounty,2);
+          lineChart(url, getTableName, getColumn, getCountyName, 1);
+          lineChart(url2, getTableName, getColumn, getSecondCounty, 2);
         }
         else
-        lineChart(url, getTableName, getColumn, getCountyName,1);
-       
+          lineChart(url, getTableName, getColumn, getCountyName, 1);
+
       }
       document.getElementById('pieChartBtn').onclick = function alegerePieChart() {
         tipChart = 2;
         if (url != "" && url2 != "") {
-          pieChart(url, getColumn, tipChart,getCountyName,1);
-          pieChart(url2, getColumn, tipChart,getSecondCounty,2);
+          pieChart(url, getColumn, tipChart, getCountyName, 1);
+          pieChart(url2, getColumn, tipChart, getSecondCounty, 2);
         }
         else
-        pieChart(url, getColumn, tipChart,getCountyName,1);
+          pieChart(url, getColumn, tipChart, getCountyName, 1);
       }
       document.getElementById('barChartBtn').onclick = function alegerePieChart() {
         tipChart = 3;
@@ -135,7 +133,7 @@ function onClick(e) {
           barChart(url2, getTableName, getColumn, getSecondCounty, 2);
         }
         else
-        barChart(url, getTableName, getColumn, getCountyName, 1);
+          barChart(url, getTableName, getColumn, getCountyName, 1);
         // if(getColumn=="")
         // document.querySelector("#diagram").style.display = "none";
 
@@ -144,32 +142,38 @@ function onClick(e) {
 
       if (getColumn != "")
         switch (tipChart) {
-          case 1:  if (url != "" && url2 != "") {
-            lineChart(url, getTableName, getColumn, getCountyName,1);
-            lineChart(url2, getTableName, getColumn, getSecondCounty,2);
+          case 1: if (url != "" && url2 != "") {
+            lineChart(url, getTableName, getColumn, getCountyName, 1);
+            lineChart(url2, getTableName, getColumn, getSecondCounty, 2);
           }
           else
-          lineChart(url, getTableName, getColumn, getCountyName,1);
+            lineChart(url, getTableName, getColumn, getCountyName, 1);
             break;
-          case 2:  if (url != "" && url2 != "") {
-            pieChart(url, getColumn, tipChart,getCountyName,1);
-            pieChart(url2, getColumn, tipChart,getSecondCounty,2);
+          case 2: if (url != "" && url2 != "") {
+            pieChart(url, getColumn, tipChart, getCountyName, 1);
+            pieChart(url2, getColumn, tipChart, getSecondCounty, 2);
           }
           else
-          pieChart(url, getColumn, tipChart,getCountyName,1);
+            pieChart(url, getColumn, tipChart, getCountyName, 1);
             break;
           case 3: if (url != "" && url2 != "") {
             barChart(url, getTableName, getColumn, getCountyName, 1);
             barChart(url2, getTableName, getColumn, getSecondCounty, 2);
           }
           else
-          barChart(url, getTableName, getColumn, getCountyName, 1);
+            barChart(url, getTableName, getColumn, getCountyName, 1);
             break;
         }
 
       document.getElementById('exportSVG').onclick = function exportareSVG() {
-        if (tipChart != 0)
-          exportSVG(getTableName, getCountyName, getYear);
+        if (tipChart != 0) {
+          if (getCountyName != undefined && getSecondCounty != undefined) {
+            exportSVG(getTableName, getCountyName, getYear, 1);
+            exportSVG(getTableName, getSecondCounty, getYear, 2);
+          }
+          else
+            exportSVG(getTableName, getCountyName, getYear, 1);
+        }
       }
 
     }
@@ -194,8 +198,13 @@ function onClickExport(e) {
 
     if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getCsv === "" || getYear === "")) {
       urlForCsv = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-      exportCSV(urlForCsv, getTableName, getCountyName, getYear, getColumn);//apelez functia care face export CSV
-
+      if (getCountyName != undefined && getSecondCounty != undefined) {
+        let url2ForCsv =`/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+        exportCSV(urlForCsv, getTableName, getCountyName, getYear, getColumn);//apelez functia care face export CSV
+        exportCSV(url2ForCsv, getTableName, getSecondCounty, getYear, getColumn);//apelez functia care face export CSV
+      }
+      else
+      exportCSV(urlForCsv, getTableName, getCountyName, getYear, getColumn);
     }
 
     // //pdf??
