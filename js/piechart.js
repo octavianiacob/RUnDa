@@ -45,7 +45,7 @@ export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
                 .attr('fill', function (d) {
                     return color(d.data.month);
                 });
-
+                        
             arcGraph.append("text")
                 .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
 
@@ -60,7 +60,14 @@ export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
                 .append('text')
                 .text(function (d) { return numberToMonth(d.data.month).substring(0, 3); })
                 .attr('fill', function (d) { return color(d.data.month); })
-                .attr('y', function (d, i) { return 20 * (i + 1); })
+                .attr('y', function (d, i) { return 20 * (i + 1); }) 
+                
+    //             svg.append("text")
+    // .attr("x", w / 2 )
+    // .attr("y", 0)
+    // .style("text-anchor", "middle")
+    // .text("Title of Diagram");
+                
         }
         function render1() {
             if(tipDIV==1)

@@ -57,10 +57,12 @@ export function exportCSV(urlForCsv, getTableName,getCountyName,getYear,getColum
       getReport();
 
 }
-export function exportSVG(getTableName,getCountyName,getYear)
-{
-    
-        const svg = document.querySelector('svg');
+export function exportSVG(getTableName,getCountyName,getYear,numarDiagrame)
+{       let svg;
+        if(numarDiagrame==1)
+        svg = document.querySelector('#diagram svg');
+      else
+      svg=document.querySelector('#diagram2 svg');
         const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
         const a = document.createElement('a');
         const e = new MouseEvent('click');

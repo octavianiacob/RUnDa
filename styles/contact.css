@@ -1,126 +1,75 @@
 body {
     box-sizing: border-box;
-    margin:0;
+    margin: 0;
     padding: 0;
     min-height: 100%;
     width: 100%;
-    background: url("/RunDa/images/2.png");
     font-family: 'Roboto', sans-serif;
 }
 
-/* Banner */
 
-.navbar{
-    display:flex;
-    justify-content:space-evenly;
-    font-size: 25px;
-    color: #C3D3D0;
-    background-color: #174255;
-    padding-bottom: 10px;
-    font-family: 'Roboto', sans-serif;
-    min-width:100%;
-    align-items:center;
-}
-.nav-list{
-    display:flex;
-    justify-content:space-evenly;
-
-}
-.nav-links a {
-    padding: 30px;
-}
-
-.navbar a {
-    text-decoration: inherit;
-    color: inherit;
-}
-
-a img {
-    height: 30px;
-    margin-top: 10px;
-}
-.short-text {
-    display: none;
-}
-@media (max-width: 700px) {
-    .short-text {
-        display: inline-block;
-    }
-    .full-text {
-        display: none;
-    }
-}
-@media (max-width:360px){
-    #logo{
-        margin-left:30px;
-    }
-    .nav-links a {
-        padding: 15px;
-    }
-    .short-text {
-        display: inline-block;
-    }
-    .full-text {
-        display: none;
-    }
-   
-}
- 
 /* Contact Form */
 
 .contact-form h1 {
-    margin-top:0;
-    font-size:3.125rem;
+    margin-top: 0;
+    font-size: 3.125rem;
     margin-bottom: 1rem;
 }
+
 .contact-form h2 {
-    margin-top:0;
-    font-size:2rem;
+    margin-top: 0;
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
 
-.contact-form{
-    margin:auto;
-    max-width:50%;
-    background:#f1f1f1;
-    margin-top:100px;
-    margin-bottom:100px;
-    display:flex;
+.contact-form {
+    margin: auto;
+    max-width: 50%;
+    background: #f1f1f1;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
     justify-content: center;
-    flex-direction:column;
+    flex-direction: column;
     align-content: center;
+    background-color: #F6F8FF;
+    border: 2px solid rgba(23, 66, 85, 0.2);
+    border-radius: 15px;
     padding:30px 40px;
-    border-radius:10px;
     text-align:center;
-    box-shadow:0 0 20px #000000b3;
 }
-.label-input{
-    border:1px solid gray;
+
+.label-input {
+    border: 1px solid gray;
     margin: 8px 0;
-    padding:12px 18px;
-    border-radius:8px;
+    padding: 12px 18px;
+    border-radius: 8px;
 }
-.label-input label{
-    display:block;
-    text-align:left;
-    color:#333;
-    text-transform:uppercase;
-    font-size:0.875rem;
+
+.label-input label {
+    display: block;
+    text-align: left;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.875rem;
 }
-.label-input input, .label-input textarea{
-    width:100%;
-    border:none;
-    background:none;
-    outline:none;
-    font-size:1.125rem;
-    margin-top:6px;
+
+.label-input input,
+.label-input textarea {
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 1.125rem;
+    margin-top: 6px;
 }
-.btn-submit{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-top:8px;
-    padding:10px;
+
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 10px;
 }
 
 .btn-submit button {
@@ -137,13 +86,13 @@ a img {
     margin-top: 30px;
 }
 
-@media (min-width: 320px) and (max-width: 650px)
-{
-    .contact-form{
-     
-       max-width:70%;
+@media (min-width: 320px) and (max-width: 650px) {
+    .contact-form {
+        max-width: 70%;
     }
 }
+
+
 /*@media (min-width: 360px) and (max-width: 500px)
 {
     .contact-form{
