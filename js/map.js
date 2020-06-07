@@ -19,7 +19,7 @@ var canvas = d3.select("#map")
     .attr('viewBox', '0 0 ' + Math.min(width, height) + ' ' + Math.min(width, height))
     .attr('preserveAspectRatio', 'xMinYMin')
 
-d3.json("romania-geo.geojson", function(data) {
+d3.json("romania-geo.geojson", function (data) {
 
     var group = canvas.selectAll("g")
         .data(data.features)
@@ -36,23 +36,27 @@ d3.json("romania-geo.geojson", function(data) {
 
     var areas = group.append("path")
         .attr("d", path)
-        .attr("id", function(d, i) { return "path-" + data.features[i].properties.id;
-            i++; })
-        .attr("name", function(d, i) { return data.features[i].properties.name;
-            i++; })
+        .attr("id", function (d, i) {
+            return "path-" + data.features[i].properties.id;
+            i++;
+        })
+        .attr("name", function (d, i) {
+            return data.features[i].properties.name;
+            i++;
+        })
         .attr("class", "area")
         .style("fill", "#174255")
         .attr("value", "off")
         .style("stroke", "#C3D3D0")
-        .on("mouseover", function(d) {
+        .on("mouseover", function (d) {
             d3.select(this).style("stroke", "#ff0000");
             d3.select(this).style("stroke-width", "5px");
         })
-        .on("mouseout", function(d) {
+        .on("mouseout", function (d) {
             d3.select(this).style("stroke", "#C3D3D0");
             d3.select(this).style("stroke-width", "2px");
         })
-        .on("click", function(d) {
+        .on("click", function (d) {
             console.log("Ai dat click pe " + d3.select(this).attr('id'));
             console.log("Ai dat click pe judetul " + d3.select(this).attr("name"));
 
@@ -95,14 +99,14 @@ d3.json("romania-geo.geojson", function(data) {
         });
 
     group.append("text")
-        .attr("x", function(d) { return path.centroid(d)[0]; })
-        .attr("y", function(d) { return path.centroid(d)[1]; })
-        .attr("id", function(d, i) { return "text-" + i; })
+        .attr("x", function (d) { return path.centroid(d)[0]; })
+        .attr("y", function (d) { return path.centroid(d)[1]; })
+        .attr("id", function (d, i) { return "text-" + i; })
         .attr("text-anchor", "middle")
         .style("font-size", "28px")
         .style("fill", "#FFE200")
         .style("font-family", "Roboto")
-        .text(function(d) { return d.properties.id; })
+        .text(function (d) { return d.properties.id; })
 
 
 
