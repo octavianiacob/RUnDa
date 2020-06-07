@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GasM Documentatie</title>
+    <title>Documentatie RUnDa</title>
 
     <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
     <script src="js/scholarly.min.js"></script>
@@ -127,7 +127,7 @@
                                     Generare Diagrame
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="#export">
                                     <span> 2.3.3 </span>
@@ -297,7 +297,7 @@
     </section>
 
     <section id="front-end">
-        
+
         <h2>
             Front End
         </h2>
@@ -305,59 +305,149 @@
             utilizatorului
             Acest site poate fi folosit atat pe un laptop/calculator, cat si pe un device mai mic avand
             functionalitatea de responsive.</p>
-            <section id="navbar">
-                <h3>
-                    Navbar
-                </h3>
-                <p>
-                    In partea stanga se afla numele proiectului avand forma normala pe o dimensiune care permite acest
-                    lucru,
-                    iar acronimul atunci cand este pe o dimensiune mai mica.
-                    <br>
-                    In partea dreapta se afla 3 pictograme, una trimitand la repository al proiecutlui(pe Github),
-                    una care trimite catre pagina about.html, iar ultima care trimite catre contact.php
-                </p>
-            </section>
+        <section id="navbar">
+            <h3>
+                Navbar
+            </h3>
+            <p>
+                In partea stanga se afla numele proiectului avand forma normala pe o dimensiune care permite acest
+                lucru,
+                iar acronimul atunci cand este pe o dimensiune mai mica.
+                <br>
+                In partea dreapta se afla 3 pictograme, una trimitand la repository al proiecutlui(pe Github),
+                una care trimite catre pagina about.html, iar ultima care trimite catre contact.php
+            </p>
+        </section>
         <section id="first-page">
             <h3>
                 Pagina Principala
             </h3>
             <p>In aceasta pagina se afla un buton Start Now prin care se acceseaza pagina 'map.html',
-                pagina in care se regaseste harta Romaniei 
+                pagina in care se regaseste harta Romaniei
             </p>
         </section>
         <section id="map">
             <h3> Harta Romaniei</h3>
             <p>
-               In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3 js.
-               
+                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3 js.
+
             </p>
         </section>
         <section id="filtrare">
             <h3> Filtre</h3>
             <p> Odata ajuns aici, userul are 3 selectii de facut.
                 Prima oara trebuie sa selecteze tabela din care vrea sa vada datele. In acest moment stiu numele tabelei
-                si pot sa il adaug la un URL dinamic pentru urmatorii pasi. In functie de ce tabel a selectat clientul, ii va aparea o noua filtrare care va cuprinde 
+                si pot sa il adaug la un URL dinamic pentru urmatorii pasi. In functie de ce tabel a selectat clientul,
+                ii va aparea o noua filtrare care va cuprinde
                 doar coloanele care sunt specifice acelui tabel
             </p>
-            <p> A doua selectie se refera la anul din care utilizatorul vrea sa vada datele. Optiunile sunt 2019, respectiv 2020</p>
-            <p> Ultima optiune este pe baza primei optinui, iar in functie de tabela selectata apar coloanele care se gasesc in tabela respectiva</p>
-            <p> Dupa ce toate selectiile au fost facute, se folosi API pentru a trece la pasul urmator. Acesta arata ceva de genul asta:
+            <p> A doua selectie se refera la anul din care utilizatorul vrea sa vada datele. Optiunile sunt 2019,
+                respectiv 2020</p>
+            <p> Ultima optiune este pe baza primei optinui, iar in functie de tabela selectata apar coloanele care se
+                gasesc in tabela respectiva</p>
+            <p> Dupa ce toate selectiile au fost facute, se folosi API pentru a trece la pasul urmator. Acesta arata
+                ceva de genul asta:
                 http://localhost/RunDa/api/counties/cluj?filtered_by=educatie&year=2020
 
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/dataFilters.png">
+                <figcaption>Fig. 1 Bar Chart pe un judet</figcaption>
+            </figure>
             </p>
         </section>
         <section id="generareDiagrame">
             <h2> Generare Diagrame</h2>
-            <p>Dupa ce toate criteriile de selectie sunt facute, se va selecta tipul de diagrama dorit.
-                
+            <p>Dupa ce toate criteriile de selectie sunt facute, se va selecta tipul de diagrama dorit.</p>
+            <p> Pentru acest lucru, avem la dispozitie 3 tipuri de diagrame, iar fiecare dintre acestea a fost realziata
+                folosind biblioteca D3 JS </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/typeCharts.png">
+                <figcaption>Fig. 1 Tipurile de diagrame</figcaption>
+            </figure>
+            <li>Line Chart</li>
+            <p>In aceasta diagrama se afla pe axa OY informatiile despre coloana care a fost selectata dintr-un anumit
+                tabel,
+                iar pe axa OX se afla lunile din anul selectat.</p>
+            <p>De asemenea, aceasta diagrama a fost realizata folosind si un design responsive pentru dispozitive cu
+                rezolutie mica. De la o anumita rezolutie,
+                pentru a nu strica calitatea imaginii se aplica un scroll orizontal, prin care utilziatorul poate vedea
+                clar informatiile respective.
             </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/lineChart1.png">
+                <figcaption>Fig. 1 Line Chart pe un singur judet</figcaption>
+            </figure>
+
+
+            <li>Bar Chart</li>
+            <p> Pe axa OY se afla informatiile despre fiecare luna din anul selectat, iar pe axa OX se afla informatiile
+                despre o coloana aleasa din tabelul selectata
+            </p>
+            <p> Totodata, este aplicat si aici design-ul responsive, avand acelasi rol ca si la diagrama Line Chart</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/barChart1.png">
+                <figcaption>Fig. 1 Bar Chart pe un judet</figcaption>
+            </figure>
+            <li>Pie Chart</li>
         </section>
         <section id="export">
             <h2> Export</h2>
+            <p>In momentul in care avem si diagrama afisata, utilizatorul are optiunea de a face export
+                intr-un anumit format(CSV,SVG,PDF,XML). Exportul are 2 optiuni, in functie de cate judete au fost
+                selectate:
+                daca s-a selectat un judet atunci va fi exportat doar acesta, daca s-au selectat 2 judete, atunci
+                vor fi exportate cele 2.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/exportBtns.png">
+                <figcaption>Fig. 1 Butoanele de export</figcaption>
+            </figure>
         </section>
-    </section><!--front end-->
 
+        <section id="aboutPage">
+            <h2>About Page</h2>
+            <p> Aceasta pagina a fost creata cu rolul de a oferi informatii despre ce poate afla utilizand acest
+                proiect.
+                Contine mai multe paragrafe, insotite de o imagine ilustrativa.
+            </p>
+        </section>
+        <section id="contact-page">
+            <h2> Contact page</h2>
+            <p>despre contact, de scris!</p>
+        </section>
+    </section>
+    <!--front end-->
+    <section id="back-end">
+        <h2> Back End</h2>
+        <section id="map-creation">
+            <h3> Creare Harta</h3>
+
+        </section>
+        <section id="generate-chart">
+            <h3> Generare Diagrame</h3>
+            <p>
+                Diagramele au fost concepute folosind bilioteca D3 js. Am ales aceasta biblioteca deoarece 
+                am considerat ca este interesant cum se creaza de la 0 o diagrama.
+                Pentru fiecare diagrama creata, am facut o cerere prin care sa sa iau datele din baza de date, folsindu-ma de API REST.
+                Datele au fost parsate printr-un json si in acest mod am putut afisa informatiile in mod dinamic cerute de catre utilizator.
+            </p>
+
+            <section id="pieChart">
+                <h3> Pie Chart</h3>
+                <p> despre pic</p>
+            </section>
+            <section id="lineChart">
+                <h3> Line Chart</h3>
+                <p> Am stabilit ca pe axa OY voi avea datele despre o anume coloana din tabel,
+                    iar pe axa OX voi avea datele despre lunile din anul selectat.
+                </p>
+                <p>
+                    Folsindu-ma de API REST, 
+                </p>
+            </section>
+        </section>
+    </section>
+    <!--back end-->
 
 </body>
 

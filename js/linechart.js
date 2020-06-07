@@ -86,7 +86,7 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
         .style('font-size', '2.5em')
         .attr('transform', `rotate(-90)`)
         .attr('text-anchor', 'middle')
-        .text(yAxisLabel);
+        .text(yAxisLabel.replace('_', ' ').replace('_', ' '));
 
       const xAxisG = g.append('g').call(xAxis)
         .attr('transform', `translate(0,${innerHeight})`);
@@ -122,6 +122,7 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
         .attr('y', -10)
         .style('font-size', '2em')
         .style('font-family', 'sans-serif')
+
         .text(title);
     }
 

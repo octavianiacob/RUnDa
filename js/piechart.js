@@ -2,7 +2,8 @@ import { numberToMonth } from './util.js'
 export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
 
 
-   
+  const title='Educatie Municipiul Bucuresti'
+
     const render = data => {
         function myResponsiveComponent(container, props) {
             if (getColumn === "")
@@ -58,9 +59,18 @@ export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
                 .data(slices)
                 .enter()
                 .append('text')
+                
                 .text(function (d) { return numberToMonth(d.data.month).substring(0, 3); })
                 .attr('fill', function (d) { return color(d.data.month); })
                 .attr('y', function (d, i) { return 20 * (i + 1); }) 
+
+                svg.append('text')
+                  .attr('fill','black')
+                  .style('font-size', '2em')
+                  .attr('y', 35)
+                  .attr('x', width/2-50)
+                    .text(title)
+                 
                 
     //             svg.append("text")
     // .attr("x", w / 2 )
