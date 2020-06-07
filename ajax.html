@@ -236,18 +236,14 @@
                     <p>Options</p>
                     <div id="display-options">
                         <img src="/RUnDa/images/linechart.png" id="lineChartBtn">
-                        <!-- <button id="lineChartBtn" type="button" >Line CHart</button> -->
                         <img src="/RUnDa/images/barchart.png" id="barChartBtn">
                         <img src="/RUnDa/images/piechart.png" id="pieChartBtn">
-                        <!-- <button id="barChartBtn" type="button" >Bar CHart</button> -->
-                        <!-- <button id="pieChartBtn" type="button" >Pie CHart</button> -->
                     </div>
                     <div id="export-options">
-                        <button id="exportButton" type="button" data-getCsv="csv">Export CSV</button>
-                        <button id="exportButton" type="button" data-getPdf="csv">Export XML</button>
+                        <button id="exportCSV" type="button" data-getCsv="csv">Export CSV</button>
+                        <button id="exportXML" type="button" data-getPdf="csv">Export XML</button>
                         <button id="exportSVG" type="button" data-getSVG="SVG">Export SVG</button>
-                        <button id="exportButton" type="button" data-getCsv="csv">Export PDF</button>
-                        <!-- <button onclick="myFunction()">Try it</button> -->
+                        <button id="exportPDF" type="button" data-getCsv="csv">Export PDF</button>
                     </div>
                 </div>
             </section>
@@ -266,9 +262,7 @@
 
 
     <script src="https://d3js.org/d3.v4.js"></script>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 
     <script type="module" src="./js/ajax.js"></script>
     <script type="module" src="./js/map.js"></script>
