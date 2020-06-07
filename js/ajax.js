@@ -1,7 +1,7 @@
 import { barChart } from './barchart.js'
 import { lineChart } from './linechart.js'
 import { pieChart } from './piechart.js'
-import { exportCSV, exportSVG, exportPDF } from './exports.js'
+import { exportCSV, exportSVG, exportPDF, exportXML } from './exports.js'
 
 let countyList = location.search.slice(7).split('&');
 console.log("Location 1 = " + countyList[0] + " Location 2 = " + countyList[1]);
@@ -17,7 +17,10 @@ let url2 = ""
 let urlForCsv = ""
 let urlForPDF = ""
 let urlForPDF2 = ""
+let urlForXML = ""
+let urlForXML2 = ""
 let getPdf = ""
+let getXML = ""
 
 let containerElement = document.querySelector("#filters-container");
 
@@ -185,6 +188,20 @@ function onClick(e) {
                     }
                 }
             }
+
+            document.getElementById('exportXML').onclick = function exportareXML() {
+                if (tipChart != 0) {
+                    urlForXML = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
+                    if (getCountyName != undefined && getSecondCounty != undefined) {
+                        urlForXML2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+                        exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn);
+                        exportXML(urlForXML2, getTableName, getSecondCounty, getYear, getColumn);
+                    } else {
+                        console.log("A intrat pe exportXML()");
+                        exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn);
+                    }
+                }
+            }
         }
 
     }
@@ -202,7 +219,9 @@ function onClickExport(e) {
         }
         if (e.target.hasAttribute("data-getPdf")) {
             getPdf = e.target.getAttribute("data-getPdf");
-            console.log("ai dat clickss");
+        }
+        if (e.target.hasAttribute("data-getXML")) {
+            getXML = e.target.getAttribute("data-getXML");
         }
 
 
@@ -215,7 +234,6 @@ function onClickExport(e) {
             } else {
                 exportCSV(urlForCsv, getTableName, getCountyName, getYear, getColumn);
                 exportPDF(urlForCsv, getTableName, getCountyName, getYear, getColumn);
-                console.log("ai dat clicksss");
             }
         }
 

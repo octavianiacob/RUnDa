@@ -117,3 +117,51 @@ export function exportPDF(urlForPdf, getTableName, getCountyName, getYear, getCo
     }
     getReport();
 }
+
+export function exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn) {
+
+    const download = function(data) {
+        const blob = new Blob([data], { type: 'text/xml' }) //cu blob pot downloada
+        const url = window.URL.createObjectURL(blob); //trimit blob catre browser.imi da posiibilitatea sa fac un url dintr-un object(csv)
+        const a = document.createElement('a'); //a tag pt click
+        a.setAttribute('hidden', '')
+        a.setAttribute('href', url) //unde sa trimit 
+        a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.xml`)
+        document.body.appendChild(a) //inainte sa dau click
+        a.click();
+        document.body.removeChild(a) //dupa ce dau click
+    }
+
+    const getReport = async function() {
+        console.log("urlForXML = " + urlForXML)
+        const res = await fetch(urlForXML) //fetch- metoda browserului de a lua data.  fetch returneaza o promisiune
+        const json = await res.json() //cu aceasta linie pot lua si datele, nu doar headers....
+        console.log("JSON = " + JSON.stringify(json))
+
+        console.log("getColumn = " + getColumn);
+        const data = json.map(row => ({ //mapez ca sa imi puna in csv doar ce vreau, nu tot
+            month: row.month,
+            year: row.year,
+            [getColumn]: row[getColumn]
+        }));
+        //const csvData = objectToCsv(data) //apelez functia de mai sus
+        //download(csvData)
+
+        console.log("DATA:");
+        console.log(data);
+        let dataJSON = JSON.stringify(data);
+        console.log(json2xml(json));
+        download(json2xml(json));
+
+        /*
+        var doc = new jsPDF();
+        data.forEach(function(employee, i) {
+            doc.text(20, 10 + (i * 10),
+                "Month: " + employee.month + " " +
+                "Year: " + employee.year + ": " + [getColumn] + ": " + employee[getColumn]);
+        });
+        doc.save(`${getTableName}_${getCountyName}_${getYear}.pdf`); */
+
+    }
+    getReport();
+}
