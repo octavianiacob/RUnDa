@@ -4,57 +4,30 @@ import { pieChart } from './piechart.js'
 import { exportCSV, exportSVG, exportPDF, exportXML } from './exports.js'
 
 let countyList = location.search.slice(7).split('&');
-console.log("Location 1 = " + countyList[0] + " Location 2 = " + countyList[1]);
-
-let getCountyName = countyList[0]
+let getCountyName = countyList[0];
 let getSecondCounty = countyList[1];
-let getTableName = "" //idem
-let getColumn = ""
-let getYear = ""
-let getCsv = ""
-let url = ""
-let url2 = ""
-let urlForCsv = ""
-let urlForPDF = ""
-let urlForPDF2 = ""
-let urlForXML = ""
-let urlForXML2 = ""
-let getPdf = ""
-let getXML = ""
-
+let getTableName = "";
+let getColumn = "";
+let getYear = "";
+let url = "";
+let url2 = "";
+let exportURL1 = "";
+let exportURL2 = "";
 let containerElement = document.querySelector("#filters-container");
-
-let buttonElement = document.querySelector("#exportCSV")
-
 let tipChart = 0;
 
-if (containerElement) //ca sa scap de eroarea cu addEventList null
+if (containerElement)
     containerElement.addEventListener("click", onClick);
 
-if (buttonElement)
-    buttonElement.addEventListener("click", onClickExport)
-
-
-
-//-------------------------------------------------------SELECTARE FILTRE+GENERARE DIAGRAMA----------------------------------------------------------
-
 function onClick(e) {
-
     if (e.target.tagName == 'INPUT') {
         d3.selectAll("svg > *").remove();
         if (e.target.hasAttribute("data-getTableName")) {
-
-
             if (getTableName !== "") {
-
                 getTableName = e.target.getAttribute("data-getTableName");
-
-                getColumn = ""
-
-                //getYear = ""
+                getColumn = "";
             } else
                 getTableName = e.target.getAttribute("data-getTableName");
-            console.log("ai apasat pe " + getTableName)
 
             switch (getTableName) {
                 case "educatie":
@@ -68,7 +41,6 @@ function onClick(e) {
                     document.querySelector(".clasaEducatie").style.display = "none";
                     document.querySelector(".clasaRata").style.display = "none";
                     document.querySelector(".clasaMedii").style.display = "none";
-
                     break;
                 case "rata":
                     document.querySelector(".clasaRata").style.display = "flex";
@@ -86,14 +58,12 @@ function onClick(e) {
                     break;
             }
         }
-        if (e.target.hasAttribute("data-getYear")) {
 
+        if (e.target.hasAttribute("data-getYear")) {
             getYear = e.target.getAttribute("data-getYear");
         }
-
         if (e.target.hasAttribute("data-getColumn")) {
             getColumn = e.target.getAttribute("data-getColumn");
-
         }
         if (getColumn == "") {
             document.querySelector("#diagram").style.display = "none";
@@ -103,13 +73,11 @@ function onClick(e) {
             document.querySelector("#diagram2").style.display = "block";
         }
         if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getYear === "")) {
-            url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-
+            url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
             if (getSecondCounty != undefined) {
-                url2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+                url2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
                 console.log(url2);
             }
-
             document.getElementById('lineChartBtn').onclick = function alegereLineChart() {
                 tipChart = 1;
                 if (url != "" && url2 != "") {
@@ -117,7 +85,6 @@ function onClick(e) {
                     lineChart(url2, getTableName, getColumn, getSecondCounty, 2);
                 } else
                     lineChart(url, getTableName, getColumn, getCountyName, 1);
-
             }
             document.getElementById('pieChartBtn').onclick = function alegerePieChart() {
                 tipChart = 2;
@@ -134,10 +101,6 @@ function onClick(e) {
                     barChart(url2, getTableName, getColumn, getSecondCounty, 2);
                 } else
                     barChart(url, getTableName, getColumn, getCountyName, 1);
-                // if(getColumn=="")
-                // document.querySelector("#diagram").style.display = "none";
-
-
             }
 
             if (getColumn != "")
@@ -164,7 +127,42 @@ function onClick(e) {
                             barChart(url, getTableName, getColumn, getCountyName, 1);
                         break;
                 }
-
+            document.getElementById('exportCSV').onclick = function exportareCSV() {
+                if (tipChart != 0) {
+                    exportURL1 = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
+                    if (getCountyName != undefined && getSecondCounty != undefined) {
+                        exportURL2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+                        exportCSV(exportURL1, getTableName, getCountyName, getYear, getColumn);
+                        exportCSV(exportURL2, getTableName, getSecondCounty, getYear, getColumn);
+                    } else {
+                        exportCSV(exportURL1, getTableName, getCountyName, getYear, getColumn);
+                    }
+                }
+            }
+            document.getElementById('exportPDF').onclick = function exportarePDF() {
+                if (tipChart != 0) {
+                    exportURL1 = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
+                    if (getCountyName != undefined && getSecondCounty != undefined) {
+                        exportURL2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+                        exportPDF(exportURL1, getTableName, getCountyName, getYear, getColumn);
+                        exportPDF(exportURL2, getTableName, getSecondCounty, getYear, getColumn);
+                    } else {
+                        exportPDF(exportURL1, getTableName, getCountyName, getYear, getColumn);
+                    }
+                }
+            }
+            document.getElementById('exportXML').onclick = function exportareXML() {
+                if (tipChart != 0) {
+                    exportURL1 = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
+                    if (getCountyName != undefined && getSecondCounty != undefined) {
+                        exportURL2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
+                        exportXML(exportURL1, getTableName, getCountyName, getYear, getColumn);
+                        exportXML(exportURL2, getTableName, getSecondCounty, getYear, getColumn);
+                    } else {
+                        exportXML(exportURL1, getTableName, getCountyName, getYear, getColumn);
+                    }
+                }
+            }
             document.getElementById('exportSVG').onclick = function exportareSVG() {
                 if (tipChart != 0) {
                     if (getCountyName != undefined && getSecondCounty != undefined) {
@@ -174,69 +172,6 @@ function onClick(e) {
                         exportSVG(getTableName, getCountyName, getYear, 1);
                 }
             }
-
-            document.getElementById('exportPDF').onclick = function exportarePDF() {
-                if (tipChart != 0) {
-                    urlForPDF = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
-                    if (getCountyName != undefined && getSecondCounty != undefined) {
-                        urlForPDF2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-                        exportPDF(urlForPDF, getTableName, getCountyName, getYear, getColumn);
-                        exportPDF(urlForPDF2, getTableName, getSecondCounty, getYear, getColumn);
-                    } else {
-                        console.log("A intrat pe exportPDF()");
-                        exportPDF(urlForPDF, getTableName, getCountyName, getYear, getColumn);
-                    }
-                }
-            }
-
-            document.getElementById('exportXML').onclick = function exportareXML() {
-                if (tipChart != 0) {
-                    urlForXML = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
-                    if (getCountyName != undefined && getSecondCounty != undefined) {
-                        urlForXML2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-                        exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn);
-                        exportXML(urlForXML2, getTableName, getSecondCounty, getYear, getColumn);
-                    } else {
-                        console.log("A intrat pe exportXML()");
-                        exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn);
-                    }
-                }
-            }
         }
-
-    }
-
-}
-
-
-//------------------------------------------------------------------EXPORT CSV, XML etc-----------------------------------------------
-
-function onClickExport(e) {
-    if (e.target.tagName === "BUTTON") {
-
-        if (e.target.hasAttribute("data-getCsv")) {
-            getCsv = e.target.getAttribute("data-getCsv")
-        }
-        if (e.target.hasAttribute("data-getPdf")) {
-            getPdf = e.target.getAttribute("data-getPdf");
-        }
-        if (e.target.hasAttribute("data-getXML")) {
-            getXML = e.target.getAttribute("data-getXML");
-        }
-
-
-        if (!(getCountyName === "" || getTableName === "" || getColumn === "" || getCsv === "" || getYear === "")) {
-            urlForCsv = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-            if (getCountyName != undefined && getSecondCounty != undefined) {
-                let url2ForCsv = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`
-                exportCSV(urlForCsv, getTableName, getCountyName, getYear, getColumn); //apelez functia care face export CSV
-                exportCSV(url2ForCsv, getTableName, getSecondCounty, getYear, getColumn); //apelez functia care face export CSV
-            } else {
-                exportCSV(urlForCsv, getTableName, getCountyName, getYear, getColumn);
-                exportPDF(urlForCsv, getTableName, getCountyName, getYear, getColumn);
-            }
-        }
-
-
     }
 }
