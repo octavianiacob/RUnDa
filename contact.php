@@ -22,7 +22,8 @@ $connectDB=new Database();
 				$msg = 'Please use a valid email';
 				$msgClass = 'alert-danger';
 			} else {
-				// Passed
+                // Passed
+                $msg='Nice';
                 $query="INSERT INTO contact (firstname,lastname,email,phone,message) VALUES (:firstname,:lastname,:email,:phone,:message)";
                 $statement=$connectDB->getPDO()->prepare($query);
                 $statement->execute(
@@ -34,7 +35,7 @@ $connectDB=new Database();
                         'message'=> $message
                     )
                 );
-                echo "Your message has been sent"; 
+               
 			}
 		} else {
 			// Failed
@@ -83,7 +84,10 @@ $connectDB=new Database();
             </div>
         </div>
     </header>
-
+    <?php
+    if($msg!=='')   
+    echo " <div style=text-align:center;display: block;> <img id=message width=240px src=/RUnDa/images/sent.jpg>  </div>"; 
+    ?>
     <div class="contact-form">
         <h1> Contact us!</h1>
         <h2> We are always ready to serve you </h2>
