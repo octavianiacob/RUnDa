@@ -7,7 +7,8 @@
     <title>RUnDa</title>
     <link rel="stylesheet" type="text/css" href="styles/reset.css">
     <link rel="stylesheet" type="text/css" href="styles/navbar.css">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    <link rel="stylesheet" type="text/css" href="styles/loginsuccess.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!--<script src="/scripts/main.js"></script> -->
 </head>
@@ -29,7 +30,7 @@
                         <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
                     </li>
                     <li>
-                        <a href="./contact.html"><img src="/RUnDa/images/squareicon.png" alt="Contact Page"></a>
+                        <a href="./contact.php"><img src="/RUnDa/images/squareicon.png" alt="Contact Page"></a>
                     </li>
                 </ul>
             </div>
@@ -200,6 +201,39 @@ if (isset($_POST['logout'])){
     header("location:admin.php");
 }
 ?>
+
+<?php
+require_once "./config/Database.php";
+
+$db = new Database();
+$query="select contact.firstname,contact.lastname,contact.email,contact.phone,contact.message from contact";
+$statament=$db->getPDO()->query($query);
+$statament->setFetchMode(PDO::FETCH_ASSOC);
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<table border='1' align=center >\n";
+$array_names=["FIRSTNAME","LASTNAME","EMAIL","PHONE","MESSAGE"];
+$ncols=count($array_names);
+echo "<tr>\n";
+for ($i = 0; $i < $ncols; ++$i) {
+    echo "  <th><b>". $array_names[$i]."</b></th>\n";
+}
+echo "</tr>\n";
+while ($row = $statament->fetch()) { //returneaza urmatoarea linie din interogare
+    echo "<tr style=text-align:center;>\n"; //imi mai face o celula
+    foreach ($row as $item) { //pentru fiecare element din rand
+        echo "    <td style=text-align:center;>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
+        //daca exista valoare intr-o celula
+        // afiseaza valoarea
+        //altfel lasa spatiu gol
+    }
+    echo "</tr>\n";
+}
+echo "</table>\n";
+?>
+
 </body>
 
 </html>
