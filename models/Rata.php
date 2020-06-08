@@ -71,17 +71,5 @@ class Rata
         return $this->db->fetchAllCounties($query);
     }
 
-    //daca parametrul este CLUJ, atunci selectez toate id-urile unice si afisez JSON
 
-    // public function selectOneCounty($parameter)
-    // {
-    //     $query = "SELECT
-    //     educatie.id, educatie.judet, educatie.id_judet, educatie.month, educatie.year,
-    //     educatie.total_someri,educatie.fara_studii, educatie.primar,
-    //     educatie.gimnazial, educatie.liceal, educatie.postliceal,
-    //     educatie.profesional_arte_meserii, educatie.universitar
-    //     FROM educatie
-    //     WHERE educatie.id_judet = ?";
-    //     return $this->db->fetchOne($query, $parameter);
-    // }
 }

@@ -18,7 +18,7 @@ foreach ($allRoutes as $routeConfig) {
     }
 }
 
-handle404();
+
 
 
 
@@ -39,23 +39,17 @@ function parseRequest($routeConfig)
 
         $params = getParams($routeConfig, $matches);
         $query = getQueryParams($url);
-        $payload = getPayload();
 
         call_user_func($routeConfig['handler'], [
             "params" => $params,
             "query" => $query,
-            "payload" => $payload
+            
         ]);
 
         return true;
     }
 
     return false;
-}
-
-function handle404()
-{
-    // Response::status(404);
 }
 
 
@@ -109,13 +103,4 @@ function getParams($routeConfig, $matches)
     }
     return $params;
 }
-function getPayload()
-{
-    // Payload
-    $payload = file_get_contents('php://input');
-    if (strlen($payload)) {
-        $payload = json_decode($payload);
-    } else {
-        $payload = NULL;
-    }
-}
+
