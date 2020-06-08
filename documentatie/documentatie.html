@@ -42,7 +42,7 @@
                     </span>
                     <ul>
                         <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-                            <a href="emailOctav" property="schema:email">octav@gmail.com</a>
+                            <a href="emailOctav" property="schema:email">octavzz1999@gmail.com</a>
                         </li>
 
                     </ul>
@@ -315,8 +315,7 @@
         </h2>
         <p>Partea de front end ofera un design simplu dar eficient. Are elemente de baza pentru o experienta placuta a
             utilizatorului
-            Acest site poate fi folosit atat pe un laptop/calculator, cat si pe un device mai mic avand
-            functionalitatea de responsive.</p>
+            Acest site poate fi folosit atat pe un laptop/calculator, cat si pe un device mai mic fiind responsive.</p>
         <section id="navbar">
             <h3>
                 Navbar
@@ -349,9 +348,18 @@
         <section id="map">
             <h3> Harta Romaniei</h3>
             <p>
-                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3 js.
+                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3.js. 
+                Harta este generata pe baza unui fisier de tip .geojson ce contine datele geografice
+                necesare pentru a crea elementul SVG ce reprezinta harta romaniei.
+                <br>
+                Pentru proiectia coordonatelor geografice se foloseste proiectia de tip Mercator, inclusa in biblioteca D3.js.
+                Harta permite selectarea a unui singur judet sau maxim doua, in scopul de a le compara datele.
 
             </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/map.png">
+                <figcaption>Fig. 1 Harta romaniei</figcaption>
+            </figure>
         </section>
         <section id="filtrare">
             <h3> Filtre</h3>
@@ -727,17 +735,17 @@
                 <p> O alta functie folosita este aceea prin care descarc fisierul propriu zis, folosind blob.</p>
                 <figure typeof="schema:SoftwareSourceCode">
                     <pre>
-                    const download = function(data) {
-                        const blob = new Blob([data], { type: 'text/csv' }) //cu blob pot downloada
-                        const url = window.URL.createObjectURL(blob); //trimit blob catre browser.imi da posiibilitatea sa fac un url dintr-un object(csv)
-                        const a = document.createElement('a'); //a tag pt click
-                        a.setAttribute('hidden', '')
-                        a.setAttribute('href', url) //unde sa trimit 
-                        a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.csv`)
-                        document.body.appendChild(a) //inainte sa dau click
-                        a.click();
-                        document.body.removeChild(a) //dupa ce dau click
-                    }
+                        function exportFile(data, extension, getTableName, getCountyName, getYear) {
+                            const blob = new Blob([data], { type: `text/${extension}` }) //cu blob pot downloada
+                            const url = window.URL.createObjectURL(blob); //trimit blob catre browser.imi da posiibilitatea sa fac un url dintr-un object(csv)
+                            const a = document.createElement('a'); //a tag pt click
+                            a.setAttribute('hidden', '')
+                            a.setAttribute('href', url) //unde sa trimit 
+                            a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.${extension}`)
+                            document.body.appendChild(a) //inainte sa dau click
+                            a.click();
+                            document.body.removeChild(a) //dupa ce dau click
+                        }
                 
                 </pre>
                 </figure>
@@ -772,11 +780,52 @@
             </section>
             <section id="exportPDF">
                 <h3> Export PDF</h3>
-                <p> export PDFfffffffffffffff</p>
+                <p> Pentru exportarea in format PDF, mai intai obtinem datele in aceeasi maniera ca la CSV, prin 
+                    functia getReport(). Dupa aceea folosind biblioteca jsPDF, scriem datele obtinute in format text in
+                in fisierul PDF si il oferim spre download.</p>
+                <pre>
+                    export function exportPDF(urlForPdf, getTableName, getCountyName, getYear, getColumn) {
+                        const getReport = async function () {
+                            const res = await fetch(urlForPdf)
+                            const json = await res.json()
+                            const data = json.map(row => ({
+                                month: row.month,
+                                year: row.year,
+                                [getColumn]: row[getColumn]
+                            }));
+                            var doc = new jsPDF();
+                            data.forEach(function (object, i) {
+                                doc.text(20, 10 + (i * 10),
+                                    "Month: " + object.month + " " +
+                                    "Year: " + object.year + ": " + [getColumn] + ": " + object[getColumn]);
+                            });
+                            doc.save(`${getTableName}_${getCountyName}_${getYear}.pdf`);
+                        }
+                        getReport();
+                    }
+                </pre>
             </section>
             <section id="exportSVG">
                 <h3> Export XML</h3>
-                <p> export XMLEEEE</p>
+                <p> Pentru exportarea in format XML, mai intai obtinem datele necesare cu functia getReport()
+                    Dupa aceea folosim biblioteca json2xml pentru a converti datele din formatul JSON in XML. In final,
+                    folosim functia exportFile() pentru a oferi fisierul spre download catre utilizator.
+                </p>
+                <pre>
+                    export function exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn) {
+                        const getReport = async function () {
+                            const res = await fetch(urlForXML)
+                            const json = await res.json()
+                            const data = json.map(row => ({
+                                month: row.month,
+                                year: row.year,
+                                [getColumn]: row[getColumn]
+                            }));
+                            exportFile(json2xml(json), 'xml', getTableName, getCountyName, getYear);
+                        }
+                        getReport();
+                    }
+                </pre>
             </section>
         </section>
         <!--export-->
