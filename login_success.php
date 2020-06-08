@@ -25,18 +25,15 @@ if (isset($_SESSION["username"])) {
             $value = $_FILES['file']['name'];
             $query = "SELECT count(*)  from fisiere WHERE filename = '$value'    ";
             $result = mysqli_query($connect, $query);
-            if (mysqli_result($result, 0) === '0') {
-                echo mysqli_result($result, 0);
-
-                $query = " INSERT INTO fisiere (filename) VALUES ('$value')";
-                mysqli_query($connect, $query);
+            if (mysqli_result($result, 0) === '0') { 
 
                 $filename = explode(".", $_FILES['file']['name']);
                 if ($filename[1] == 'csv') {
+                    $query = " INSERT INTO fisiere (filename) VALUES ('$value')";
+                mysqli_query($connect, $query);
                     $handle = fopen($_FILES['file']['tmp_name'], "r");
                     $file_name_and_extenstions = explode("_", $filename[0]);
 
-                    echo $file_name_and_extenstions[0] . " " . $file_name_and_extenstions[1] . " " . $file_name_and_extenstions[2];
                     $contor = 0;
 
                     while ($data = fgetcsv($handle)) {
@@ -158,11 +155,11 @@ if (isset($_POST['logout'])) {
                     <label>Select CSV File:</label>
                     <input class="" type="file" name="file" />
                     <input id="import-btn" type="submit" name="submit" value="Import" class="btn" />
-
+                    </form>
                     <form action="login_success.php" method="post" style="text-align:center;">
                         <input id="logout-btn" class="btn" type='submit' value="Logout" name='logout' />
                     </form>
-                </form>
+                
             </div>
 
             <div class="table-container">

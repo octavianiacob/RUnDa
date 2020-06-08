@@ -91,7 +91,7 @@ try {
                         </div>
 
                         <div class="input-container">
-                            <label for="password">Password</label>
+                            <label >Password</label>
                             <input class="form-control" name="password" type="password"
                                 placeholder="******************">
                         </div>

@@ -43,7 +43,7 @@ function parseRequest($routeConfig)
         call_user_func($routeConfig['handler'], [
             "params" => $params,
             "query" => $query,
-            
+
         ]);
 
         return true;
@@ -103,4 +103,3 @@ function getParams($routeConfig, $matches)
     }
     return $params;
 }
-
