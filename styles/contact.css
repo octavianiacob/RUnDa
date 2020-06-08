@@ -39,8 +39,8 @@ body {
     text-align:center;
 }
 
-.label-input {
-    border: 1px solid gray;
+.label-input {  
+    border: 2px solid rgba(23, 66, 85, 0.2);
     margin: 8px 0;
     padding: 12px 18px;
     border-radius: 8px;
