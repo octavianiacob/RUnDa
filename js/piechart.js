@@ -1,8 +1,9 @@
 import { numberToMonth } from './util.js'
-export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
+export function pieChart(url, getTableName,getColumn, tipChart,getCountyName,tipDIV) {
 
 
-  const title='Educatie Municipiul Bucuresti'
+    const title = `${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
+
 
     const render = data => {
         function myResponsiveComponent(container, props) {
@@ -31,11 +32,12 @@ export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
             var arc = d3.arc()
                 .innerRadius(0)
                 .outerRadius(radius - 40);
-
+                const margin = { top: 50, right: 40, bottom: 77, left: 250 };
+                let innerWidth = width - margin.left - margin.right;
             // helper that returns a color based on an ID
-            var color = d3.scaleOrdinal(d3.schemeCategory20);
+            var color = d3.scaleOrdinal(d3.schemeCategory20c)
             var g = svg.append('g')
-                .attr('transform', `translate(${width / 2},${height / 2})`);
+                .attr('transform', `translate(${width / 2},${height / 1.8})`);
 
             var arcGraph = g.selectAll('path.slice')
                 .data(slices)
@@ -62,14 +64,15 @@ export function pieChart(url, getColumn, tipChart,getCountyName,tipDIV) {
                 
                 .text(function (d) { return numberToMonth(d.data.month).substring(0, 3); })
                 .attr('fill', function (d) { return color(d.data.month); })
-                .attr('y', function (d, i) { return 20 * (i + 1); }) 
-
+                .attr('y', function (d, i) { return 20 * (i + 1); }) ;
+              
                 svg.append('text')
                   .attr('fill','black')
-                  .style('font-size', '2em')
+                  .style('font-size', '1.2em')
                   .attr('y', 35)
-                  .attr('x', width/2-50)
-                    .text(title)
+                  .attr('x',document.body.clientWidth / 2.6)
+                 .text(title)
+                 .style('text-align','center')
                  
                 
     //             svg.append("text")
