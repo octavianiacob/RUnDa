@@ -1,3 +1,88 @@
+* {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e2e8f0;
+}
 
- table {border-collapse:collapse; table-layout:fixed; width:90%;}
- table td {border:solid 1px #fab; width:20%; word-wrap:break-word;}
+html {
+    font-family:'Roboto';
+    line-height: 1.5;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-size: 16px;
+}
+
+.banner {
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.background-card {
+    background: #FFF;
+    min-height: 100vh;
+    box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings {
+    display: flex;
+    background-color: #F6F8FF;
+    border: 2px solid rgba(23, 66, 85, 0.2);
+    border-radius: 1rem;
+    min-height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin: 100px;
+}
+
+form>label {
+    display: block;
+    margin: 10px 0px;
+}
+
+.logout label {
+    display: block;
+}
+
+.btn {
+    color: #2d3748;
+    font-weight: 700;
+    background-color: #e2e8f0;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 10%;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 90%;
+    border: solid 2px #e2e8f0;
+    line-height: 1.5;
+}
+
+td {
+    border: solid 1px #e2e8f0;
+    width: 20%;
+    word-wrap: break-word;
+}
+
+@media screen and (min-width: 1px) and (max-width: 365px) {
+    .background-card {
+        box-shadow: none;
+    }
+ * {
+    font-size: 12px;
+ }
+    
+}
