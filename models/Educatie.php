@@ -32,9 +32,12 @@ class Educatie
         FROM educatie
         JOIN orase ON educatie.id_judet = orase.id
         WHERE orase.city ='" . $parameter . "'";
+        // daca dat orasul dat ca parametru nu exista in baza de date returnez 0
         if ($this->db->existCity($query, $parameter) == 0)
             return 0;
+        //pun intr-un array coloanele dupa care se face sortarea
         $array_sorted_by = [];
+        //puneam ASC sau DESC in functie de tipul ales
         $order_by = "";
         $array_param = [];
         $valuesSort = "";
@@ -54,15 +57,18 @@ class Educatie
             }
         if ($valuesSort != null)
             $array_sorted_by = explode(",", $valuesSort);
+            // daca exista elemente dupa care se face sortarea
         if (count($array_sorted_by) > 0) {
+            //imi concatenez query-ul cu order by si elementul dupa care se face sortarea
             $query = $query . " ORDER BY ";
-            for ($i = 0; $i < count($array_sorted_by); $i++) {
+            for ($i = 0; $i < count($array_sorted_by); $i++) { //daca am mai multe elemente concatenez cu element si virgula daca nu doar cu element
                 if ($i + 1 == count($array_sorted_by))
                     $query = $query . "educatie." . $array_sorted_by[$i];
                 else
                     $query = $query . "educatie." . $array_sorted_by[$i] . ",";
             }
         }
+        //daca utilizatorul da order_by=ASC voi concatena query-ul cu order by asc
         if (empty($order_by) == false)
             $query = $query . " " . $order_by;
 

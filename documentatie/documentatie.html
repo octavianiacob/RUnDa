@@ -42,7 +42,7 @@
                     </span>
                     <ul>
                         <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-                            <a href="emailOctav" property="schema:email">octav@gmail.com</a>
+                            <a href="emailOctav" property="schema:email">octavzz1999@gmail.com</a>
                         </li>
 
                     </ul>
@@ -68,7 +68,7 @@
                     </span>
                     <ul>
                         <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-                            <a href="alexvasile99@yahoo.com" property="schema:email">andreiimagil@grkmr</a>
+                            <a href="andreiprep999@gmail.com" property="schema:email">andreiprep999@gmail.com</a>
                         </li>
 
                     </ul>
@@ -248,7 +248,7 @@
                     <li>
                         <a href="#judete">
                             <span> 4.1.</span>
-                             Judete Romania
+                            Judete Romania
                         </a>
                     </li>
 
@@ -256,37 +256,37 @@
             <li>
                 <a href="educatie">
                     <span> 4.2. </span>
-                     Educatie
+                    Educatie
                 </a>
             </li>
             <li>
                 <a href="#varste">
                     <span> 4.3. </span>
-                     Varste
+                    Varste
                 </a>
             </li>
             <li>
                 <a href="#medii">
                     <span> 4.4. </span>
-                     Medii
+                    Medii
                 </a>
             </li>
             <li>
                 <a href="#rata">
                     <span> 4.4. </span>
-                     Rata
+                    Rata
                 </a>
             </li>
             <li>
                 <a href="#fisiere">
                     <span> 4.4. </span>
-                     Fisiere
+                    Fisiere
                 </a>
             </li>
             <li>
                 <a href="#admin">
                     <span> 4.4. </span>
-                     Admin
+                    Admin
                 </a>
             </li>
             <li>
@@ -315,8 +315,7 @@
         </h2>
         <p>Partea de front end ofera un design simplu dar eficient. Are elemente de baza pentru o experienta placuta a
             utilizatorului
-            Acest site poate fi folosit atat pe un laptop/calculator, cat si pe un device mai mic avand
-            functionalitatea de responsive.</p>
+            Acest site poate fi folosit atat pe un laptop/calculator, cat si pe un device mai mic fiind responsive.</p>
         <section id="navbar">
             <h3>
                 Navbar
@@ -326,24 +325,41 @@
                 lucru,
                 iar acronimul atunci cand este pe o dimensiune mai mica.
                 <br>
-                In partea dreapta se afla 3 pictograme, una trimitand la repository al proiecutlui(pe Github),
+                In partea dreapta se afla 3 pictograme care sunt elemente de tip "li" al unei lista neordonate, una trimitand la repository al proiecutlui(pe Github),
                 una care trimite catre pagina about.html, iar ultima care trimite catre contact.php
             </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/navbar.png">
+                <figcaption>Fig. 1 Navbar</figcaption>
+            </figure>
         </section>
         <section id="first-page">
             <h3>
                 Pagina Principala
             </h3>
             <p>In aceasta pagina se afla un buton Start Now prin care se acceseaza pagina 'map.html',
-                pagina in care se regaseste harta Romaniei
+                pagina in care se regaseste harta Romaniei. Pe fundal este o imagine stilizata care reprezinta totodata tematica site-ului.
             </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/homePage.png">
+                <figcaption>Fig. 1 Navbar</figcaption>
+            </figure>
         </section>
         <section id="map">
             <h3> Harta Romaniei</h3>
             <p>
-                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3 js.
+                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3.js. 
+                Harta este generata pe baza unui fisier de tip .geojson ce contine datele geografice
+                necesare pentru a crea elementul SVG ce reprezinta harta romaniei.
+                <br>
+                Pentru proiectia coordonatelor geografice se foloseste proiectia de tip Mercator, inclusa in biblioteca D3.js.
+                Harta permite selectarea a unui singur judet sau maxim doua, in scopul de a le compara datele.
 
             </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/map.png">
+                <figcaption>Fig. 1 Harta romaniei</figcaption>
+            </figure>
         </section>
         <section id="filtrare">
             <h3> Filtre</h3>
@@ -401,6 +417,16 @@
                 <figcaption>Fig. 1 Bar Chart pe un judet</figcaption>
             </figure>
             <li>Pie Chart</li>
+            <p>
+                In partea stanga,pe axa OY, se afla legenda pie chart-ului unde se evidentiaza informatii cu privire la
+                lunile dupa care se face filtrarea.
+                Piechart-ul este construit din mai multe 'felii',fiecare felie reprezentand proportia fiecarei luni
+                raportata la coloana data de utilizator.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/pieChart2.png">
+                <figcaption>Fig. Pie Chart pe un judet</figcaption>
+            </figure>
         </section>
         <section id="export">
             <h2> Export</h2>
@@ -425,7 +451,17 @@
         </section>
         <section id="contact-page">
             <h2> Contact page</h2>
-            <p>despre contact, de scris!</p>
+            <p>Pagina de contact are un design clasic, continand un formular,fie de feedback,fie de anumite probleme ale
+                site-ului,care poate fi utilizat de un user anonim. Pentru partea de interfata am utilizat un element de
+                tip
+                "form",care contine mai multe tag-uri de tip input,acestea din urma continand informatii despre persoana
+                care
+                isi exprima o opinie despre aplicatie.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/contactPage.png">
+                <figcaption>Fig. 1 Pagina de contact</figcaption>
+            </figure>
         </section>
     </section>
     <!--front end-->
@@ -448,7 +484,61 @@
 
             <section id="pieChart">
                 <h3> Pie Chart</h3>
-                <p> despre pic</p>
+                <p> Construirea unui pie chart consta in folosirea functiei d3.pie(). Aceasta functie transforma
+                    valorile
+                    primite,prin atributul value,in raze care,ulterior, vor fi afisate pe grafic.Aceste raze sunt
+                    oferite functiei d3.arc(),
+                    aceasta functie avand rolul de a desena o 'felie' raportata la procentul fiecarei valori.
+                </p>
+                <p> Pentru legenda, am atasat svg-ului
+                    un element de tip "g",iar in interiorul acestuia am adaugat lunile specifice fiecarei valori cu
+                    ajutorul unei functii,folosindu-ma de culoarea
+                    atasata feliei respective.
+                </p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+            var pie = d3.pie()
+                .value(function (d) { return d[getColumn] })
+
+            var slices = pie(data);
+            let radius = Math.min(width, height) / 2;
+            var arc = d3.arc()
+                .innerRadius(0)
+                .outerRadius(radius - 40);
+                const margin = { top: 50, right: 40, bottom: 77, left: 250 };
+                let innerWidth = width - margin.left - margin.right;
+            // helper that returns a color based on an ID
+            var color = d3.scaleOrdinal(d3.schemeCategory20c)
+            var g = svg.append('g')
+                .attr('transform', `translate(${width / 2},${height / 1.8})`);
+
+            var arcGraph = g.selectAll('path.slice')
+                .data(slices)
+                .enter();
+            arcGraph.append('path')
+                .attr('class', 'slice')
+                .attr('d', arc)
+                .attr('fill', function (d) {
+                    return color(d.data.month);
+                });
+                        
+            arcGraph.append("text")
+                .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+
+                .attr("dy", "-0.30em")
+                .attr("dx", "-1em")
+                .text(function (d) { return d.data[getColumn] });
+            svg.append('g')
+                .attr('class', 'legend')
+                .selectAll('text')
+                .data(slices)
+                .enter()
+                .append('text')
+                
+                .text(function (d) { refturn numberToMonth(d.data.month).substring(0, 3); })
+                .attr('fill', function (d) { return color(d.data.month); })
+            </pre>
+                </figure>
             </section>
             <section id="lineChart">
                 <h3> Line Chart</h3>
@@ -580,16 +670,17 @@
         </section>
         <section id="export">
             <h3> Export</h3>
-      
-        <section id="exportCSV">
-            <h3> Export CSV</h3>
-            <p> Pentru a putea exporta in format CSV, am folosit 3 functii care ma ajut sa fac acest lucru
-                Prima functie este pentru a transforma obiectele JSON in CSV, introducand virgula, specifica acestui tip
-                de format.
 
-            </p>
-            <figure typeof="schema:SoftwareSourceCode">
-                <pre>
+            <section id="exportCSV">
+                <h3> Export CSV</h3>
+                <p> Pentru a putea exporta in format CSV, am folosit 3 functii care ma ajut sa fac acest lucru
+                    Prima functie este pentru a transforma obiectele JSON in CSV, introducand virgula, specifica acestui
+                    tip
+                    de format.
+
+                </p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
                     const objectToCsv = function(data) {
                         //get the  HEADERS
                         const csvRows = [] //array pt ca o sa am multe randuri tip csv
@@ -611,12 +702,12 @@
                     };
                 
                 </pre>
-            </figure>
-            <p> O alta metoda este cea prin care folosesc functia fetch cu care iau json-ul, iar apoi mapez datele
-                astfel incat
-                sa iau doar datele pe care utilizatorul le vrea </p>
-            <figure typeof="schema:SoftwareSourceCode">
-                <pre>
+                </figure>
+                <p> O alta metoda este cea prin care folosesc functia fetch cu care iau json-ul, iar apoi mapez datele
+                    astfel incat
+                    sa iau doar datele pe care utilizatorul le vrea </p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
                         const getReport = async function() {
 
                             console.log("urlForCsv = " + urlForCsv)
@@ -640,52 +731,122 @@
                     
                         }
                     </pre>
-            </figure>
-            <p> O alta functie folosita este aceea prin care descarc fisierul propriu zis, folosind blob.</p>
-            <figure typeof="schema:SoftwareSourceCode">
-                <pre>
-                    const download = function(data) {
-                        const blob = new Blob([data], { type: 'text/csv' }) //cu blob pot downloada
-                        const url = window.URL.createObjectURL(blob); //trimit blob catre browser.imi da posiibilitatea sa fac un url dintr-un object(csv)
-                        const a = document.createElement('a'); //a tag pt click
-                        a.setAttribute('hidden', '')
-                        a.setAttribute('href', url) //unde sa trimit 
-                        a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.csv`)
-                        document.body.appendChild(a) //inainte sa dau click
-                        a.click();
-                        document.body.removeChild(a) //dupa ce dau click
-                    }
+                </figure>
+                <p> O alta functie folosita este aceea prin care descarc fisierul propriu zis, folosind blob.</p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+                        function exportFile(data, extension, getTableName, getCountyName, getYear) {
+                            const blob = new Blob([data], { type: `text/${extension}` }) //cu blob pot downloada
+                            const url = window.URL.createObjectURL(blob); //trimit blob catre browser.imi da posiibilitatea sa fac un url dintr-un object(csv)
+                            const a = document.createElement('a'); //a tag pt click
+                            a.setAttribute('hidden', '')
+                            a.setAttribute('href', url) //unde sa trimit 
+                            a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.${extension}`)
+                            document.body.appendChild(a) //inainte sa dau click
+                            a.click();
+                            document.body.removeChild(a) //dupa ce dau click
+                        }
                 
                 </pre>
-            </figure>
-        </section>
-        <section id="exportSVG">
-            <h3> Export SVG</h3>
-            <p> export svg bla bla</p>
-        </section>
-        <section id="exportPDF">
-            <h3> Export PDF</h3>
-            <p> export PDFfffffffffffffff</p>
-        </section>
-        <section id="exportSVG">
-            <h3> Export XML</h3>
-            <p> export XMLEEEE</p>
-        </section>
-    </section>   <!--export-->
-
-        <section id="admin-panel">
-            <h3> Admin Panel</h3>
-            <p>Panoul de administrare ofera posibilitatea de a incarca noi fisiere CSV in baza de date si se pot vizualiza mesajele
-                primite de la utilizatori.</p>
-                <p> Pentru a putea accesa panul de administrator este nevoie de autentificare printr-un username si o parola.
-                    Se face o metoda de tip POST prin care se introduc datele necesare pentru atuentificare. Se folosesc parametrii dinamici pentru a preveni SQL injection.
-                    De asemenea, parola este in format hash pentru o securitate mai buna.
-                    <br>
-                    Daca username si parola au fost introduse corect, atunci administratorul este trimis pe pagina 'login_success.php', pagina in care poate incarca fisiere si poate
-                    vizualiza date. 
+                </figure>
+            </section>
+            <section id="exportSVG">
+                <h3> Export SVG</h3>
+                <p> Pentru exportul SVG-ului format in urma filtrarilor, am creat functia exportSVG(). In aceasta
+                    functie
+                    am transformat svg-ul in baza 64,apoi mi am creat un element 'a',avand ca atribute: download(am
+                    atasat numele svg-ului
+                    care o sa fie descarcat),href(am adaugat calea de unde va fi descarcat svg-ului). De asemenea, am
+                    adaugat la fiecare svg
+                    atributul xmlns pentru a converti din xml in svg.
                 </p>
                 <figure typeof="schema:SoftwareSourceCode">
                     <pre>
+                function exportSVG(getTableName, getCountyName, getYear, numarDiagrame) {
+                    let svg;
+                    if (numarDiagrame == 1)
+                        svg = document.querySelector('#diagram svg');
+                    else
+                        svg = document.querySelector('#diagram2 svg');
+                    const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
+                    const a = document.createElement('a');
+                    const e = new MouseEvent('click');
+                    a.download = `${getTableName}_${getCountyName}_${getYear}.svg`
+                    a.href = 'data:image/svg+xml;base64,' + base64doc;
+                    a.dispatchEvent(e);
+                }
+            </pre>
+                </figure>
+            </section>
+            <section id="exportPDF">
+                <h3> Export PDF</h3>
+                <p> Pentru exportarea in format PDF, mai intai obtinem datele in aceeasi maniera ca la CSV, prin 
+                    functia getReport(). Dupa aceea folosind biblioteca jsPDF, scriem datele obtinute in format text in
+                in fisierul PDF si il oferim spre download.</p>
+                <pre>
+                    export function exportPDF(urlForPdf, getTableName, getCountyName, getYear, getColumn) {
+                        const getReport = async function () {
+                            const res = await fetch(urlForPdf)
+                            const json = await res.json()
+                            const data = json.map(row => ({
+                                month: row.month,
+                                year: row.year,
+                                [getColumn]: row[getColumn]
+                            }));
+                            var doc = new jsPDF();
+                            data.forEach(function (object, i) {
+                                doc.text(20, 10 + (i * 10),
+                                    "Month: " + object.month + " " +
+                                    "Year: " + object.year + ": " + [getColumn] + ": " + object[getColumn]);
+                            });
+                            doc.save(`${getTableName}_${getCountyName}_${getYear}.pdf`);
+                        }
+                        getReport();
+                    }
+                </pre>
+            </section>
+            <section id="exportSVG">
+                <h3> Export XML</h3>
+                <p> Pentru exportarea in format XML, mai intai obtinem datele necesare cu functia getReport()
+                    Dupa aceea folosim biblioteca json2xml pentru a converti datele din formatul JSON in XML. In final,
+                    folosim functia exportFile() pentru a oferi fisierul spre download catre utilizator.
+                </p>
+                <pre>
+                    export function exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn) {
+                        const getReport = async function () {
+                            const res = await fetch(urlForXML)
+                            const json = await res.json()
+                            const data = json.map(row => ({
+                                month: row.month,
+                                year: row.year,
+                                [getColumn]: row[getColumn]
+                            }));
+                            exportFile(json2xml(json), 'xml', getTableName, getCountyName, getYear);
+                        }
+                        getReport();
+                    }
+                </pre>
+            </section>
+        </section>
+        <!--export-->
+
+        <section id="admin-panel">
+            <h3> Admin Panel</h3>
+            <p>Panoul de administrare ofera posibilitatea de a incarca noi fisiere CSV in baza de date si se pot
+                vizualiza mesajele
+                primite de la utilizatori in urma formularului de pe pagina de contact.</p>
+            <p> Pentru a putea accesa panul de administrator este nevoie de autentificare printr-un username si o
+                parola.
+                Se face o metoda de tip POST prin care se introduc datele necesare pentru atuentificare. Se folosesc
+                parametrii dinamici pentru a preveni SQL injection.
+                De asemenea, parola este in format hash pentru o securitate mai buna.
+                <br>
+                Daca username si parola au fost introduse corect, atunci administratorul este trimis pe pagina
+                'login_success.php', pagina in care poate incarca fisiere si poate
+                vizualiza date.
+            </p>
+            <figure typeof="schema:SoftwareSourceCode">
+                <pre>
                         try {
                             if (isset($_POST["login"])) {
                                 if (empty($_POST["username"]) || empty($_POST["password"])) {
@@ -714,8 +875,8 @@
                                 }
                             }
                     </pre>
-                </figure>
-           <p> odata ajuns pe</p>
+            </figure>
+            <p> odata ajuns pe</p>
             <figure typeof="schema:SoftwareSourceCode">
                 <pre>
                     session_start();
