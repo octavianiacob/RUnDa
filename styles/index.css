@@ -49,6 +49,12 @@ body {
     line-height: 1.2em;
 }
 
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 #start-btn {
     width: 200px;
     height: 60px;
@@ -88,6 +94,19 @@ button:hover {
     .start-section {
         height: 50%;
         margin-top: 100px;
+    }
+}
+
+@media screen and (min-width: 1008px) and (max-width: 1110px) {
+    .background-card img {
+        width: 500px;
+        height: 500px;
+        margin-right: 100px;
+        margin-top: 100px;
+    }
+    .start-section {
+        height: 50%;
+        margin-top: 150px;
     }
 }
 
