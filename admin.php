@@ -36,7 +36,6 @@ try {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +47,6 @@ try {
     <link rel="stylesheet" type="text/css" href="styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="styles/admin.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <!--<script src="/scripts/main.js"></script> -->
 </head>
 
 <body class="body">
@@ -62,7 +60,8 @@ try {
             <div class="nav-links">
                 <ul class="nav-list">
                     <li>
-                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png" alt="GitHub link"></a>
+                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png"
+                                alt="GitHub link"></a>
                     </li>
                     <li>
                         <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
@@ -80,27 +79,34 @@ try {
     }
     ?>
 
-    <section class="login">
-        <div class="login-container">
-            <form class="login-form" method="post">
+    <section class="banner">
+        <div class="background-card">
+            <section class="login">
+                <div class="login-container">
+                    <form class="login-form" method="post">
 
-                <div class="input-container">
-                    <label>Username</label>
-                    <input class="form-control" type="text" name="username" placeholder="Username">
+                        <div class="input-container">
+                            <label>Username</label>
+                            <input class="form-control" type="text" name="username" placeholder="Username">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="password">Password</label>
+                            <input class="form-control" name="password" type="password"
+                                placeholder="******************">
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <input class="btn-info" type="submit" name="login" value="Sign In" />
+                        </div>
+
+                    </form>
                 </div>
-
-                <div class="input-container">
-                    <label for="password">Password</label>
-                    <input class="form-control" name="password" type="password" placeholder="******************">
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <input class="btn-info" type="submit" name="login" value="Sign In" />
-                </div>
-
-            </form>
+            </section>
         </div>
     </section>
+
+
 
 </body>
 
