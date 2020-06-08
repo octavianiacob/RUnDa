@@ -1,6 +1,6 @@
 <?php
 require_once "./config/Database.php";
-
+require_once "conversionMonth.php";
 $db = new Database();
 $query = "select contact.firstname,contact.lastname,contact.email,contact.phone,contact.message from contact";
 $statament = $db->getPDO()->query($query);
@@ -25,18 +25,15 @@ if (isset($_SESSION["username"])) {
             $value = $_FILES['file']['name'];
             $query = "SELECT count(*)  from fisiere WHERE filename = '$value'    ";
             $result = mysqli_query($connect, $query);
-            if (mysqli_result($result, 0) === '0') {
-                echo mysqli_result($result, 0);
-
-                $query = " INSERT INTO fisiere (filename) VALUES ('$value')";
-                mysqli_query($connect, $query);
+            if (mysqli_result($result, 0) === '0') { 
 
                 $filename = explode(".", $_FILES['file']['name']);
                 if ($filename[1] == 'csv') {
+                    $query = " INSERT INTO fisiere (filename) VALUES ('$value')";
+                mysqli_query($connect, $query);
                     $handle = fopen($_FILES['file']['tmp_name'], "r");
                     $file_name_and_extenstions = explode("_", $filename[0]);
 
-                    echo $file_name_and_extenstions[0] . " " . $file_name_and_extenstions[1] . " " . $file_name_and_extenstions[2];
                     $contor = 0;
 
                     while ($data = fgetcsv($handle)) {
@@ -55,45 +52,8 @@ if (isset($_SESSION["username"])) {
                             $item9 = mysqli_real_escape_string($connect, $data[9]);
                         if ($contor == 44)
                             break;
-                        $month = "";
-                        switch ($file_name_and_extenstions[0]) {
-                            case "ianuarie":
-                                $month = 1;
-                                break;
-                            case "februarie":
-                                $month = 2;
-                                break;
-                            case "martie":
-                                $month = 3;
-                                break;
-                            case "aprilie":
-                                $month = 4;
-                                break;
-                            case "mai":
-                                $month = 5;
-                                break;
-                            case "iunie":
-                                $month = 6;
-                                break;
-                            case "iulie":
-                                $month = 7;
-                                break;
-                            case "august":
-                                $month = 8;
-                                break;
-                            case "septembrie":
-                                $month = 9;
-                                break;
-                            case "octombrie":
-                                $month = 10;
-                                break;
-                            case "noiembrie":
-                                $month = 11;
-                                break;
-                            case "decembrie":
-                                $month = 12;
-                                break;
-                        }
+                        $month=conversionMonth::convertMonthToNumber($file_name_and_extenstions[0]);
+
                         //if pentru varste
                         if ($file_name_and_extenstions[2] === "varste") {
                             $query = "INSERT into varste (judet, id_judet, month, year, total_someri, sub_25_ani, 25_29_ani, 30_39_ani, 40_49_ani, 50_55_ani, peste_55_ani) 
@@ -130,9 +90,13 @@ if (isset($_SESSION["username"])) {
                         }
                     }
                     fclose($handle);
+                    echo "<script>alert('Import done');</script>";
                 }
-                echo "<script>alert('Import done');</script>";
+                else
+                    echo "<script>alert('You need to upload .csv file');</script>";
+                
             }
+            else echo "<script>alert('The file already exists');</script>";
         }
     }
 } else {
@@ -191,11 +155,11 @@ if (isset($_POST['logout'])) {
                     <label>Select CSV File:</label>
                     <input class="" type="file" name="file" />
                     <input id="import-btn" type="submit" name="submit" value="Import" class="btn" />
-
+                    </form>
                     <form action="login_success.php" method="post" style="text-align:center;">
                         <input id="logout-btn" class="btn" type='submit' value="Logout" name='logout' />
                     </form>
-                </form>
+                
             </div>
 
             <div class="table-container">

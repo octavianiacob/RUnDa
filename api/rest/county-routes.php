@@ -86,20 +86,20 @@ function getCounty($req)
                 switch ($array_filtred_by[$i]) {
                     case "educatie":
                         global $educatie;
-                        $array_result_educatie = $educatie->selectOneCounty($req['params']['county'], $req['query']); //apelam metoda din fiecare clasa cu parametrii dati,respectiv queryparams
+                        $array_result_educatie = $educatie->selectOneCounty($req['params']['county'], $req['query'],"educatie"); //apelam metoda din fiecare clasa cu parametrii dati,respectiv queryparams
                         break;
                     case "medii":
                         global $medii;
-                        $array_result_medii = $medii->selectOneCounty($req['params']['county'], $req['query']);
+                        $array_result_medii = $medii->selectOneCounty($req['params']['county'], $req['query'],"medii");
 
                         break;
                     case "rata":
                         global $rata;
-                        $array_result_rata = $rata->selectOneCounty($req['params']['county'], $req['query']);
+                        $array_result_rata = $rata->selectOneCounty($req['params']['county'], $req['query'],"rata");
                         break;
                     case "varste":
                         global $varste;
-                        $array_result_varsta = $varste->selectOneCounty($req['params']['county'], $req['query']);
+                        $array_result_varsta = $varste->selectOneCounty($req['params']['county'], $req['query'],"varste");
                         break;
                     default: // daca se afla un nume care nu corespunde cu cazurile tratate vom returna 400
                         return Response::status(400);
