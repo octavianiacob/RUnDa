@@ -37,15 +37,7 @@
                     Harta Romaniei
                 </a>
 
-                <ol role="directory">
-                    <li>
-                        <a href="#selectCounty">
-                            <span> 3.1. </span>
-                            Selectare Judet
-                        </a>
-
-                    </li>
-                </ol>
+               
             </li>
 
             <li>
@@ -96,22 +88,22 @@
                         <ol role="directory">
 
                             <li>
-                                <a href="#pieChart">
+                                <a href="#lineChart">
                                     <span> 4.2.1. </span>
-                                    Pie Chart
+                                    Line Chart
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#lineChart">
+                                <a href="#barChart">
                                     <span> 4.2.2. </span>
-                                    Line Chart
+                                    Bar Chart
                                 </a>
                             </li>
                             <li>
-                                <a href="#barChart">
+                                <a href="#pieChart">
                                     <span> 4.2.3. </span>
-                                    Bar Chart
+                                    Pie Chart
                                 </a>
                             </li>
                         </ol>
@@ -182,7 +174,7 @@
 
         <figure typeof="sa:image">
             <img src="../images/documentatie/navbar.png">
-            <figcaption>Fig. 1 Navbar</figcaption>
+            <figcaption>Fig. Navbar</figcaption>
         </figure>
     </section>    
 
@@ -193,12 +185,113 @@
         </p>
         <figure typeof="sa:image">
             <img src="../images/documentatie/homePage.PNG">
-            <figcaption>Fig. 1 Pagina principala</figcaption>
+            <figcaption>Fig. Pagina principala</figcaption>
         </figure>
     </section>
     <section id="map">
         <h2> Harta Romaniei</h2>
-        <p> In aceasta pagina veti gasi Harta Romaniei. </p>
+        <p> In aceasta pagina veti gasi Harta Romaniei. Aveti posibilitatea de a selecta fie un judet,fie doua judete
+            si de asemenea, le puteti deselecta apasand din nou pe judetul selectat.In stanga sus puteti apasa 
+        pe butonul de back,avand ca efect redirectionarea pe pagina principala,sau pe butonul de next,care se afla in dreapta sus
+    ,acesta avand menirea de a va retrimite cate pagina ajax.html,cea cu statisticile. </p>
+    <figure typeof="sa:image">
+        <img src="../images/documentatie/map1.png">
+        <figcaption>Fig. Harta Romaniei</figcaption>
+    </figure>
+    </section>
+    <section id="statistici">
+        <h2> Statistici</h2>
+        <p>
+            Avand judetele deja selectate, puteti genera diagrame,dupa mai multe filtrari.
+        </p>
+        <section id="filters">
+            <h3> Filtrare</h3>
+            <p>
+                Filtrarea contine 3 categorii dupa cum urmeaza:
+            </p>
+            <section id="table">
+                <h3> Tabel</h3>
+                <p>
+                    Aveti posibilitatea de a selecta un camp din cele 4 expuse,acestea din urma fiind:"Education","Age",
+                    "Rate","Location".
+                </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/filterTabel.PNG">
+                    <figcaption>Filtrare dupa tabel</figcaption>
+                </figure>
+            </section>
+            <section id="year">
+                <h3>An</h3>
+                <p>
+                   Ulterior,puteti selecta campul year din cele 2 evidentiate:fie campul 2019,fie 2020.
+                </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/filterYear.PNG">
+                    <figcaption>Filtrare dupa an</figcaption>
+                </figure>
+            </section>
+            <section id="category">
+                <h3> Categorie</h3>
+                <p>
+                Dupa ce ati selectat campul tabelului corespunzator, in partea dreapta a filtrarilor va aparea o coloana cu categoriile specifice 
+                fiecarui tabel. Trebuie sa bifati o categorie pentru a face urmatorul pas.
+                </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/filterCategory.PNG">
+                    <figcaption>Filtrare dupa categorie</figcaption>
+                </figure>
+            </section>
+        </section>
+        <section id="diagrams">
+            <h3> Diagrame</h3>
+            <p>
+           Avand criteriile bifate,urmatorul pas este de a selecta tipul chart-ului apasand pe iconita corespunzatoare.Sunt 3 tipuri de chart-uri, 
+           fiecare avand o menire simbolica,dupa cum urmeaza:
+            </p>
+            <section id="lineChart">
+                <h3> Line Chart</h3>
+            <p>
+                Tipul Line Chart este reprezentat de iconita: 
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/lineChart3.PNG">
+                <figcaption>Iconita-Line Chart</figcaption>
+            </figure>
+      
+            <p> Acest tip de chart are rolul de a evidentia evolutia pe o perioada de timp specifica in urma selectiei date. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/lineChart1.PNG">
+                <figcaption>Line Chart</figcaption>
+            </figure>
+        </section>
+        <section id="barChart">
+            <h3> Bar Chart</h3>
+            <p> Tipul Bar Chart este reprezentat de iconita:</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/barChart3.PNG">
+                <figcaption>Iconita-Bar Chart</figcaption>
+            </figure>
+            <p> Tipul anterior de Chart valorifica comparatia intre luni corespunzatoare fiecarei valori.</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/barChart1.PNG">
+                <figcaption>Bar Chart</figcaption>
+            </figure>
+        </section>
+        <section id="pieChart">
+            <h3> Pie Chart</h3>
+            <p> Tipul Pie Chart este reprezentat de iconita:</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/pieChart3.PNG">
+                <figcaption>Iconita-Pie Chart</figcaption>
+            </figure>
+            <p> Ultimul tip de Chart evidentiaza proportia fiecarei luni raportata valorii categoriei date.</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/pieChart1.PNG">
+                <figcaption>Pie Chart</figcaption>
+            </figure>
+        </section>
+
+        </section>
     </section>
 </body>
 
