@@ -1,5 +1,5 @@
 <?php
-
+require_once "conversionMonth.php";
 $mydir = 'C:/Users/ichim/Desktop/somaj';
 $myfiles = scandir($mydir);
 
@@ -60,45 +60,8 @@ foreach ($myfiles as $value) {
 
             if ($contor == 44)
                 break;
-            $month = "";
-            switch ($file_name_and_extenstions[0]) {
-                case "ianuarie":
-                    $month = 1;
-                    break;
-                case "februarie":
-                    $month = 2;
-                    break;
-                case "martie":
-                    $month = 3;
-                    break;
-                case "aprilie":
-                    $month = 4;
-                    break;
-                case "mai":
-                    $month = 5;
-                    break;
-                case "iunie":
-                    $month = 6;
-                    break;
-                case "iulie":
-                    $month = 7;
-                    break;
-                case "august":
-                    $month = 8;
-                    break;
-                case "septembrie":
-                    $month = 9;
-                    break;
-                case "octombrie":
-                    $month = 10;
-                    break;
-                case "noiembrie":
-                    $month = 11;
-                    break;
-                case "decembrie":
-                    $month = 12;
-                    break;
-            }
+            $month=conversionMonth::convertMonthToNumber($file_name_and_extenstions[0]);
+           
             //if pentru varste
             if ($file_name_and_extenstions[2] === "varste.csv") {
                 $query = "INSERT into varste (judet, id_judet, month, year, total_someri, sub_25_ani, 25_29_ani, 30_39_ani, 40_49_ani, 50_55_ani, peste_55_ani) 
