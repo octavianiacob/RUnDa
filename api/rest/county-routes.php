@@ -53,7 +53,7 @@ function getCounties($req)
                     $array_result_varsta = $varste->SelectAllVarste();
                     break;
                 default:
-                    Response::status(404);
+                    Response::status(400);
                     break;
             }
         Response::status(200);
@@ -65,28 +65,28 @@ function getCounties($req)
 function getCounty($req)
 {
 
-
-    // req['payload']
-
-    // DB GET $req['params']['teamId'];
     global $orase;
+    //
+    // Daca nu exista valoarea cheii county in baza de date returneaza 400
     if ($orase->selectOneCounty($req['params']['county']) === 0) {
         Response::status(400);
-    } else 
+    } else // daca nu exista cheia filtered_by in url voi da 400
         if (array_key_exists('filtered_by', $req['query']) == false)
         Response::status(400);
     else {
-        if ($req['query']['filtered_by']) {
-            $array_filtred_by = explode(",", $req['query']['filtered_by']);
+        if ($req['query']['filtered_by']) { //daca avem cheia filtered by in query param
+            $array_filtred_by = explode(",", $req['query']['filtered_by']); //facem split dupa virgula
+            //initializam 4 array-uri cate unul pentru fiecare model
             $array_result_educatie = [];
             $array_result_medii = [];
             $array_result_rata = [];
             $array_result_varsta = [];
+            //parcurgem fiecare tabel dat si stocam in array-urile definite mai sus doar  datele din tabelele educatie,medii,rata,varste
             for ($i = 0; $i < count($array_filtred_by); $i++)
                 switch ($array_filtred_by[$i]) {
                     case "educatie":
                         global $educatie;
-                        $array_result_educatie = $educatie->selectOneCounty($req['params']['county'], $req['query']);
+                        $array_result_educatie = $educatie->selectOneCounty($req['params']['county'], $req['query']); //apelam metoda din fiecare clasa cu parametrii dati,respectiv queryparams
                         break;
                     case "medii":
                         global $medii;
@@ -101,21 +101,21 @@ function getCounty($req)
                         global $varste;
                         $array_result_varsta = $varste->selectOneCounty($req['params']['county'], $req['query']);
                         break;
-                    default:
+                    default: // daca se afla un nume care nu corespunde cu cazurile tratate vom returna 400
                         return Response::status(400);
                         break;
                 }
-
+                // daca toate array urile sunt goale vom returna 400
             if (empty($array_result_educatie) and empty($array_result_medii) and empty($array_result_rata) and empty($array_result_varsta))
                 Response::status(400);
-            else
+            else // daca un array are valoarea -1, reprezentand eroare in urma interogarilor facute vom returna 400
             if ($array_result_educatie === -1 || $array_result_medii === -1 || $array_result_rata === -1 || $array_result_varsta === -1)
                 Response::status(400);
-            else {
+            else { //altfel dau statusul 200 impreuna cu jsonul rezultat in urma combinarii celor 4 array-uri
                 Response::status(200);
                 Response::json(array_merge_recursive($array_result_educatie, $array_result_medii, $array_result_rata, $array_result_varsta));
             }
         } else
-            Response::status(400);
+            Response::status(400); //returnez 400 daca nu avem ca si queryparam filter_by
     }
 }
