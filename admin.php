@@ -67,7 +67,7 @@ try {
                         <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
                     </li>
                     <li>
-                        <a href="./contact.html"><img src="/RUnDa/images/squareicon.png" alt="Contact Page"></a>
+                        <a href="./contact.php"><img src="/RUnDa/images/squareicon.png" alt="Contact Page"></a>
                     </li>
                 </ul>
             </div>

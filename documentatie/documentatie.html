@@ -157,7 +157,7 @@
                 </a>
 
                 <ol role="directory">
-                   
+
                     <li>
                         <a href="#generate-chart">
                             <span> 3.2. </span>
@@ -224,7 +224,7 @@
                         </a>
                     </li>
 
-                    
+
 
                 </ol>
             </li>
@@ -315,7 +315,8 @@
                 lucru,
                 iar acronimul atunci cand este pe o dimensiune mai mica.
                 <br>
-                In partea dreapta se afla 3 pictograme care sunt elemente de tip "li" al unei lista neordonate, una trimitand la repository al proiecutlui(pe Github),
+                In partea dreapta se afla 3 pictograme care sunt elemente de tip "li" al unei lista neordonate, una
+                trimitand la repository al proiecutlui(pe Github),
                 una care trimite catre pagina about.html, iar ultima care trimite catre contact.php
             </p>
             <figure typeof="sa:image">
@@ -328,7 +329,8 @@
                 Pagina Principala
             </h3>
             <p>In aceasta pagina se afla un buton Start Now prin care se acceseaza pagina 'map.html',
-                pagina in care se regaseste harta Romaniei. Pe fundal este o imagine stilizata care reprezinta totodata tematica site-ului.
+                pagina in care se regaseste harta Romaniei. Pe fundal este o imagine stilizata care reprezinta totodata
+                tematica site-ului.
             </p>
             <figure typeof="sa:image">
                 <img src="../images/documentatie/homePage.png">
@@ -338,11 +340,12 @@
         <section id="map">
             <h3> Harta Romaniei</h3>
             <p>
-                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3.js. 
+                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3.js.
                 Harta este generata pe baza unui fisier de tip .geojson ce contine datele geografice
                 necesare pentru a crea elementul SVG ce reprezinta harta romaniei.
                 <br>
-                Pentru proiectia coordonatelor geografice se foloseste proiectia de tip Mercator, inclusa in biblioteca D3.js.
+                Pentru proiectia coordonatelor geografice se foloseste proiectia de tip Mercator, inclusa in biblioteca
+                D3.js.
                 Harta permite selectarea a unui singur judet sau maxim doua, in scopul de a le compara datele.
 
             </p>
@@ -770,9 +773,9 @@
             </section>
             <section id="exportPDF">
                 <h3> Export PDF</h3>
-                <p> Pentru exportarea in format PDF, mai intai obtinem datele in aceeasi maniera ca la CSV, prin 
+                <p> Pentru exportarea in format PDF, mai intai obtinem datele in aceeasi maniera ca la CSV, prin
                     functia getReport(). Dupa aceea folosind biblioteca jsPDF, scriem datele obtinute in format text in
-                in fisierul PDF si il oferim spre download.</p>
+                    in fisierul PDF si il oferim spre download.</p>
                 <pre>
                     export function exportPDF(urlForPdf, getTableName, getCountyName, getYear, getColumn) {
                         const getReport = async function () {
@@ -898,7 +901,129 @@
 
     </section>
     <!--back end-->
+    <section id="database">
+        <h2>Baza de date</h2>
+        <p> Baza de date este una locala in care se regasesc toate informatiile pentru site-ul nostru.
+        </p>
+        <section id="judete">
+            <h2>Judetele Romaniei</h2>
+            <p>Am ales sa includem o tabela si cu judetele Romaniei deoarece am vrut sa ne asiguram ca judetel sunt scrie in mod corect. De exemplu, o confuzie
+                care se face foarte des este in legatura cu judetul Bistrita Nasaud. Foarta multa lume numeste judetul Bistrita, ceea ce e incorect, iar noi am venit cu o solutie
+                pentru aceasta problema. 
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureCountyTable.png">
+                <figcaption>Fig.  Structura Tabelei Judete</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoCountyTable.PNG">
+                <figcaption>Fig.  Informatii despre tabela Judet</figcaption>
+            </figure>
+        </section>
+        
+        <section id="educatie">
+            <h2>Educatie</h2>
+        <p> In aceasta tabela gasim informatii despre educatie. Datele necesare din acest tabel vor fi transmise printr-un json
+            catre diagrama, urmand ca acestea sa se concretizeze.
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureEducationTable.PNG">
+                <figcaption>Fig. Structura Tabelei Educatie</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoEducationTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Educatie</figcaption>
+            </figure>
+         </p>
+        </section>
+        <section id="varste">
+            <h2>Varste</h2>
+        <p> Tabela contine informatii despre varste.</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureVarsteTable.PNG">
+                <figcaption>Fig. Structura Tabelei Varste</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoVarsteTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Varste</figcaption>
+            </figure>
+         </p>
+        </section>
+        <section id="medii">
+            <h2>Medii</h2>
+        <p> In aceasta tabela sunt informatii despre tipruile de medii din Romania(ex. urban, rural etc)</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureMediiTable.PNG">
+                <figcaption>Fig. Structura Tabelei Medii</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoMediiTable.PNG">
+                <figcaption>Fig.Informatii despre tabela Medii</figcaption>
+            </figure>
+         </p>
+        </section>
 
+        <section id="rata">
+            <h2>Rata</h2>
+        <p>Tabela contine informatii despre rata somajului. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureRataTable.PNG">
+                <figcaption>Fig. Structura Tabelei Rata</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoRataTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Rata</figcaption>
+            </figure>
+         </p>
+        </section>
+
+        <section id="fisiere">
+            <h2>Fisiere</h2>
+        <p>In aceasta tabela se introduc numele fisierelor care au introduse pentru
+            a putea valida ulterior daca fisierul a fost sau nu introdus anterior. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureFisiereTable.PNG">
+                <figcaption>Fig. Structura Tabelei Fisiere</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoFisiereTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Fisiere</figcaption>
+            </figure>
+         </p>
+        </section>
+
+
+        <section id="admin">
+            <h2>Admin</h2>
+        <p>In aceasta tabela avem stocat username si parola(in hash) pentru admin. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureAdminTable.PNG">
+                <figcaption>Fig. Structura Tabelei Admin</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoAdminTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Admin</figcaption>
+            </figure>
+         </p>
+        </section>
+
+
+        <section id="contact">
+            <h2>Contact</h2>
+        <p>In aceasta tabela stocam informatiile pe care le primim de la utilizator prin intermediul 
+            paginii specifice, in care ne pot scrie mesaje, sugestii, observatii. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureContactTable.PNG">
+                <figcaption>Fig. Structura Tabelei Contact</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/contactInfoTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Contact</figcaption>
+            </figure>
+         </p>
+        </section>
+    </section> <!--dataBase-->
+
+   
 </body>
 
 </html>
