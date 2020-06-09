@@ -26,13 +26,14 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
       let { width, height } = props
       if (width < 500)//fac scroll aici pe diagrama
         width = 700
-      let svg = container.selectAll('svg').data([null])
-      svg = svg.enter().append('svg')
+
+      let svg = container.selectAll('svg').data([null])//selectez svg-ul
+      svg = svg.enter().append('svg')//il formatez in functie de width si height la care a ajuns
         .merge(svg)
         .attr('width', width)
         .attr('height', height)
         .attr('version', "1.1")
-        .attr('xmlns', "http://www.w3.org/2000/svg")
+        .attr('xmlns', "http://www.w3.org/2000/svg")// pt svg
 
       const title = `${getTableName.charAt(0).toLocaleUpperCase() + getTableName.slice(1)} 
                        ${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
@@ -48,8 +49,8 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
       const innerWidth = width - margin.left - margin.right;
       const innerHeight = height - margin.top - margin.bottom;
 
-      const xScale = scaleBand()
-        .domain(data.map(xValue))//d inseamna 1 row
+      const xScale = scaleBand()//scalez cu scaleBand ca sa scalez in functie de o anumita categorie, in cazul meu luna
+        .domain(data.map(xValue))//d inseamna 1 row(de   la linia 41)
         .range([0, innerWidth])
 
 
@@ -62,7 +63,7 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
 
 
       const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        .attr('transform', `translate(${margin.left},${margin.top})`);//ca sa pun axa verticala in partea stanga
 
       const xAxis = axisBottom(xScale)
         .tickSize(-innerHeight)
@@ -75,7 +76,7 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
 
 
       const yAxisG = g.append('g').call(yAxis);
-      yAxisG.selectAll('.domain').remove()
+      yAxisG.selectAll('.domain').remove()//sterg liniile care marcheaza locul de unde pleaca valoarea
         .attr('transform', `translate(500,${margin.top})`);
 
       yAxisG.append('text')
@@ -84,36 +85,37 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
         .attr('x', -innerHeight / 2)
         .style('fill', '#8E8883')
         .style('font-size', '2.5em')
-        .attr('transform', `rotate(-90)`)
+        .attr('transform', `rotate(-90)`)//sa fie la 90 grade fata de modul obisnuit de citire
         .attr('text-anchor', 'middle')
         .text(yAxisLabel.replace('_', ' ').replace('_', ' '));
 
       const xAxisG = g.append('g').call(xAxis)
-        .attr('transform', `translate(0,${innerHeight})`);
+        .attr('transform', `translate(0,${innerHeight})`);//ca sa pun axa orizontala jos
 
-      xAxisG.select('.domain').remove();
+      xAxisG.select('.domain').remove();//sterg liniile care marcheaza locul de unde pleaca valoarea
+
 
       xAxisG.append('text')
         .attr('class', 'axis-label')
         .attr('y', 80)
         .attr('x', innerWidth / 2)
         .attr('fill', 'black')
-        .text(xAxisLabel.replace('_', ' ').replace('_', ' '));
+        .text(xAxisLabel.replace('_', ' ').replace('_', ' '));//scot _ din numele coloanei
 
-      const lineGenerator = line()
-        .x(d => xScale(xValue(d)))
+      const lineGenerator = line()//line e importata din d3
+        .x(d => xScale(xValue(d)))//returneaza pixel coordinates
         .y(d => yScale(yValue(d)))
         .curve(curveBasis)
 
 
       g.append('path')
         .attr('class', 'line-path')
-        .attr('d', lineGenerator(data))
+        .attr('d', lineGenerator(data))//apelez functia de mai sus ca sa-mi puna efectiv linia unde vreau eu
         //styles pentru cum sa arate linia
-        .style('fill', "none")
+        .style('fill', "none")//scot excesul de culoare din linie
         .style('stroke', "#137B80")
         .style('stroke-width', '4')
-        .style('stroke-linejoin', 'round')
+        .style('stroke-linejoin', 'round')//sa-i faca colturile mai putin ascutite
         .style('stroke-linecap', 'round')
 
 

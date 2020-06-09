@@ -2,27 +2,27 @@
 session_start();
 require_once "./config/Database.php";
 
-$connectDB = new Database();
+$connectDB = new Database();//fac conexiunea cu baza de date
 
 try {
-    if (isset($_POST["login"])) {
-        if (empty($_POST["username"]) || empty($_POST["password"])) {
+    if (isset($_POST["login"])) {//verific daca s-a apasat pe login
+        if (empty($_POST["username"]) || empty($_POST["password"])) {//daca unul din campuri nu e completat
             $message = '<label>All fields are required</label>';
         } else {
             $query = "SELECT password FROM users WHERE username = :username ";
-            $statement = $connectDB->getPDO()->prepare($query);
-            $statement->execute(
+            $statement = $connectDB->getPDO()->prepare($query);//pregatesc sa rulez instructiunea
+            $statement->execute(//execut instructiunea folosind doar username. pass e mai jos(pt ca o hashuiesc)
                 array(
-                    'username'     =>     $_POST["username"]
+                    'username'     =>     $_POST["username"]//cheie=valoare
                 )
             );
-            $count = $statement->rowCount();
+            $count = $statement->rowCount();//vreau sa vad cate inregistrari au fost facute executand instructiunea
             if ($count > 0) {
-                $result = $statement->fetch(PDO::FETCH_ASSOC);
-                if (password_verify($_POST['password'], $result['password'])) {
+                $result = $statement->fetch(PDO::FETCH_ASSOC);//returneaza resultatul ca un array asociativ
+                if (password_verify($_POST['password'], $result['password'])) {//daca parola din hash face match cu parola clasica
 
-                    $_SESSION["username"] = $_POST["username"];
-                    header("location:login_success.php");  //aici tre sa vad
+                    $_SESSION["username"] = $_POST["username"]; 
+                    header("location:login_success.php");  //userul va fi redirectionat catre login_success
                 } else {
                     $message = '<label>Wrong Data</label>';
                 }
