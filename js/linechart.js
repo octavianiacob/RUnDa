@@ -120,7 +120,7 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
       g.append('text')
         .attr('class', 'title')
         .attr('y', -10)
-        .style('font-size', '2em')
+        .style('font-size', '1em')
         .style('font-family', 'sans-serif')
 
         .text(title);
