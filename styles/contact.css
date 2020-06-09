@@ -1,0 +1,126 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* Contact Form */
+
+.contact-form h1 {
+    margin-top: 0;
+    font-size: 3.125rem;
+    margin-bottom: 1rem;
+}
+
+.contact-form h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-form {
+    margin: auto;
+    max-width: 50%;
+    background: #f1f1f1;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    background-color: #F6F8FF;
+    border: 2px solid rgba(23, 66, 85, 0.2);
+    border-radius: 15px;
+    padding:30px 40px;
+    text-align:center;
+}
+
+.label-input {
+    border: 2px solid rgba(23, 66, 85, 0.2);
+    border-radius: 1rem;
+    margin: 8px 0;
+    padding: 12px 18px;
+    border-radius: 8px;
+}
+
+.label-input label {
+    display: block;
+    text-align: left;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+}
+
+.label-input input,
+.label-input textarea {
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 1.125rem;
+    margin-top: 6px;
+}
+
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 10px;
+}
+
+.btn-submit button {
+    width: 200px;
+    height: 60px;
+    background-color: #FFE200;
+    text-decoration: none;
+    border-radius: 100px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #174255;
+    border: #174255;
+    margin-top: 30px;
+}
+
+@media (min-width: 320px) and (max-width: 650px) {
+    .contact-form {
+        max-width: 70%;
+    }
+}
+
+
+/*@media (min-width: 360px) and (max-width: 500px)
+{
+    .contact-form{
+        max-width:220px;
+        width:100%;
+        margin-top:100px;
+        margin-bottom:50px;
+    
+    }
+}
+@media (min-width: 501px) and (max-width: 750px)
+{
+    .contact-form{
+        margin-top:200px;
+        margin-bottom:100px;
+        max-width:380px;
+        width:100%;
+    }
+}
+@media (min-width: 751px) and (max-width: 1024px)
+{
+
+    .contact-form{
+        width:85%;
+    
+    
+    }
+  
+}
+*/

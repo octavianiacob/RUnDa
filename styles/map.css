@@ -1,0 +1,101 @@
+html {
+    height: 100%;
+}
+
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    height: 100%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+
+
+/* Banner */
+
+.banner {
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.background-card {
+    background: #FFF;
+    min-height: 100vh;
+    box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#map {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+    margin-top: 100px;
+}
+
+svg {
+    width: 60%;
+    height: auto;
+}
+
+.nav-btns p {
+    font-family: 'Roboto';
+    font-size: 25px;
+    color: #174255;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.nav-btns {
+    width: 100%;
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.nav-btns img {
+    float: right;
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1440px) {
+    svg {
+        width: 85%;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 1px) and (max-width: 699px) {
+    svg {
+        width: 95%;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 1px) and (max-width: 500px) {
+    .nav-btns img {
+        float: right;
+        margin: 10px;
+        width: 30px;
+        height: 30px;
+    }
+    .nav-btns p {
+        font-family: 'Roboto';
+        font-size: 16px;
+        color: #174255;
+        margin-top: 60px;
+    }
+}

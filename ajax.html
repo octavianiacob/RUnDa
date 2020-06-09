@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
+    <link href="./styles/ajax.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="pagina-home">
+                <a id="logo" href="." rel="home"><span class="full-text">Romanian Unemployment Data Visualizer</span>
+                    <span class="short-text">RUnDa</span></a>
+            </div>
+            <div class="nav-links">
+                <ul class="nav-list">
+                    <li>
+                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png"
+                                alt="GitHub link"></a>
+                    </li>
+                    <li>
+                        <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
+                    </li>
+                    <li>
+                        <a href="./contact.php"><img src="/RUnDa/images/squareicon.png" alt="Contact Page"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="background-card">
+            <section id="controls">
+                <div id="filters-container">
+                    <p>Data Filters</p>
+
+                    <div class="filters">
+
+                        <div class="primary-filters filter-column">
+                            <p>Category</p>
+                            <label>
+                                <input required type="radio" data-getTableName="educatie" name="table">
+                                <span> Education</span>
+                            </label>
+
+                            <label>
+                                <input required type="radio" data-getTableName="varste" name="table">
+                                <span> Age</span>
+                            </label>
+
+                            <label>
+                                <input required type="radio" data-getTableName="rata" name="table">
+                                <span> Rate</span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getTableName="medii" name="table">
+                                <span> Location</span>
+                            </label>
+                        </div>
+
+                        <div class="time-filters filter-column">
+                            <p>Year</p>
+                            <label>
+                                <input id="forta" required type="radio" data-getYear="2019" name="year">
+                                <span> 2019</span>
+                            </label>
+
+                            <label>
+                                <input required type="radio" data-getYear="2020" name="year">
+                                <span> 2020 </span>
+                            </label>
+                        </div>
+
+                        <div class="clasaEducatie filter-column" style="display:none;">
+                            <p>Education level</p>
+                            <label>
+                                <input required type="radio" data-getColumn="total_someri" name="column">
+                                <span> All education levels</span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="fara_studii" name="column">
+                                <span> No studies</span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="primar" name="column">
+                                <span> Elementary school</span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="gimnazial" name="column">
+                                <span> Middle school </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="liceal" name="column">
+                                <span> High school</span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="postliceal" name="column">
+                                <span> Post-High school</span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="profesional_arte_meserii" name="column">
+                                <span> Professional higher education </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="universitar" name="column">
+                                <span> University</span>
+                            </label>
+                        </div>
+
+                        <div class="clasaVarste filter-column" style="display:none">
+                            <p>Age interval</p>
+                            <label>
+                                <input required type="radio" data-getColumn="total_someri" name="column">
+                                <span> All ages </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="sub_25_ani" name="column">
+                                <span> Under 25 years </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="25_29_ani" name="column">
+                                <span> 25 - 29 years </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="30_39_ani" name="column">
+                                <span> 30 - 39 years </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="40_49_ani" name="column">
+                                <span> 40 - 49 years </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="50_55_ani" name="column">
+                                <span> 50 - 55 years </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="peste_55_ani" name="column">
+                                <span> Over 55 years </span>
+                            </label>
+
+                        </div>
+
+                        <div class="clasaRata filter-column" style="display:none">
+                            <p>Rate</p>
+                            <label>
+                                <input required type="radio" data-getColumn="total_someri" name="column">
+                                <span> All categories </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_femei" name="column">
+                                <span> Unemployed women </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_barbati" name="column">
+                                <span> Unemployed men </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_indemnizati" name="column">
+                                <span> Unemployed with insurance claim </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_neindemnizati" name="column">
+                                <span> Unemployed without insurance claim </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="rata_somaj" name="column">
+                                <span> Unemployment rate </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="rata_somaj_femei" name="column">
+                                <span> Unemployment women rate </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="rata_somaj_barbati" name="column">
+                                <span> Unemployment men rate </span>
+                            </label>
+                        </div>
+
+                        <div class="clasaMedii filter-column" style="display:none">
+                            <p>Location</p>
+                            <label>
+                                <input required type="radio" data-getColumn="total_someri" name="column">
+                                <span> All locations </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_femei" name="column">
+                                <span> Women </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_barbati" name="column">
+                                <span> Men </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_urban" name="column">
+                                <span> All - Urban areas </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="femei_urban" name="column">
+                                <span> Women - Urban areas </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="barbati_urban" name="column">
+                                <span> Men - Urban areas </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="someri_rural" name="column">
+                                <span> All - Rural areas </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="femei_rural" name="column">
+                                <span> Women - Rural areas </span>
+                            </label>
+                            <label>
+                                <input required type="radio" data-getColumn="barbati_rural" name="column">
+                                <span> Men - Rural areas </span>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="options-container">
+                    <p>Options</p>
+                    <div id="display-options">
+                        <img src="/RUnDa/images/linechart.png" alt="lineChart" id="lineChartBtn">
+                        <img src="/RUnDa/images/barchart.png" alt="barChart" id="barChartBtn">
+                        <img src="/RUnDa/images/piechart.png" alt="pieChart" id="pieChartBtn">
+                    </div>
+                    <div id="export-options">
+                        <button id="exportCSV" type="button" data-getCsv="csv">Export CSV</button>
+                        <button id="exportXML" type="button" data-getXML="csv">Export XML</button>
+                        <button id="exportSVG" type="button" data-getSVG="SVG">Export SVG</button>
+                        <button id="exportPDF" type="button" data-getCsv="csv">Export PDF</button>
+                    </div>
+                </div>
+            </section>
+            <div id="diagram">
+
+            </div>
+            <div id="diagram2">
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+    <script src="http://goessner.net/download/prj/jsonxml/json2xml.js"></script>
+
+    <script type="module" src="./js/ajax.js"></script>
+    <script type="module" src="./js/map.js"></script>
+    <!--important ./ de la ajax.js-->
+</body>
+
+</html>

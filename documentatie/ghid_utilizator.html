@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ghid Utilizator RUnDa</title>
+
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+
+<body>
+    <div role="content-info">
+        <h1>Ghid Utilizator RUnDa</h1>
+
+        <h2>Cuprins</h2>
+        <ol role="directory">
+
+            <li>
+                <a href="#navbar">
+                    <span> 1. </span>
+                    Meniu de navigare
+                </a>
+
+            </li>
+            <li>
+                <a href="#main-page">
+                    <span> 2. </span>
+                    Pagina principala
+                </a>
+
+            </li>
+
+            <li>
+                <a href="#map">
+                    <span> 3. </span>
+                    Harta Romaniei
+                </a>
+
+
+            </li>
+
+            <li>
+                <a href="#statistici">
+                    <span> 4. </span>
+                    Statistici
+                </a>
+
+                <ol role="directory">
+
+                    <li>
+                        <a href="#filters">
+                            <span> 4.1. </span>
+                            Filtrare
+                        </a>
+
+                        <ol role="directory">
+                            <li>
+                                <a href="#table">
+                                    <span> 4.1.1. </span>
+                                    Tabel
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#year">
+                                    <span> 4.1.2. </span>
+                                    An
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#category">
+                                    <span> 4.1.3. </span>
+                                    Categorie
+                                </a>
+                            </li>
+
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#diagrams">
+                            <span> 4.2. </span>
+                            Diagrame
+                        </a>
+
+                        <ol role="directory">
+
+                            <li>
+                                <a href="#lineChart">
+                                    <span> 4.2.1. </span>
+                                    Line Chart
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#barChart">
+                                    <span> 4.2.2. </span>
+                                    Bar Chart
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pieChart">
+                                    <span> 4.2.3. </span>
+                                    Pie Chart
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#export">
+                            <span> 4.3. </span>
+                            Export
+                        </a>
+
+                        <ol role="directory">
+
+                            <li>
+                                <a href="#csv">
+                                    <span> 4.3.1. </span>
+                                    CSV
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#svg">
+                                    <span> 4.3.2. </span>
+                                    SVG
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#xml">
+                                    <span> 4.3.3. </span>
+                                    XML
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pdf">
+                                    <span> 4.3.4. </span>
+                                    PDF
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            <li>
+                <a href="#aboutPage">
+                    <span> 5. </span>
+                    Despre proiect
+                </a>
+            </li>
+            <li>
+                <a href="#contactPage">
+                    <span> 6. </span>
+                    Contact
+                </a>
+            </li>
+        </ol>
+    </div>
+
+    <section id="navbar">
+
+        <h2>
+            Meniu de navigare
+        </h2>
+        <p>
+            Cu ajutorul meniului de navigare, puteti sa navigati prin paginile prinicpale ale proiectului.
+            Prima iconita face trimitere la Github unde se afla tot continutul proiectului. Urmatorul simbol il
+            reprezinta Pagina
+            de About in care se afla cateva informatii despre proiect, iar ultimul simbol este destinat paginii de
+            Contact.
+        </p>
+
+        <figure typeof="sa:image">
+            <img src="../images/documentatie/navbar.png">
+            <figcaption>Fig. Navbar</figcaption>
+        </figure>
+    </section>
+
+    <section id="main-page">
+        <h2> Pagina Principala</h2>
+        <p> In aceasta pagina aveti butonul principal 'Start Now' prin care puteti sa ajugenti pe pagina urmatoare,
+            pagina in care se regaseste harta.
+        </p>
+        <figure typeof="sa:image">
+            <img src="../images/documentatie/homePage.PNG">
+            <figcaption>Fig. Pagina principala</figcaption>
+        </figure>
+    </section>
+    <section id="map">
+        <h2> Harta Romaniei</h2>
+        <p> In aceasta pagina veti gasi Harta Romaniei. Aveti posibilitatea de a selecta fie un judet,fie doua judete
+            si de asemenea, le puteti deselecta apasand din nou pe judetul selectat.In stanga sus puteti apasa
+            pe butonul de back,avand ca efect redirectionarea pe pagina principala,sau pe butonul de next,care se afla
+            in dreapta sus
+            ,acesta avand menirea de a va retrimite cate pagina ajax.html,cea cu statisticile. </p>
+        <figure typeof="sa:image">
+            <img src="../images/documentatie/map1.png">
+            <figcaption>Fig. Harta Romaniei</figcaption>
+        </figure>
+    </section>
+    <section id="statistici">
+        <h2> Statistici</h2>
+        <p>
+            Avand judetele deja selectate, puteti genera diagrame,dupa mai multe filtrari.
+        </p>
+        <section id="filters">
+            <h3> Filtrare</h3>
+            <p>
+                Filtrarea contine 3 categorii dupa cum urmeaza:
+            </p>
+            <section id="table">
+                <h3> Tabel</h3>
+                <p>
+                    Aveti posibilitatea de a selecta un camp din cele 4 expuse,acestea din urma fiind:"Education","Age",
+                    "Rate","Location".
+                </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/filterTabel.PNG">
+                    <figcaption>Filtrare dupa tabel</figcaption>
+                </figure>
+            </section>
+            <section id="year">
+                <h3>An</h3>
+                <p>
+                    Ulterior,puteti selecta campul year din cele 2 evidentiate:fie campul 2019,fie 2020.
+                </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/filterYear.PNG">
+                    <figcaption>Filtrare dupa an</figcaption>
+                </figure>
+            </section>
+            <section id="category">
+                <h3> Categorie</h3>
+                <p>
+                    Dupa ce ati selectat campul tabelului corespunzator, in partea dreapta a filtrarilor va aparea o
+                    coloana cu categoriile specifice
+                    fiecarui tabel. Trebuie sa bifati o categorie pentru a face urmatorul pas.
+                </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/filterCategory.PNG">
+                    <figcaption>Filtrare dupa categorie</figcaption>
+                </figure>
+            </section>
+        </section>
+        <section id="diagrams">
+            <h3> Diagrame</h3>
+            <p>
+                Avand criteriile bifate,urmatorul pas este de a selecta tipul chart-ului apasand pe iconita
+                corespunzatoare.Sunt 3 tipuri de chart-uri,
+                fiecare avand o menire simbolica,dupa cum urmeaza:
+            </p>
+            <section id="lineChart">
+                <h3> Line Chart</h3>
+                <p>
+                    Tipul Line Chart este reprezentat de iconita:
+                </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/lineChart3.PNG">
+                    <figcaption>Iconita-Line Chart</figcaption>
+                </figure>
+
+                <p> Acest tip de chart are rolul de a evidentia evolutia pe o perioada de timp specifica in urma
+                    selectiei date. </p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/lineChart1.PNG">
+                    <figcaption>Line Chart</figcaption>
+                </figure>
+            </section>
+            <section id="barChart">
+                <h3> Bar Chart</h3>
+                <p> Tipul Bar Chart este reprezentat de iconita:</p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/barChart3.PNG">
+                    <figcaption>Iconita-Bar Chart</figcaption>
+                </figure>
+                <p> Tipul anterior de Chart valorifica comparatia intre luni corespunzatoare fiecarei valori.</p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/barChart1.PNG">
+                    <figcaption>Bar Chart</figcaption>
+                </figure>
+            </section>
+            <section id="pieChart">
+                <h3> Pie Chart</h3>
+                <p> Tipul Pie Chart este reprezentat de iconita:</p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/pieChart3.PNG">
+                    <figcaption>Iconita-Pie Chart</figcaption>
+                </figure>
+                <p> Ultimul tip de Chart evidentiaza proportia fiecarei luni raportata valorii categoriei date.</p>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/pieChart1.PNG">
+                    <figcaption> Pie Chart</figcaption>
+                </figure>
+            </section>
+
+        </section>
+        <section id="export">
+            <h3> Export</h3>
+            <p> Dupa ce ati avut posibiltatea de a vizualiza diagramele dorite, aveti posibilitatea sa exportati acele date. Acest
+                lucru se poate realzia cu ajutorul a mai multor tipuri de export.
+            </p>
+
+            <section id="csv">
+                <h3>CSV</h3>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/csv.PNG">
+                    <figcaption> Fig Export CSV</figcaption>
+                </figure>
+                <p> Pentru a putea exprta in formatul CSV trebuie sa apasati pe butonul corespunzator acestuia.Acest tip de format va separa valorile printr-o virgula,
+                    dupa cum ii spune si numele: coma separatted value.
+                </p>
+            </section>
+            <section id="svg">
+                <h3>SVG</h3>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/svg.PNG">
+                    <figcaption> Fig Export SVG</figcaption>
+                </figure>
+                <p> 
+                    Pentru a exporta in format SVG trebuie sa apasati pe butonul Export SVG. 
+                    Acest format va exporta diagrama exact in modul in care o vedeti pe site.
+                </p>
+            </section>
+
+            <section id="xml">
+                <h3>XML</h3>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/xml.PNG">
+                    <figcaption> Fig Export XML</figcaption>
+                </figure>
+                <p> 
+                    Ca sa puteti realiza exportul in format XML, trebuie sa apasati pe butonul Export XML.
+                    Acest format 
+                </p>
+            </section>
+            <section id="pdf">
+                <h3>PDF</h3>
+                <figure typeof="sa:image">
+                    <img src="../images/documentatie/pdf.PNG">
+                    <figcaption> Fig Export PDF</figcaption>
+                </figure>
+                <p> </p>
+            </section>
+        </section>
+        <!--export-->
+    </section>
+    <!--statistici-->
+</body>
+
+</html>

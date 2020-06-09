@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e2e8f0;
+}
+
+html {
+    font-family: 'Roboto';
+    line-height: 1.5;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-size: 16px;
+}
+
+.banner {
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.background-card {
+    background: #FFF;
+    min-height: 100vh;
+    box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login */
+
+.login {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 50rem;
+}
+
+.login-form {
+    padding: 1.5rem 2rem 2rem 2rem;
+    margin: 1rem;
+    background-color: #F6F8FF;
+    border: 2px solid rgba(23, 66, 85, 0.2);
+    border-radius: 1rem;
+}
+
+.input-container {
+    margin-bottom: 1rem;
+}
+
+label {
+    color: #4a5568;
+    font-size: .875rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.input-container input {
+    width: 100%;
+    color: #4a5568;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+    padding-left: .75rem;
+    padding-right: .75rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    line-height: 1.25;
+    border-width: 1px;
+    border-radius: .25rem;
+}
+
+.btn-info {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    border-radius: 0.25rem;
+    background-color: #4299e1;
+}

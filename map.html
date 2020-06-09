@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUnDa</title>
+    <link rel="stylesheet" type="text/css" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="styles/map.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+
+
+
+<body class="body">
+    <header>
+        <div class="navbar">
+            <div class="pagina-home">
+                <a id="logo" href="." rel="home"><span class="full-text">Romanian Unemployment Data Visualizer</span>
+                    <span class="short-text">RUnDa</span></a>
+            </div>
+            <div class="nav-links">
+                <ul class="nav-list">
+                    <li>
+                        <a href="https://github.com/Octavzz/RUnDa"><img src="/RUnDa/images/githubicon.png"
+                                alt="GitHub link"></a>
+                    </li>
+                    <li>
+                        <a href="./about.html"><img src="/RUnDa/images/circleicon.png" alt="About page"></a>
+                    </li>
+                    <li>
+                        <a href="./contact.php"><img src="/RUnDa/images/squareicon.png" alt="Contact Page"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="background-card">
+            <div class="nav-btns">
+                <a href="./index.html" id="back-btn"><img src="./images/back.png" alt="BackBtn" /></a>
+                <p>Please select an area to see specific stats. Select two areas to compare them.</p>
+                <a href="#" id="next-btn"><img src="./images/next.png" alt="NextBtn" /></a>
+            </div>
+            <div id="map">
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+    <script type="module" src="./js/map.js"></script>
+    <script type="module" src="./js/ajax.js"></script>
+
+</body>
+
+</html>

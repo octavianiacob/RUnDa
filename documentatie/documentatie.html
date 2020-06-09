@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentatie RUnDa</title>
+
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+</head>
+
+<body>
+
+    <div role="content-info">
+        <h1>Documentatie RUnDa</h1>
+        <section typeof="sa:ProjectLinks">
+            <ul>
+                <li typeof="schema:WebPage" role="link" resource="https://github.com/Octavzz/RUnDa"
+                    property="schema:citation" id="github">
+                    <cite property="schema:name">
+                        <a href="https://github.com/Octavzz/RUnDa">Github</a>
+                    </cite>
+                </li>
+                <li typeof="schema:WebPage" role="link" resource="https://app.swaggerhub.com/apis/GaSM/GaSM/1.0.0#/"
+                    property="schema:citation" id="github">
+                    <cite property="schema:name">
+                        <a href="https://app.swaggerhub.com/apis/GaSM/GaSM/1.0.0#/">Swagger</a>
+                    </cite>
+                </li>
+            </ul>
+        </section>
+
+        <section typeof="sa:AuthorsList">
+            <h2>Autori</h2>
+            <ul>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <span typeof="schema:Person">
+                        <meta property="schema:givenName" content="Octavian">
+                        <meta property="schema:familyName" content="Iacob">
+                        <span property="schema:name">Iacob Octavian</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="emailOctav" property="schema:email">octavzz1999@gmail.com</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <span typeof="schema:Person">
+                        <meta property="schema:givenName" content="Stefan">
+                        <meta property="schema:familyName" content="Ichim">
+                        <span property="schema:name">Ichim Stefan</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="ichim.stefan99@gmail.com" property="schema:email">ichim.stefan99@gmail.com</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <span typeof="schema:Person">
+                        <meta property="schema:givenName" content="Andrei">
+                        <meta property="schema:familyName" content="Prepelita">
+                        <span property="schema:name">Prepelita Andrei</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="andreiprep999@gmail.com" property="schema:email">andreiprep999@gmail.com</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <h2>Cuprins</h2>
+        <ol role="directory">
+            <li>
+                <a href="#despre-proiect">
+                    <span> 1. </span>
+                    Despre proiect
+                </a>
+            </li>
+            <li>
+                <a href="#front-end">
+                    <span> 2. </span>
+                    Front End
+                </a>
+
+                <ol role="directory">
+                    <li>
+                        <a href="#navbar">
+                            <span> 2.0. </span>
+                            Navbar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#first-page">
+                            <span> 2.1. </span>
+                            Pagina Principala
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#map">
+                            <span> 2.2. </span>
+                            Harta Romaniei
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#diagrams">
+                            <span> 2.3. </span>
+                            AJAX
+                        </a>
+                        <ol role="directory">
+                            <li>
+                                <a href="#filtrare">
+                                    <span> 2.3.1 </span>
+                                    Filtre
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#generareDiagrame">
+                                    <span> 2.3.2 </span>
+                                    Generare Diagrame
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#export">
+                                    <span> 2.3.3 </span>
+                                    Export
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#aboutPage">
+                            <span> 2.4. </span>
+                            Despre Proiect
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact-page">
+                            <span> 2.4. </span>
+                            Pagina Contact
+                        </a>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <a href="#back-end">
+                    <span> 3. </span>
+                    Back End
+                </a>
+
+                <ol role="directory">
+
+                    <li>
+                        <a href="#generate-chart">
+                            <span> 3.2. </span>
+                            Generare Diagrame
+                        </a>
+                        <ol role="directory">
+                            <li>
+                                <a href="#pieChart">
+                                    <span> 3.2.1 </span>
+                                    Pie Chart
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#lineChart">
+                                    <span> 3.2.2 </span>
+                                    Line Chart
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#barChart">
+                                    <span> 3.2.3 </span>
+                                    Bar Chart
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#export">
+                            <span> 3.3. </span>
+                            Export
+                        </a>
+                        <ol role="directory">
+                            <li>
+                                <a href="#exportCSV">
+                                    <span> 3.3.1 </span>
+                                    CSV
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#exportSVG">
+                                    <span> 3.3.2 </span>
+                                    SVG
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#exportPDF">
+                                    <span> 3.3.3 </span>
+                                    PDF
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#exportXML">
+                                    <span> 3.3.4 </span>
+                                    XML
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#admin-panel">
+                            <span> 3.4. </span>
+                            Panou de administrare
+                        </a>
+                    </li>
+
+
+
+                </ol>
+            </li>
+            <li>
+                <a href="#database">
+                    <span> 4. </span>
+                    Baza de date
+                </a>
+
+                <ol role="directory">
+                    <li>
+                        <a href="#judete">
+                            <span> 4.1.</span>
+                            Judete Romania
+                        </a>
+                    </li>
+
+            </li>
+            <li>
+                <a href="educatie">
+                    <span> 4.2. </span>
+                    Educatie
+                </a>
+            </li>
+            <li>
+                <a href="#varste">
+                    <span> 4.3. </span>
+                    Varste
+                </a>
+            </li>
+            <li>
+                <a href="#medii">
+                    <span> 4.4. </span>
+                    Medii
+                </a>
+            </li>
+            <li>
+                <a href="#rata">
+                    <span> 4.4. </span>
+                    Rata
+                </a>
+            </li>
+            <li>
+                <a href="#fisiere">
+                    <span> 4.4. </span>
+                    Fisiere
+                </a>
+            </li>
+            <li>
+                <a href="#admin">
+                    <span> 4.4. </span>
+                    Admin
+                </a>
+            </li>
+            <li>
+                <a href="#contact">
+                    <span> 4.4. </span>
+                    Contact
+                </a>
+            </li>
+        </ol>
+        </li>
+        </ol>
+    </div>
+
+    <section id="despre-proiect">
+
+        <h2>
+            Despre Proiect
+        </h2>
+
+    </section>
+
+    <section id="front-end">
+
+        <h2>
+            Front End
+        </h2>
+        <p>Partea de front end ofera un design simplu dar eficient. Are elemente de baza pentru o experienta placuta a
+            utilizatorului
+            Acest site poate fi folosit atat pe un laptop/calculator, cat si pe un device mai mic fiind responsive.</p>
+        <section id="navbar">
+            <h3>
+                Navbar
+            </h3>
+            <p>
+                In partea stanga se afla numele proiectului avand forma normala pe o dimensiune care permite acest
+                lucru,
+                iar acronimul atunci cand este pe o dimensiune mai mica.
+                <br>
+                In partea dreapta se afla 3 pictograme care sunt elemente de tip "li" al unei lista neordonate, una
+                trimitand la repository al proiecutlui(pe Github),
+                una care trimite catre pagina about.html, iar ultima care trimite catre contact.php
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/navbar.png">
+                <figcaption>Fig. 1 Navbar</figcaption>
+            </figure>
+        </section>
+        <section id="first-page">
+            <h3>
+                Pagina Principala
+            </h3>
+            <p>In aceasta pagina se afla un buton Start Now prin care se acceseaza pagina 'map.html',
+                pagina in care se regaseste harta Romaniei. Pe fundal este o imagine stilizata care reprezinta totodata
+                tematica site-ului.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/homePage.png">
+                <figcaption>Fig. 1 Navbar</figcaption>
+            </figure>
+        </section>
+        <section id="map">
+            <h3> Harta Romaniei</h3>
+            <p>
+                In aceasta pagina gasim harta Romaniei care a fost creata folosita biblioteca D3.js.
+                Harta este generata pe baza unui fisier de tip .geojson ce contine datele geografice
+                necesare pentru a crea elementul SVG ce reprezinta harta romaniei.
+                <br>
+                Pentru proiectia coordonatelor geografice se foloseste proiectia de tip Mercator, inclusa in biblioteca
+                D3.js.
+                Harta permite selectarea a unui singur judet sau maxim doua, in scopul de a le compara datele.
+
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/map.png">
+                <figcaption>Fig. 1 Harta romaniei</figcaption>
+            </figure>
+        </section>
+        <section id="filtrare">
+            <h3> Filtre</h3>
+            <p> Odata ajuns aici, userul are 3 selectii de facut.
+                Prima oara trebuie sa selecteze tabela din care vrea sa vada datele. In acest moment stiu numele tabelei
+                si pot sa il adaug la un URL dinamic pentru urmatorii pasi. In functie de ce tabel a selectat clientul,
+                ii va aparea o noua filtrare care va cuprinde
+                doar coloanele care sunt specifice acelui tabel
+            </p>
+            <p> A doua selectie se refera la anul din care utilizatorul vrea sa vada datele. Optiunile sunt 2019,
+                respectiv 2020</p>
+            <p> Ultima optiune este pe baza primei optinui, iar in functie de tabela selectata apar coloanele care se
+                gasesc in tabela respectiva</p>
+            <p> Dupa ce toate selectiile au fost facute, se folosi API pentru a trece la pasul urmator. Acesta arata
+                ceva de genul asta:
+                http://localhost/RunDa/api/counties/cluj?filtered_by=educatie&year=2020
+
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/dataFilters.png">
+                <figcaption>Fig. 1 Bar Chart pe un judet</figcaption>
+            </figure>
+            </p>
+        </section>
+        <section id="generareDiagrame">
+            <h2> Generare Diagrame</h2>
+            <p>Dupa ce toate criteriile de selectie sunt facute, se va selecta tipul de diagrama dorit.</p>
+            <p> Pentru acest lucru, avem la dispozitie 3 tipuri de diagrame, iar fiecare dintre acestea a fost realziata
+                folosind biblioteca D3 JS </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/typeCharts.png">
+                <figcaption>Fig. 1 Tipurile de diagrame</figcaption>
+            </figure>
+            <li>Line Chart</li>
+            <p>In aceasta diagrama se afla pe axa OY informatiile despre coloana care a fost selectata dintr-un anumit
+                tabel,
+                iar pe axa OX se afla lunile din anul selectat.</p>
+            <p>De asemenea, aceasta diagrama a fost realizata folosind si un design responsive pentru dispozitive cu
+                rezolutie mica. De la o anumita rezolutie,
+                pentru a nu strica calitatea imaginii se aplica un scroll orizontal, prin care utilziatorul poate vedea
+                clar informatiile respective.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/lineChart1.png">
+                <figcaption>Fig. 1 Line Chart pe un singur judet</figcaption>
+            </figure>
+
+
+            <li>Bar Chart</li>
+            <p> Pe axa OY se afla informatiile despre fiecare luna din anul selectat, iar pe axa OX se afla informatiile
+                despre o coloana aleasa din tabelul selectata
+            </p>
+            <p> Totodata, este aplicat si aici design-ul responsive, avand acelasi rol ca si la diagrama Line Chart</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/barChart1.png">
+                <figcaption>Fig. 1 Bar Chart pe un judet</figcaption>
+            </figure>
+            <li>Pie Chart</li>
+            <p>
+                In partea stanga,pe axa OY, se afla legenda pie chart-ului unde se evidentiaza informatii cu privire la
+                lunile dupa care se face filtrarea.
+                Piechart-ul este construit din mai multe 'felii',fiecare felie reprezentand proportia fiecarei luni
+                raportata la coloana data de utilizator.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/pieChart2.png">
+                <figcaption>Fig. Pie Chart pe un judet</figcaption>
+            </figure>
+        </section>
+        <section id="export">
+            <h2> Export</h2>
+            <p>In momentul in care avem si diagrama afisata, utilizatorul are optiunea de a face export
+                intr-un anumit format(CSV,SVG,PDF,XML). Exportul are 2 optiuni, in functie de cate judete au fost
+                selectate:
+                daca s-a selectat un judet atunci va fi exportat doar acesta, daca s-au selectat 2 judete, atunci
+                vor fi exportate cele 2.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/exportBtns.png">
+                <figcaption>Fig. 1 Butoanele de export</figcaption>
+            </figure>
+        </section>
+
+        <section id="aboutPage">
+            <h2>About Page</h2>
+            <p> Aceasta pagina a fost creata cu rolul de a oferi informatii despre ce poate afla utilizand acest
+                proiect.
+                Contine mai multe paragrafe, insotite de o imagine ilustrativa.
+            </p>
+        </section>
+        <section id="contact-page">
+            <h2> Contact page</h2>
+            <p>Pagina de contact are un design clasic, continand un formular,fie de feedback,fie de anumite probleme ale
+                site-ului,care poate fi utilizat de un user anonim. Pentru partea de interfata am utilizat un element de
+                tip
+                "form",care contine mai multe tag-uri de tip input,acestea din urma continand informatii despre persoana
+                care
+                isi exprima o opinie despre aplicatie.
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/contactPage.png">
+                <figcaption>Fig. 1 Pagina de contact</figcaption>
+            </figure>
+        </section>
+    </section>
+    <!--front end-->
+    <section id="back-end">
+        <h2> Back End</h2>
+        <section id="map-creation">
+            <h3> Creare Harta</h3>
+
+        </section>
+        <section id="generate-chart">
+            <h3> Generare Diagrame</h3>
+            <p>
+                Diagramele au fost concepute folosind bilioteca D3 js. Am ales aceasta biblioteca deoarece
+                am considerat ca este interesant cum se creaza de la 0 o diagrama.
+                Pentru fiecare diagrama creata, am facut o cerere prin care sa sa iau datele din baza de date,
+                folsindu-ma de API REST.
+                Datele au fost parsate printr-un json si in acest mod am putut afisa informatiile in mod dinamic cerute
+                de catre utilizator.
+            </p>
+
+            <section id="pieChart">
+                <h3> Pie Chart</h3>
+                <p> Construirea unui pie chart consta in folosirea functiei d3.pie(). Aceasta functie transforma
+                    valorile
+                    primite,prin atributul value,in raze care,ulterior, vor fi afisate pe grafic.Aceste raze sunt
+                    oferite functiei d3.arc(),
+                    aceasta functie avand rolul de a desena o 'felie' raportata la procentul fiecarei valori.
+                </p>
+                <p> Pentru legenda, am atasat svg-ului
+                    un element de tip "g",iar in interiorul acestuia am adaugat lunile specifice fiecarei valori cu
+                    ajutorul unei functii,folosindu-ma de culoarea
+                    atasata feliei respective.
+                </p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+            var pie = d3.pie()
+                .value(function (d) { return d[getColumn] })
+
+            var slices = pie(data);
+            let radius = Math.min(width, height) / 2;
+            var arc = d3.arc()
+                .innerRadius(0)
+                .outerRadius(radius - 40);
+                const margin = { top: 50, right: 40, bottom: 77, left: 250 };
+                let innerWidth = width - margin.left - margin.right;
+            // helper that returns a color based on an ID
+            var color = d3.scaleOrdinal(d3.schemeCategory20c)
+            var g = svg.append('g')
+                .attr('transform', `translate(${width / 2},${height / 1.8})`);
+
+            var arcGraph = g.selectAll('path.slice')
+                .data(slices)
+                .enter();
+            arcGraph.append('path')
+                .attr('class', 'slice')
+                .attr('d', arc)
+                .attr('fill', function (d) {
+                    return color(d.data.month);
+                });
+                        
+            arcGraph.append("text")
+                .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+
+                .attr("dy", "-0.30em")
+                .attr("dx", "-1em")
+                .text(function (d) { return d.data[getColumn] });
+            svg.append('g')
+                .attr('class', 'legend')
+                .selectAll('text')
+                .data(slices)
+                .enter()
+                .append('text')
+                
+                .text(function (d) { refturn numberToMonth(d.data.month).substring(0, 3); })
+                .attr('fill', function (d) { return color(d.data.month); })
+            </pre>
+                </figure>
+            </section>
+            <section id="lineChart">
+                <h3> Line Chart</h3>
+                <p> Pe axa Ox se afla lunile, iar pe axa OY se afla informatiile din coloana selctata.
+                    <br>
+                    Pe verticala scalez cu functia
+                    scaleLiniar deoarece doresc sa porneasca de la valoarea cea mai mica si sa se termine cu valoare cea
+                    mai mare din intervalul care contine informatiile despre coloana.
+                    <br>Pe orizontala scalez cu functia scaleBand deoarece am nevoie sa-mi scaleze in functie de o
+                    anumita categorie, iar in cazul meu este luna.
+                <p>
+                    Mai jos urmeaza o bucatica de cod din
+                    functia lineChart()
+                    , functie care genereaza diagrama.
+
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+                        const yAxisG = g.append('g').call(yAxis);
+                        yAxisG.selectAll('.domain').remove()
+                          .attr('transform', `translate(500,${margin.top})`);
+                  
+                        yAxisG.append('text')
+                          .attr('class', 'axis-label')
+                          .attr('y', -60)
+                          .attr('x', -innerHeight / 2)
+                          .style('fill', '#8E8883')
+                          .style('font-size', '2.5em')
+                          .attr('transform', `rotate(-90)`)
+                          .attr('text-anchor', 'middle')
+                          .text(yAxisLabel.replace('_', ' ').replace('_', ' '));
+                  
+                        const xAxisG = g.append('g').call(xAxis)
+                          .attr('transform', `translate(0,${innerHeight})`);
+                  
+                        xAxisG.select('.domain').remove();
+                  
+                        xAxisG.append('text')
+                          .attr('class', 'axis-label')
+                          .attr('y', 80)
+                          .attr('x', innerWidth / 2)
+                          .attr('fill', 'black')
+                          .text(xAxisLabel.replace('_', ' ').replace('_', ' '));
+                  
+                        const lineGenerator = line()
+                          .x(d => xScale(xValue(d)))
+                          .y(d => yScale(yValue(d)))
+                          .curve(curveBasis)
+                  
+                  
+                        g.append('path')
+                          .attr('class', 'line-path')
+                          .attr('d', lineGenerator(data))
+                          //styles pentru cum sa arate linia
+                          .style('fill', "none")
+                          .style('stroke', "#137B80")
+                          .style('stroke-width', '4')
+                          .style('stroke-linejoin', 'round')
+                          .style('stroke-linecap', 'round')
+                  
+                  
+                        g.append('text')
+                          .attr('class', 'title')
+                          .attr('y', -10)
+                          .style('font-size', '2em')
+                          .style('font-family', 'sans-serif')
+                  
+                          .text(title);
+                    </pre>
+                </figure>
+
+            </section>
+            <section id="barChart">
+                <h3> Bar Chart</h3>
+                <p> La aceasta diagrama, pe axa OX se afla informatiile dintr-un tabel, iar pe axa OX se afla lunie.
+                    In aceasta diagrama voi folosi un obiect de tip rectangle care imi creaza barele propriu zise.
+                    <br>
+                    Procedeul este
+                    invers
+                    fata de lineChart, in sensul ca scaleLiniar devine scaleBand si invers, totodata pastrandu-si
+                    proprietatile.
+
+                </p>
+
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+                        let xAxis = axisBottom(xScale)
+                        .tickFormat(xAxisTickFormat)
+                        .tickSize(-innerHeight);
+                
+                      g.append('g')//g.append('g) este selectia
+                        .call(axisLeft(yScale))
+                        .selectAll('.domain, .tick line')
+                        .remove();
+                
+                      let xAxisG = g.append('g').call(xAxis)
+                        .attr('transform', `translate(0,${innerHeight})`);//ca sa cifrele din populatie jos
+                
+                      xAxisG.select('.domain').remove();
+                
+                      xAxisG.append('text')
+                        .attr('class', 'axis-label')
+                        .attr('y', 65)
+                        .attr('x', innerWidth / 2)
+                        .attr('fill', 'black')
+                        .text(xAxisLabelText.replace('_', ' ').replace('_', ' '))
+                
+                
+                
+                      g.selectAll('rect').data(data)
+                        .enter().append('rect')
+                        .attr('y', d => yScale(yValue(d)))
+                        .attr('width', d => xScale(xValue(d)))
+                        .attr('height', yScale.bandwidth())
+                        .style('fill','#137B80')
+                      
+                
+                      g.append('text')
+                        .style("fill", "grey")
+                        .attr('class', 'title')
+                        .attr('y', -10)
+                        .text(titleText)
+                
+                
+                   
+                    </pre>
+                </figure>
+
+            </section>
+        </section>
+        <section id="export">
+            <h3> Export</h3>
+
+            <section id="exportCSV">
+                <h3> Export CSV</h3>
+                <p> Pentru a putea exporta in format CSV, am folosit 3 functii care ma ajut sa fac acest lucru
+                    Prima functie este pentru a transforma obiectele JSON in CSV, introducand virgula, specifica acestui
+                    tip
+                    de format.
+
+                </p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+                    const objectToCsv = function(data) {
+                        //get the  HEADERS
+                        const csvRows = [] //array pt ca o sa am multe randuri tip csv
+                        const headers = Object.keys(data[0]); //aici iau cheia obiectului(si primul element din data)
+                        csvRows.push(headers.join(',')) //prima oara pun headers, separate de virgula(ca-i csv)
+                
+                        //loop over the rows
+                        for (const row of data) { //parcurg fiecare rand 
+                            const values = headers.map(header => { //add the data to object
+                                const escaped = ('' + row[header]).replace(/"/g, '\\"') //din number il fac string
+                                    //pun ghilimele ca sa evit ca un element din csv-ul meu sa aiba el o virgula care nu apartine de csv
+                                return `"${escaped}"`
+                            })
+                            csvRows.push(values.join(',')) // pun virgula intre valorile de pe un rand
+                        }
+                        //form csv
+                
+                        return csvRows.join('\n')
+                    };
+                
+                </pre>
+                </figure>
+                <p> O alta metoda este cea prin care folosesc functia fetch cu care iau json-ul, iar apoi mapez datele
+                    astfel incat
+                    sa iau doar datele pe care utilizatorul le vrea </p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+                        const getReport = async function() {
+
+                            console.log("urlForCsv = " + urlForCsv)
+                            const res = await fetch(urlForCsv) //fetch- metoda browserului de a lua data.  fetch returneaza o promisiune
+                            const json = await res.json() //cu aceasta linie pot lua si datele, nu doar headers....
+                            console.log(json)
+                    
+                            console.log(getColumn);
+                            const data = json.map(row => ({ //mapez ca sa imi puna in csv doar ce vreau, nu tot
+                                month: row.month,
+                                year: row.year,
+                                [getColumn]: row[getColumn]
+                    
+                    
+                            }));
+                            const csvData = objectToCsv(data) //apelez functia de mai sus
+                            download(csvData)
+                    
+                            console.log("DATA:");
+                            console.log(data);
+                    
+                        }
+                    </pre>
+                </figure>
+                <p> O alta functie folosita este aceea prin care descarc fisierul propriu zis, folosind blob.</p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+                        function exportFile(data, extension, getTableName, getCountyName, getYear) {
+                            const blob = new Blob([data], { type: `text/${extension}` }) //cu blob pot downloada
+                            const url = window.URL.createObjectURL(blob); //trimit blob catre browser.imi da posiibilitatea sa fac un url dintr-un object(csv)
+                            const a = document.createElement('a'); //a tag pt click
+                            a.setAttribute('hidden', '')
+                            a.setAttribute('href', url) //unde sa trimit 
+                            a.setAttribute('download', `${getTableName}_${getCountyName}_${getYear}.${extension}`)
+                            document.body.appendChild(a) //inainte sa dau click
+                            a.click();
+                            document.body.removeChild(a) //dupa ce dau click
+                        }
+                
+                </pre>
+                </figure>
+            </section>
+            <section id="exportSVG">
+                <h3> Export SVG</h3>
+                <p> Pentru exportul SVG-ului format in urma filtrarilor, am creat functia exportSVG(). In aceasta
+                    functie
+                    am transformat svg-ul in baza 64,apoi mi am creat un element 'a',avand ca atribute: download(am
+                    atasat numele svg-ului
+                    care o sa fie descarcat),href(am adaugat calea de unde va fi descarcat svg-ului). De asemenea, am
+                    adaugat la fiecare svg
+                    atributul xmlns pentru a converti din xml in svg.
+                </p>
+                <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+                function exportSVG(getTableName, getCountyName, getYear, numarDiagrame) {
+                    let svg;
+                    if (numarDiagrame == 1)
+                        svg = document.querySelector('#diagram svg');
+                    else
+                        svg = document.querySelector('#diagram2 svg');
+                    const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
+                    const a = document.createElement('a');
+                    const e = new MouseEvent('click');
+                    a.download = `${getTableName}_${getCountyName}_${getYear}.svg`
+                    a.href = 'data:image/svg+xml;base64,' + base64doc;
+                    a.dispatchEvent(e);
+                }
+            </pre>
+                </figure>
+            </section>
+            <section id="exportPDF">
+                <h3> Export PDF</h3>
+                <p> Pentru exportarea in format PDF, mai intai obtinem datele in aceeasi maniera ca la CSV, prin
+                    functia getReport(). Dupa aceea folosind biblioteca jsPDF, scriem datele obtinute in format text in
+                    in fisierul PDF si il oferim spre download.</p>
+                <pre>
+                    export function exportPDF(urlForPdf, getTableName, getCountyName, getYear, getColumn) {
+                        const getReport = async function () {
+                            const res = await fetch(urlForPdf)
+                            const json = await res.json()
+                            const data = json.map(row => ({
+                                month: row.month,
+                                year: row.year,
+                                [getColumn]: row[getColumn]
+                            }));
+                            var doc = new jsPDF();
+                            data.forEach(function (object, i) {
+                                doc.text(20, 10 + (i * 10),
+                                    "Month: " + object.month + " " +
+                                    "Year: " + object.year + ": " + [getColumn] + ": " + object[getColumn]);
+                            });
+                            doc.save(`${getTableName}_${getCountyName}_${getYear}.pdf`);
+                        }
+                        getReport();
+                    }
+                </pre>
+            </section>
+            <section id="exportSVG">
+                <h3> Export XML</h3>
+                <p> Pentru exportarea in format XML, mai intai obtinem datele necesare cu functia getReport()
+                    Dupa aceea folosim biblioteca json2xml pentru a converti datele din formatul JSON in XML. In final,
+                    folosim functia exportFile() pentru a oferi fisierul spre download catre utilizator.
+                </p>
+                <pre>
+                    export function exportXML(urlForXML, getTableName, getCountyName, getYear, getColumn) {
+                        const getReport = async function () {
+                            const res = await fetch(urlForXML)
+                            const json = await res.json()
+                            const data = json.map(row => ({
+                                month: row.month,
+                                year: row.year,
+                                [getColumn]: row[getColumn]
+                            }));
+                            exportFile(json2xml(json), 'xml', getTableName, getCountyName, getYear);
+                        }
+                        getReport();
+                    }
+                </pre>
+            </section>
+        </section>
+        <!--export-->
+
+        <section id="admin-panel">
+            <h3> Admin Panel</h3>
+            <p>Panoul de administrare ofera posibilitatea de a incarca noi fisiere CSV in baza de date si se pot
+                vizualiza mesajele
+                primite de la utilizatori in urma formularului de pe pagina de contact.</p>
+            <p> Pentru a putea accesa panul de administrator este nevoie de autentificare printr-un username si o
+                parola.
+                Se face o metoda de tip POST prin care se introduc datele necesare pentru atuentificare. Se folosesc
+                parametrii dinamici pentru a preveni SQL injection.
+                De asemenea, parola este in format hash pentru o securitate mai buna.
+                <br>
+                Daca username si parola au fost introduse corect, atunci administratorul este trimis pe pagina
+                'login_success.php', pagina in care poate incarca fisiere si poate
+                vizualiza date.
+            </p>
+            <figure typeof="schema:SoftwareSourceCode">
+                <pre>
+                        try {
+                            if (isset($_POST["login"])) {
+                                if (empty($_POST["username"]) || empty($_POST["password"])) {
+                                    $message = '<label>All fields are required</label>';
+                                } else {
+                                    $query = "SELECT password FROM users WHERE username = :username ";
+                                    $statement = $connectDB->getPDO()->prepare($query);
+                                    $statement->execute(
+                                        array(
+                                            'username'     =>     $_POST["username"]
+                                        )
+                                    );
+                                    $count = $statement->rowCount();
+                                    if ($count > 0) {
+                                        $result = $statement->fetch(PDO::FETCH_ASSOC);
+                                        if (password_verify($_POST['password'], $result['password'])) {
+                        
+                                            $_SESSION["username"] = $_POST["username"];
+                                            header("location:login_success.php");  //aici tre sa vad
+                                        } else {
+                                            $message = '<label>Wrong Data</label>';
+                                        }
+                                    } else {
+                                        $message = '<label>Wrong Data</label>';
+                                    }
+                                }
+                            }
+                    </pre>
+            </figure>
+            <p> odata ajuns pe</p>
+            <figure typeof="schema:SoftwareSourceCode">
+                <pre>
+                    session_start();
+    if (!function_exists('mysqli_result')) {
+        function mysqli_result($res, $row, $field = 0)
+        {
+            $res->data_seek($row);
+            $datarow = $res->fetch_array();
+            return $datarow[$field];
+        }
+    }
+    $connect = mysqli_connect("localhost", "root", "", "nivel_somaj");
+    if (isset($_SESSION["username"])) {
+        if (isset($_POST["submit"])) {
+            if ($_FILES['file']['name']) {
+                $value = $_FILES['file']['name'];
+                $query = "SELECT count(*)  from fisiere
+                WHERE filename = '$value'    ";
+                $result = mysqli_query($connect, $query);
+                if (mysqli_result($result, 0) === '0') {
+                    echo mysqli_result($result, 0);
+
+                    $query = " INSERT INTO fisiere (filename) VALUES ('$value')";
+                    mysqli_query($connect, $query);
+                    ...........
+                </pre>
+            </figure>
+        </section>
+
+    </section>
+    <!--back end-->
+    <section id="database">
+        <h2>Baza de date</h2>
+        <p> Baza de date este una locala in care se regasesc toate informatiile pentru site-ul nostru.
+        </p>
+        <section id="judete">
+            <h2>Judetele Romaniei</h2>
+            <p>Am ales sa includem o tabela si cu judetele Romaniei deoarece am vrut sa ne asiguram ca judetel sunt scrie in mod corect. De exemplu, o confuzie
+                care se face foarte des este in legatura cu judetul Bistrita Nasaud. Foarta multa lume numeste judetul Bistrita, ceea ce e incorect, iar noi am venit cu o solutie
+                pentru aceasta problema. 
+            </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureCountyTable.png">
+                <figcaption>Fig.  Structura Tabelei Judete</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoCountyTable.PNG">
+                <figcaption>Fig.  Informatii despre tabela Judet</figcaption>
+            </figure>
+        </section>
+        
+        <section id="educatie">
+            <h2>Educatie</h2>
+        <p> In aceasta tabela gasim informatii despre educatie. Datele necesare din acest tabel vor fi transmise printr-un json
+            catre diagrama, urmand ca acestea sa se concretizeze.
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureEducationTable.PNG">
+                <figcaption>Fig. Structura Tabelei Educatie</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoEducationTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Educatie</figcaption>
+            </figure>
+         </p>
+        </section>
+        <section id="varste">
+            <h2>Varste</h2>
+        <p> Tabela contine informatii despre varste.</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureVarsteTable.PNG">
+                <figcaption>Fig. Structura Tabelei Varste</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoVarsteTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Varste</figcaption>
+            </figure>
+         </p>
+        </section>
+        <section id="medii">
+            <h2>Medii</h2>
+        <p> In aceasta tabela sunt informatii despre tipruile de medii din Romania(ex. urban, rural etc)</p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureMediiTable.PNG">
+                <figcaption>Fig. Structura Tabelei Medii</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoMediiTable.PNG">
+                <figcaption>Fig.Informatii despre tabela Medii</figcaption>
+            </figure>
+         </p>
+        </section>
+
+        <section id="rata">
+            <h2>Rata</h2>
+        <p>Tabela contine informatii despre rata somajului. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureRataTable.PNG">
+                <figcaption>Fig. Structura Tabelei Rata</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoRataTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Rata</figcaption>
+            </figure>
+         </p>
+        </section>
+
+        <section id="fisiere">
+            <h2>Fisiere</h2>
+        <p>In aceasta tabela se introduc numele fisierelor care au introduse pentru
+            a putea valida ulterior daca fisierul a fost sau nu introdus anterior. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureFisiereTable.PNG">
+                <figcaption>Fig. Structura Tabelei Fisiere</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoFisiereTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Fisiere</figcaption>
+            </figure>
+         </p>
+        </section>
+
+
+        <section id="admin">
+            <h2>Admin</h2>
+        <p>In aceasta tabela avem stocat username si parola(in hash) pentru admin. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureAdminTable.PNG">
+                <figcaption>Fig. Structura Tabelei Admin</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/infoAdminTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Admin</figcaption>
+            </figure>
+         </p>
+        </section>
+
+
+        <section id="contact">
+            <h2>Contact</h2>
+        <p>In aceasta tabela stocam informatiile pe care le primim de la utilizator prin intermediul 
+            paginii specifice, in care ne pot scrie mesaje, sugestii, observatii. </p>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/structureContactTable.PNG">
+                <figcaption>Fig. Structura Tabelei Contact</figcaption>
+            </figure>
+            <figure typeof="sa:image">
+                <img src="../images/documentatie/contactInfoTable.PNG">
+                <figcaption>Fig. Informatii despre tabela Contact</figcaption>
+            </figure>
+         </p>
+        </section>
+    </section> <!--dataBase-->
+
+   
+</body>
+
+</html>
