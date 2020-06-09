@@ -27,9 +27,9 @@ export function exportCSV(urlForCsv, getTableName, getCountyName, getYear, getCo
     };
 
     const getReport = async function () {
-        const res = await fetch(urlForCsv) //fetch- metoda browserului de a lua data.  fetch returneaza o promisiune
-        const json = await res.json() //cu aceasta linie pot lua si datele, nu doar headers....
-        const data = json.map(row => ({ //mapez ca sa imi puna in csv doar ce vreau, nu tot
+        const res = await fetch(urlForCsv) // fetch- fac un http request(metoda browserului de a lua data.  fetch returneaza o promisiune) pe baza url-ului
+        const json = await res.json() // astept un raspuns, dupa care convertesc raspunsul in format json;cu aceasta linie pot lua si datele, nu doar headers....
+        const data = json.map(row => ({ //mapez ca sa imi puna in csv doar ce vreau, nu tot,parcurg linie cu linie
             month: row.month,
             year: row.year,
             [getColumn]: row[getColumn]
