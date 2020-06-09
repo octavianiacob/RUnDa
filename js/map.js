@@ -49,7 +49,7 @@ d3.json("romania-geo.geojson", function (data) {
         .attr("value", "off")
         .style("stroke", "#C3D3D0")
         .on("mouseover", function (d) {
-            d3.select(this).style("stroke", "#ff0000");
+            d3.select(this).style("stroke", "FFE200");
             d3.select(this).style("stroke-width", "5px");
         })
         .on("mouseout", function (d) {

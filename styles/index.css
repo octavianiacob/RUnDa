@@ -67,6 +67,8 @@ body {
     color: #174255;
     border: #174255;
     margin-top: 30px;
+    text-align: center;
+    line-height: 60px;
 }
 
 #start-btn a {
