@@ -152,7 +152,6 @@ export function lineChart(url, getTableName, getColumn, getCountyName,tipDIV) {
   };
 
   d3.json(url, function (data) {
-    console.log(url)
     data.forEach(d => {
 
       d[getColumn] = +d[getColumn]

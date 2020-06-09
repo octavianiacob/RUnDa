@@ -1,30 +1,27 @@
 <?php
 require_once "./config/Database.php";
-	// Message Vars
+
 	$msg = '';
-	$msgClass = '';
 $connectDB=new Database();
-	// Check For Submit
-	if(filter_has_var(INPUT_POST, 'submit')){
-		// Get Form Data
-        $firstname = htmlspecialchars($_POST['firstName']);
+	
+	if(filter_has_var(INPUT_POST, 'submit')){ //daca am dat submit
+		//validez inputurile
+        $firstname = htmlspecialchars($_POST['firstName']); //convertesc caracterele speciale in entitati html
         $lastname=htmlspecialchars($_POST['lastName']);
         $email = htmlspecialchars($_POST['email']);
         $phone=htmlspecialchars($_POST['phone']);
 		$message = htmlspecialchars($_POST['message']);
 
-		// Check Required Fields
-		if(!empty($email) && !empty($firstname) && !empty($lastname) && !empty($phone) && !empty($message)){
-			// Passed
-			// Check Email
-			if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-				// Failed
+	
+		if(!empty($email) && !empty($firstname) && !empty($lastname) && !empty($phone) && !empty($message)){ //daca am toate campurile completate
+			
+			if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){ //filtrez mailul dupa un anumit tipar
+				
 				$msg = 'Please use a valid email';
-				$msgClass = 'alert-danger';
 			} else {
-                // Passed
+               
                 $msg='Nice';
-                $query="INSERT INTO contact (firstname,lastname,email,phone,message) VALUES (:firstname,:lastname,:email,:phone,:message)";
+                $query="INSERT INTO contact (firstname,lastname,email,phone,message) VALUES (:firstname,:lastname,:email,:phone,:message)"; //folosesc parametrii dinamici si prepare statement pentru a evita sql injection
                 $statement=$connectDB->getPDO()->prepare($query);
                 $statement->execute(
                     array(
@@ -38,9 +35,8 @@ $connectDB=new Database();
                
 			}
 		} else {
-			// Failed
+			// daca nu am completat toate campurile dau un mesaj
 			$msg = 'Please fill in all fields';
-			$msgClass = 'alert-danger';
 		}
 	}
 ?>

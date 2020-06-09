@@ -1,5 +1,5 @@
 import { numberToMonth } from './util.js'
-export function pieChart(url, getTableName,getColumn, tipChart,getCountyName,tipDIV) {
+export function pieChart(url,getColumn, tipChart,getCountyName,tipDIV) {
 
 
     const title = `${getCountyName.charAt(0).toLocaleUpperCase() + getCountyName.slice(1)}`;
@@ -23,23 +23,21 @@ export function pieChart(url, getTableName,getColumn, tipChart,getCountyName,tip
                 .attr('height', height)
                 .attr('version', "1.1")
                 .attr('xmlns', "http://www.w3.org/2000/svg")
-
-            var pie = d3.pie()
+          
+            var pie = d3.pie()   // transforma valorile primite ca parametru in raze,care ulterior vor fi afisate pe grafic
                 .value(function (d) { return d[getColumn] })
-
-            var slices = pie(data);
-            let radius = Math.min(width, height) / 2;
-            var arc = d3.arc()
+           
+            var slices = pie(data);  //salvez razele intr-un array  
+            let radius = Math.min(width, height) / 2; //calculez raza intregului cerc in functie de width si height
+            var arc = d3.arc()  //imi construiesc cercul
                 .innerRadius(0)
                 .outerRadius(radius - 40);
-                const margin = { top: 50, right: 40, bottom: 77, left: 250 };
-                let innerWidth = width - margin.left - margin.right;
-            // helper that returns a color based on an ID
-            var color = d3.scaleOrdinal(d3.schemeCategory20c)
+             
+            var color = d3.scaleOrdinal(d3.schemeCategory20c) //imi aleg biblioteca de culori
+         
             var g = svg.append('g')
-                .attr('transform', `translate(${width / 2},${height / 1.8})`);
-
-            var arcGraph = g.selectAll('path.slice')
+                .attr('transform', `translate(${width / 2},${height / 1.8})`);    // mut svg-ul pe mijloc
+            var arcGraph = g.selectAll('path.slice')  //atribui fiecarei felii o culoare in functie de valoarea fiecarei luni
                 .data(slices)
                 .enter();
             arcGraph.append('path')
@@ -48,21 +46,21 @@ export function pieChart(url, getTableName,getColumn, tipChart,getCountyName,tip
                 .attr('fill', function (d) {
                     return color(d.data.month);
                 });
-                        
-            arcGraph.append("text")
+                    
+            arcGraph.append("text")   //modific textul pe chart  
                 .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
 
                 .attr("dy", "-0.30em")
                 .attr("dx", "-1em")
                 .text(function (d) { return d.data[getColumn] });
-            svg.append('g')
+             
+            svg.append('g')    //construiesc legenda adaugand
                 .attr('class', 'legend')
                 .selectAll('text')
-                .data(slices)
-                .enter()
-                .append('text')
-                
-                .text(function (d) { return numberToMonth(d.data.month).substring(0, 3); })
+                .data(slices) //incarc datele din array-ul slices
+                .enter() // returneaza o selectie bazata pe reprezentarea elementelor care trebuiesc adaugate
+                .append('text')   
+                .text(function (d) { return numberToMonth(d.data.month).substring(0, 3); })  //pentru fiecare felie voi apenda in legenda numele lunii direct proportionala cu valoarea fiecareia
                 .attr('fill', function (d) { return color(d.data.month); })
                 .attr('y', function (d, i) { return 20 * (i + 1); }) ;
               
@@ -75,11 +73,6 @@ export function pieChart(url, getTableName,getColumn, tipChart,getCountyName,tip
                  .style('text-align','center')
                  
                 
-    //             svg.append("text")
-    // .attr("x", w / 2 )
-    // .attr("y", 0)
-    // .style("text-anchor", "middle")
-    // .text("Title of Diagram");
                 
         }
         function render1() {
@@ -107,7 +100,6 @@ export function pieChart(url, getTableName,getColumn, tipChart,getCountyName,tip
 
 
     d3.json(url, function (data) {
-        console.log(url)
         data.forEach(d => {
 
             d[getColumn] = +d[getColumn]

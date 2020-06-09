@@ -19,24 +19,24 @@ if (!function_exists('mysqli_result')) {
     }
 }
 
-if (isset($_SESSION["username"])) {
-    if (isset($_POST["submit"])) {
-        if ($_FILES['file']['name']) {
-            $value = $_FILES['file']['name'];
-            $query = "SELECT count(*)  from fisiere WHERE filename = '$value'    ";
+if (isset($_SESSION["username"])) { //daca sunt logat
+    if (isset($_POST["submit"])) { //si am apasat pe butonul de submit
+        if ($_FILES['file']['name']) { //daca array-ul bidimensional exista in urma unui http post 
+            $value = $_FILES['file']['name']; //salvez numele fisierului
+            $query = "SELECT count(*)  from fisiere WHERE filename = '$value'    "; //verific daca exista in baza de date numele acestui fisier
             $result = mysqli_query($connect, $query);
             if (mysqli_result($result, 0) === '0') { 
-
+                //daca nu exista in baza de date fac split dupa . si salvez intr-un array unde o sa am pe pozitia 0 numele fisierului si pe pozitia 1 tipul fisierului
                 $filename = explode(".", $_FILES['file']['name']);
-                if ($filename[1] == 'csv') {
-                    $query = " INSERT INTO fisiere (filename) VALUES ('$value')";
+                if ($filename[1] == 'csv') { //daca este csv
+                    $query = " INSERT INTO fisiere (filename) VALUES ('$value')"; //inserez in tabele fisiere numele fisierului uploadat
                 mysqli_query($connect, $query);
-                    $handle = fopen($_FILES['file']['tmp_name'], "r");
-                    $file_name_and_extenstions = explode("_", $filename[0]);
+                    $handle = fopen($_FILES['file']['tmp_name'], "r"); //deschid fisierul
+                    $file_name_and_extenstions = explode("_", $filename[0]); //fac split dupa _ deoarece am titlu fisierului in formatul ianuarie_2019_educatie
 
                     $contor = 0;
 
-                    while ($data = fgetcsv($handle)) {
+                    while ($data = fgetcsv($handle)) { //cat timp avem date salvam fiecare coloana intr-o variabila
                         $contor++;
                         $item0 = mysqli_real_escape_string($connect, $data[0]);
                         $item1 = mysqli_real_escape_string($connect, $data[1]);
@@ -52,7 +52,7 @@ if (isset($_SESSION["username"])) {
                             $item9 = mysqli_real_escape_string($connect, $data[9]);
                         if ($contor == 44)
                             break;
-                        $month=conversionMonth::convertMonthToNumber($file_name_and_extenstions[0]);
+                        $month=conversionMonth::convertMonthToNumber($file_name_and_extenstions[0]); // in baza de date avem luna sub  forma de numar,iar in fisierul csv e sub forma de string
 
                         //if pentru varste
                         if ($file_name_and_extenstions[2] === "varste") {

@@ -76,7 +76,6 @@ function onClick(e) {
             url = `/RunDa/api/counties/${getCountyName}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
             if (getSecondCounty != undefined) {
                 url2 = `/RunDa/api/counties/${getSecondCounty}?filtered_by=${getTableName}&year=${getYear}&sorted_by=month`;
-                console.log(url2);
             }
             document.getElementById('lineChartBtn').onclick = function alegereLineChart() {
                 tipChart = 1;
@@ -89,10 +88,10 @@ function onClick(e) {
             document.getElementById('pieChartBtn').onclick = function alegerePieChart() {
                 tipChart = 2;
                 if (url != "" && url2 != "") {
-                    pieChart(url,getTableName, getColumn, tipChart, getCountyName, 1);
-                    pieChart(url2,getTableName, getColumn, tipChart, getSecondCounty, 2);
+                    pieChart(url,getColumn, tipChart, getCountyName, 1);
+                    pieChart(url2, getColumn, tipChart, getSecondCounty, 2);
                 } else
-                    pieChart(url,getTableName, getColumn, tipChart, getCountyName, 1);
+                    pieChart(url,getColumn, tipChart, getCountyName, 1);
             }
             document.getElementById('barChartBtn').onclick = function alegerePieChart() {
                 tipChart = 3;
@@ -114,10 +113,10 @@ function onClick(e) {
                         break;
                     case 2:
                         if (url != "" && url2 != "") {
-                            pieChart(url,getTableName, getColumn, tipChart, getCountyName, 1);
-                            pieChart(url2,getTableName, getColumn, tipChart, getSecondCounty, 2);
+                            pieChart(url,getColumn, tipChart, getCountyName, 1);
+                            pieChart(url2,getColumn, tipChart, getSecondCounty, 2);
                         } else
-                            pieChart(url,getTableName, getColumn, tipChart, getCountyName, 1);
+                            pieChart(url,getColumn, tipChart, getCountyName, 1);
                         break;
                     case 3:
                         if (url != "" && url2 != "") {

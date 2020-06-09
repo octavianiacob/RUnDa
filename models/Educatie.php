@@ -23,7 +23,7 @@ class Educatie
 
         return $this->db->fetchAllCounties($query);
     }
-    public function selectOneCounty($parameter, $queryArray = null,$indice) //cu fetchOne scot un JSON!
+    public function selectOneCounty($parameter, $queryArray = null,$indice) 
     {
         $query = "SELECT
         educatie.id, orase.city AS ORASE, educatie.id_judet, educatie.month, educatie.year,
@@ -36,7 +36,7 @@ class Educatie
         // daca dat orasul dat ca parametru nu exista in baza de date returnez 0
         if ($this->db->existCity($query, $parameter) == 0)
             return 0;
-        //pun intr-un array coloanele dupa care se face sortarea
+        //prelucrez query-ul in functie de parametrii si queryparams dati
         $queryResult=Util::formQuery($query,$queryArray,$indice);
 
 

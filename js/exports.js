@@ -80,10 +80,12 @@ export function exportSVG(getTableName, getCountyName, getYear, numarDiagrame) {
         svg = document.querySelector('#diagram svg');
     else
         svg = document.querySelector('#diagram2 svg');
+        //transformam svg-ul in baza 64, codificand initial fragmentul html serializat cu codificarea utf8,decodificam
+        //stringul codificat si cu btoa converteam din string in baza 64
     const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
     const a = document.createElement('a');
     const e = new MouseEvent('click');
-    a.download = `${getTableName}_${getCountyName}_${getYear}.svg`
-    a.href = 'data:image/svg+xml;base64,' + base64doc;
+    a.download = `${getTableName}_${getCountyName}_${getYear}.svg`  //dau numele fisierului care o sa fie descarcat
+    a.href = 'data:image/svg+xml;base64,' + base64doc;  //dau calea de unde va fi descarcat svg-ul
     a.dispatchEvent(e);
 }
