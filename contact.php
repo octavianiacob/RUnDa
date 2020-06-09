@@ -90,24 +90,24 @@ $connectDB=new Database();
         <form action="contact.php" method="post">
             <div class="label-input">
                 <label class="label-class"> First name:</label>
-                <input class="input-form" name="firstName" type="text" pattern="[A-Z]{1}[a-z]+" required>
+                <input class="input-form" name="firstName" type="text" pattern="[A-Z]{1}[a-z]+" placeholder="John" required>
             </div>
             <div class="label-input">
                 <label class="label-class"> Last name:</label>
-                <input class="input-form" name="lastName" type="text" pattern="[A-Z]{1}[a-z]+" required >
+                <input class="input-form" name="lastName" type="text" pattern="[A-Z]{1}[a-z]+" placeholder="Doe" required >
             </div>
 
             <div class="label-input">
                 <label class=" label-class"> Email:</label>
-                <input class="input-form" type="email" name="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+[.]+[a-z]{2, 4}$" required >
+                <input class="input-form" type="email" name="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+[.]+[a-z]{2, 4}$" placeholder=johndoe@gmail.com required >
             </div>
             <div class="label-input">
                 <label class=" label-class"> Phone:</label>
-                <input class="input-form" type="text" name="phone" pattern="^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$" required >
+                <input class="input-form" type="text" name="phone" pattern="^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$" placeholder=0745454599 required >
             </div>
             <div class="label-input">
                 <label class=" label-class"> Message:</label>
-                <textarea name="message" class="input-form"  required ></textarea>
+                <textarea name="message" class="input-form" placeholder="Type a message..." required ></textarea>
             </div>
             <div class="btn-submit">
                 <button name="submit" type="submit" id="contact-submit">Submit</button>
